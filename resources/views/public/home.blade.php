@@ -6,7 +6,7 @@
 
 @section('content')
     <!-- Slider Area -->
-    <section class="welcome-area">
+    <!-- <section class="welcome-area">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -17,32 +17,54 @@
                 <div class="carousel-item active">
                     <div class="slider-img slider-bg-1"></div>
                     <div class="carousel-caption">
-                        <h2>First slide level</h2>
-                        <p class="d-none d-md-block">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente, laborum earum.
-                            Officiis molestiae ratione nobis, eveniet quidem veniam exercitationem laudantium.</p>
+                       
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="slider-img slider-bg-2"></div>
                     <div class="carousel-caption">
-                        <h2>Second slide label</h2>
-                        <p class="d-none d-md-block">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente, laborum earum.
-                            Officiis
-                            molestiae ratione nobis, eveniet quidem veniam exercitationem laudantium.</p>
+                       
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="slider-img slider-bg-3"></div>
                     <div class="carousel-caption">
-                        <h2>Third slide label</h2>
-                        <p class="d-none d-md-block">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente, laborum earum.
-                            Officiis
-                            molestiae ratione nobis, eveniet quidem veniam exercitationem laudantium.</p>
+                       
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+    <section class="welcome-area">
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="slider-img">
+                    <img src="{{ asset('assets/img/slider-image-3.jpg') }}" class="img-fluid" alt="Slider Image 1">
+                </div>
+                <div class="carousel-caption">
+                    <!-- Your caption here -->
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="slider-img">
+                    <img src="{{ asset('assets/img/slider-image-2.jpg') }}" class="img-fluid" alt="Slider Image 2">
+                </div>
+                <div class="carousel-caption">
+                    <!-- Your caption here -->
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="slider-img">
+                    <img src="{{ asset('assets/img/slider-image-1.jpg') }}" class="img-fluid" alt="Slider Image 3">
+                </div>
+                <div class="carousel-caption">
+                    <!-- Your caption here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <section class="main-content">
         <div class="container">
@@ -141,7 +163,7 @@
         <div class="container">
             <div class="card mb-10">
                 <div class="card-header bg-dark text-white">
-                    <h4><a href="{{route('discount-books')}}" class="text-white">Discount's Book</a></h4>
+                    <h4><a href="{{route('discount-books')}}" class="text-white">Sách giảm giá</a></h4>
                 </div>
                 <div class="card-body">
                     <div class="row">

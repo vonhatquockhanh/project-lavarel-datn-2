@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-light p-1 border-bottom" id="nav-top">
+<nav class="navbar navbar-expand-sm navbar-light custom-bg p-1 border-bottom" id="nav-top">
     <div class="container">
         <a href="{{route('bookshop.home')}}" class="logo-img"><img src="{{asset('/')}}assets/img/logo.png" alt=""></a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#nav-collapse">
@@ -7,25 +7,25 @@
         <div class="collapse navbar-collapse" id="nav-collapse">
             <ul class="navbar-nav">
                 <li class="nav-item px-2">
-                    <a href="{{route('bookshop.home')}}" class="nav-link">Home</a>
+                    <a href="{{route('bookshop.home')}}" class="nav-link">Trang chủ</a>
                 </li>
                 <li class="nav-item px-2">
-                    <a href="{{route('all-books')}}" class="nav-link">Books</a>
+                    <a href="{{route('all-books')}}" class="nav-link">Tất cả sách</a>
                 </li>
-                <li class="nav-item px-2">
+                <!-- <li class="nav-item px-2">
                     <a href="{{route('discount-books')}}" class="nav-link">Discount's Book</a>
                 </li>
                 <li class="nav-item px-2">
                     <a href="#" class="nav-link">About</a>
-                </li>
+                </li> -->
             </ul>
             <ul class="navbar-nav ml-auto">
                 @if(Auth::check() == false)
                     <li class="nav-item px-2">
-                        <a href="{{url('login')}}" class="nav-link text-danger"><i class="fas fa-user-lock"></i> Login</a>
+                        <a href="{{url('login')}}" class="nav-link"><i class="fas fa-user-lock"></i> Đăng nhâp</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{url('register')}}" class="nav-link"><i class="fas fa-user"></i> Register</a>
+                        <a href="{{url('register')}}" class="nav-link"><i class="fas fa-user"></i> Đăng ký</a>
                     </li>
                 @else
                     <li class="nav-item dropdown">

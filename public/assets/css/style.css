@@ -75,23 +75,30 @@ ul.ctg-list a {
 ul.ctg-list a:hover {
     color: #C82333;
 }
-.slider-bg-1
+/* .slider-bg-1
 {
     background:url(../img/slider-image-3.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .slider-bg-2
 {
     background:url(../img/slider-image-2.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .slider-bg-3
 {
     background:url(../img/slider-image-1.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+
 }
 .slider-img
 {
     display: block;
     width: 100%;
-    height: 340px;
+    height: 400px;
     background-color: #dddd;
     background-position: center;
     background-size: cover;
@@ -101,6 +108,32 @@ ul.ctg-list a:hover {
     position: absolute;
     background: rgb(4,3,36);
     background: radial-gradient(circle, rgba(4,3,36,1) 0%, rgba(25,1,3,1) 64%, rgba(58,4,10,1) 74%, rgba(121,9,24,1) 100%, rgba(186,190,191,1) 100%);
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+} */
+
+.slider-img {
+    display: block;
+    width: 100%;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.slider-img:after {
+    position: absolute;
+    /* background: rgb(4,3,36); */
+    /* background: radial-gradient(circle, rgba(4,3,36,1) 0%, rgba(25,1,3,1) 64%, rgba(58,4,10,1) 74%, rgba(121,9,24,1) 100%, rgba(186,190,191,1) 100%); */
     content: "";
     width: 100%;
     height: 100%;
@@ -225,3 +258,145 @@ span.quantity-input input:focus{
     flex-direction: column;
     align-items: center;
 }
+
+.sidebar-items .card-header.bg-dark.text-white {
+    background-color: #0056b3 !important; 
+    color: #fff !important; 
+}
+
+.main-content .card-header.bg-dark {
+    background-color: #0056b3 !important; 
+}
+
+.main-content .card-header.bg-dark .text-white {
+    color: #fff !important;
+}
+
+.discount-book .card-header.bg-dark {
+    background-color: #0056b3 !important; 
+}
+
+.discount-book .card-header.bg-dark .text-white,
+.discount-book .card-header.bg-dark a.text-white {
+    color: #fff !important; 
+}
+
+
+.custom-input-group {
+    font-size: 16px; 
+}
+
+.custom-input {
+    height: 40px; 
+    font-size: 16px; 
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    flex-grow: 1; 
+}
+
+.btn-custom {
+    background-color: #0056b3; 
+    color: white; 
+    height: 40px; 
+    font-size: 16px; 
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border: none; 
+    padding: 0 20px; 
+}
+
+.btn-custom:hover {
+    background-color: #004494; 
+    color: white; 
+}
+
+.custom-input-group {
+    display: flex;
+}
+
+.custom-input,
+.btn-custom {
+    display: flex;
+    align-items: center;
+}
+
+/* Tạo lớp tùy chỉnh cho navbar */
+.custom-bg {
+    background-color: #0056b3 !important; /* Màu nền xanh */
+    color: white !important; /* Màu chữ trắng */
+}
+
+/* Đảm bảo tất cả các phần tử bên trong navbar có màu chữ trắng */
+.custom-bg .navbar-nav .nav-link,
+.custom-bg .navbar-brand,
+.custom-bg .navbar-toggler-icon {
+    color: white !important;
+}
+
+/* Đảm bảo các phần tử được đổi màu khi hover */
+.custom-bg .navbar-nav .nav-link:hover,
+.custom-bg .navbar-brand:hover {
+    color: #d1e7ff !important; /* Màu chữ nhạt hơn khi hover */
+}
+
+/* Đổi màu biểu tượng toggler khi hover */
+.custom-bg .navbar-toggler:hover {
+    background-color: #004494 !important; /* Màu nền xanh đậm hơn khi hover */
+}
+
+
+
+/* Tạo lớp tùy chỉnh cho navbar với nền xanh và chữ trắng */
+.custom-bg {
+    background-color: #0056b3 !important; /* Màu nền xanh */
+    color: white !important; /* Màu chữ trắng */
+}
+
+/* Đảm bảo tất cả các phần tử bên trong navbar có màu chữ trắng */
+.custom-bg .navbar-nav .nav-link,
+.custom-bg .navbar-brand,
+.custom-bg .navbar-toggler-icon {
+    color: white !important;
+}
+
+/* Đảm bảo các phần tử được đổi màu khi hover */
+.custom-bg .navbar-nav .nav-link:hover,
+.custom-bg .navbar-brand:hover {
+    color: #d1e7ff !important; /* Màu chữ nhạt hơn khi hover */
+}
+
+/* Đổi màu biểu tượng toggler khi hover */
+.custom-bg .navbar-toggler:hover {
+    background-color: #004494 !important; /* Màu nền xanh đậm hơn khi hover */
+}
+
+/* Tạo lớp tùy chỉnh cho navbar với nền sáng và chữ xanh */
+.custom-bg-light {
+    background-color: #f8f9fa !important; /* Màu nền sáng */
+    color: #0056b3 !important; /* Màu chữ xanh */
+}
+
+/* Đảm bảo tất cả các phần tử bên trong navbar có màu chữ xanh */
+.custom-bg-light .navbar-nav .nav-link,
+.custom-bg-light .navbar-brand,
+.custom-bg-light .navbar-toggler-icon {
+    color: #0056b3 !important;
+}
+
+/* Đảm bảo các phần tử được đổi màu khi hover */
+.custom-bg-light .navbar-nav .nav-link:hover,
+.custom-bg-light .navbar-brand:hover {
+    color: #003f7f !important; /* Màu chữ xanh đậm hơn khi hover */
+}
+
+/* Đổi màu biểu tượng toggler khi hover */
+.custom-bg-light .navbar-toggler:hover {
+    background-color: #e0e0e0 !important; /* Màu nền xám nhạt hơn khi hover */
+}
+
+/* Tạo lớp tùy chỉnh cho card-header với nền xanh và chữ trắng */
+.custom-card-bg {
+    background-color: #0056b3 !important; /* Màu nền xanh */
+    color: white !important; /* Màu chữ trắng */
+}
+

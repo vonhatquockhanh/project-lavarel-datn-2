@@ -18,7 +18,7 @@
 
 <body>
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1 border-bottom" id="nav-top">
+<nav class="navbar navbar-expand-lg navbar-dark custom-bg p-1 border-bottom" id="nav-top">
     <div class="container">
         <a href="{{route('bookshop.home')}}" class="logo-img"><img src="{{asset('/')}}assets/img/logo.png" alt=""></a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#nav-collapse">
@@ -27,17 +27,17 @@
         <div class="collapse navbar-collapse" id="nav-collapse">
             <ul class="navbar-nav">
                 <li class="nav-item px-2">
-                    <a href="{{route('bookshop.home')}}" class="nav-link">Home</a>
+                    <a href="{{route('bookshop.home')}}" class="nav-link">Trang chủ</a>
                 </li>
                 <li class="nav-item px-2">
-                    <a href="{{route('all-books')}}" class="nav-link">Books</a>
+                    <a href="{{route('all-books')}}" class="nav-link">Tất cả sách</a>
                 </li>
-                <li class="nav-item px-2">
+                <!-- <li class="nav-item px-2">
                     <a href="{{route('discount-books')}}" class="nav-link">Discount's Books</a>
                 </li>
                 <li class="nav-item px-2">
                     <a href="#" class="nav-link">About</a>
-                </li>
+                </li> -->
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
@@ -64,6 +64,7 @@
         </div>
     </div>
 </nav>
+
 <!-- NAVBAR END -->
 <!-- HEADER -->
 <section class="header py-2 bg-light">
@@ -78,8 +79,8 @@
                 <div class="activity-user">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-danger" href="#" data-toggle="dropdown"><i class="fas fa-cog"></i> Your
-                                activities</a>
+                            <!-- <a class="nav-link text-danger" href="#" data-toggle="dropdown"><i class="fas fa-cog"></i> Your
+                                activities</a> -->
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="{{route('user.reviews')}}">Reviews</a>
                                 <a class="dropdown-item" href="{{route('user.orders')}}">Orders</a>
@@ -90,7 +91,7 @@
             </div>
             <div class="col-md-4">
                 <div class="shopping-cart text-right">
-                    <a href="{{route('cart')}}" class="text-danger"><i class="fas fa-shopping-cart fa-2x m-1"></i>
+                    <a href="{{route('cart')}}" ><i class="fas fa-shopping-cart fa-2x m-1"></i>
                         @if(Cart::content()->count())
                             <span class="count-cart">{{Cart::content()->count()}}</span>
                         @endif
@@ -111,7 +112,7 @@
             <a href="#nav-top" class="text-muted" title="Go to top"><i class="fas fa-angle-double-up"></i></a>
         </div>
         <div class="footer-text">
-            Copyright &copy; Khang Võ - <span id="year"></span>
+            Copyright &copy; Quốc Khang - <span id="year"></span>
         </div>
     </div>
 </footer>

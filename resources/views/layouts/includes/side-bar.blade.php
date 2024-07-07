@@ -2,7 +2,7 @@
     <div class="sidebar-items">
         <div class="card my-4">
             <div class="card-header bg-dark text-white">
-                <h4>Loại Sách</h4>
+                <h4>Danh mục sách</h4>
             </div>
             <div class="card-body">
                 <ul class="ctg-list">
@@ -16,7 +16,7 @@
         </div>
         <div class="card my-3">
             <div class="card-header bg-dark text-white">
-                <h4>Gợi ý sách</h4>
+                <h4>Sách mới gần đây</h4>
             </div>
             <div class="card-body">
                 @foreach($recent_books as $book)
