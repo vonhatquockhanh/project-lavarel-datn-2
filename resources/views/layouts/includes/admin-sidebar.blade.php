@@ -28,6 +28,54 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.khach-hang.danh-sach')}}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Quản lý khách hàng</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.combo.danh-sach')}}">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Quản lý Combo</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.loai-sach.danh-sach')}}">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Quản lý loại sách</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.nha-xuat-ban.danh-sach')}}">
+            <i class="fas fa-fw fa-building"></i>
+            <span>Quản lý nhà xuất bản</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.phieu-nhap-hang.danh-sach')}}">
+            <i class="fas fa-fw fa-building"></i>
+            <span>Quản lý phiếu nhập hàng</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.tac-gia.danh-sach')}}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Quản lý tác giả</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-user-cog"></i>
+            <span>Đánh giá</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('admin.danh-gia-sach.danh-sach')}}">Đánh giá sách</a>
+                <a class="collapse-item" href="{{route('admin.danh-gia-combo.danh-sach')}}">Đánh giá combo</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="{{route('books.index')}}">
             <i class="fas fa-fw fa-book"></i>
             <span>Books</span>
