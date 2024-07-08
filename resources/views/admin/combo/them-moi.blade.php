@@ -25,18 +25,13 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="nha_xuat_ban_id" class="form-label">Nhà Xuất Bản</label>
-                                <select class="form-select @error('nha_xuat_ban_id') is-invalid @enderror" id="nha_xuat_ban_id" name="nha_xuat_ban_id">
-                                    <option value="">Chọn nhà xuất bản</option>
-                                    @foreach($nhaXuatBans as $nhaXuatBan)
-                                        <option value="{{ $nhaXuatBan->id }}">{{ $nhaXuatBan->ten_nha_xuat_ban }}</option>
-                                    @endforeach
-                                </select>
-                                @error('nha_xuat_ban_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                            <label for="nha_xuat_ban_id">Nhà Xuất Bản</label>
+                            <select class="form-control" id="nha_xuat_ban_id" name="nha_xuat_ban_id" required>
+                                <option value="">Chọn nhà xuất bản</option>
+                                @foreach($nhaXuatBans as $nhaXuatBan)
+                                <option value="{{ $nhaXuatBan->id }}">{{ $nhaXuatBan->ten_nha_xuat_ban }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">

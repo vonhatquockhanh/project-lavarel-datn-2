@@ -10,14 +10,6 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
-
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="{{route('admin.home')}}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li>
-
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -30,38 +22,44 @@
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.khach-hang.danh-sach')}}">
             <i class="fas fa-fw fa-user"></i>
-            <span>Quản lý khách hàng</span>
+            <span>Quản Lý Khách Hàng</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.combo.danh-sach')}}">
             <i class="fas fa-fw fa-book"></i>
-            <span>Quản lý Combo</span>
+            <span>Quản Lý Combo</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.loai-sach.danh-sach')}}">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Quản lý loại sách</span>
+            <span>Quản Lý Loại Sách</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.nha-xuat-ban.danh-sach')}}">
             <i class="fas fa-fw fa-building"></i>
-            <span>Quản lý nhà xuất bản</span>
+            <span>Quản Lý Nhà Xuất Bản</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.phieu-nhap-hang.danh-sach')}}">
             <i class="fas fa-fw fa-building"></i>
-            <span>Quản lý phiếu nhập hàng</span>
+            <span>Quản Lý Phiếu Nhập Hàng</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.tac-gia.danh-sach')}}">
             <i class="fas fa-fw fa-user"></i>
-            <span>Quản lý tác giả</span>
+            <span>Quản Lý Tác Giả</span>
         </a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="{{ route('admin.don-hang.danh-sach') }}">
+        <i class="fas fa-fw fa-shopping-cart"></i>
+        <span>Quản Lý Đơn Hàng</span>
+    </a>
     </li>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">

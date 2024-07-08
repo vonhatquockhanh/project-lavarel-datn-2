@@ -12,7 +12,7 @@ class PhieuNhapHang extends Model
     public $incrementing = false;
     public function admin()
     {
-        return $this->belongsTo(Admin::class, 'admin_ten_dang_nhap', 'ten_dang_nhap');
+        return $this->belongsTo(User::class, 'admin_ten_dang_nhap', 'email');
     }
     public function chiTietPhieuNhap()
     {

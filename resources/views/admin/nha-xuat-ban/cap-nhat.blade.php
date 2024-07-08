@@ -11,7 +11,6 @@
         <div class="card-body">
             <form action="{{ route('admin.nha-xuat-ban.cap-nhat', $nhaXuatBan->id) }}" method="POST">
                 @csrf
-                @method('PATCH')
                 <div class="mb-3">
                     <label for="ten_nha_xuat_ban" class="form-label">Tên nhà xuất bản</label>
                     <input type="text" class="form-control {{ $errors->has('ten_nha_xuat_ban') ? 'is-invalid' : '' }}" id="ten_nha_xuat_ban" name="ten_nha_xuat_ban" value="{{ $nhaXuatBan->ten_nha_xuat_ban }}">

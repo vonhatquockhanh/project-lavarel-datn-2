@@ -31,7 +31,7 @@ class NhaXuatBanController extends Controller
         $nhaXuatBan->mo_ta = $request->mo_ta;
         $nhaXuatBan->save();
 
-        return redirect()->route('admin.nha-xuat-ban.danh-sach')->with('thong_bao', 'Thêm nhà xuất bản thành công!');
+        return redirect()->route('admin.nha-xuat-ban.danh-sach')->with(['thong_bao' => "Thêm nhà xuất bản {$nhaXuatBan->ten_nha_xuat_ban} thành công!"]);
     }
 
     public function capNhat($id)

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\NhaXuatBanController;
 use App\Http\Controllers\Admin\ComboController;
 use App\Http\Controllers\Admin\PhieuNhapHangController;
 use App\Http\Controllers\Admin\DanhGiaController;
+use App\Http\Controllers\Admin\DonHangController;
 
 Route::get('/', 'BookshopHomeController@index')->name('bookshop.home');
 
@@ -54,23 +55,8 @@ Route::group(['middleware' => 'admin'], function (){
     Route::resource('/admin/users', 'Admin\AdminUsersController');
     Route::resource('/admin/orders', 'Admin\AdminOrdersController');
     Route::resource('/admin/reviews', 'Admin\AdminReviewsController');
-});
-// End of admin route
 
-// Users route group
-Route::group(['middleware' => 'user'], function (){
-    Route::get('/user-home', 'Users\UsersBaseController@index')->name('user.home');
-    Route::get('/my-orders', 'Users\UserOrdersController@myOrders')->name('user.orders');
-    Route::get('/order/details/{id}', 'Users\UserOrdersController@order_details')->name('order.details');
-
-    Route::get('/my-reviews', 'Users\UserReviewsController@myReviews')->name('user.reviews');
-    Route::delete('/review-delete/{id}', 'Users\UserReviewsController@deleteReview')->name('review.delete');
-});
-// End of users route
-
-Route::get('/logout', 'CustomLogoutController@logout')->name('custom.logout');
-//Tác giả
-Route::get('/tac-gia/danh-sach', [TacGiaController::class, 'danhSach'])->name('admin.tac-gia.danh-sach');
+    Route::get('/tac-gia/danh-sach', [TacGiaController::class, 'danhSach'])->name('admin.tac-gia.danh-sach');
 Route::get('/tac-gia/them-moi', [TacGiaController::class, 'themMoi'])->name('admin.tac-gia.them-moi');
 Route::post('/tac-gia/xu-ly-them-moi', [TacGiaController::class, 'xuLyThemMoi'])->name('admin.tac-gia.xu-ly-them-moi');
 Route::get('/tac-gia/cap-nhat/{id}', [TacGiaController::class, 'capNhat'])->name('admin.tac-gia.cap-nhat');
@@ -140,3 +126,29 @@ Route::prefix('danh-gia-sach')->group(function () {
     Route::put('/cap-nhat/{id}', [DanhGiaController::class, 'xuLyCapNhatDanhGiaSach'])->name('admin.danh-gia-sach.xu-ly-cap-nhat');
     Route::delete('/xoa/{id}', [DanhGiaController::class, 'xoaDanhGiaSach'])->name('admin.danh-gia-sach.xoa');
 });
+Route::prefix('don-hang')->group(function(){
+    Route::get('/don-hang/danh-sach',[DonHangController::class,'danhSach'])->name('admin.don-hang.danh-sach');
+    Route::get('/them-moi', [DonHangController::class, 'themMoi'])->name('admin.don-hang.them-moi');
+    Route::post('/them-moi', [DonHangController::class, 'xuLyThemMoi'])->name('admin.don-hang.xu-ly-them-moi');
+    Route::get('/chi-tiet/{id}', [DonHangController::class, 'chiTiet'])->name('admin.don-hang.chi-tiet');
+    Route::get('/xoa/{id}', [DonHangController::class, 'xoa'])->name('admin.don-hang.xoa');
+    Route::post('chi-tiet/store', [DonHangController::class, 'store'])->name('admin.don-hang.chi-tiet.store');
+    Route::delete('/don-hang/chi-tiet/{id}', [DonHangController::class, 'xoaChiTiet'])->name('admin.don-hang.chi-tiet.xoa');
+    Route::get('/don-hang/tim-kiem', [DonHangController::class, 'timKiem'])->name('admin.don-hang.tim-kiem');
+});
+});
+// End of admin route
+
+// Users route group
+Route::group(['middleware' => 'user'], function (){
+    Route::get('/user-home', 'Users\UsersBaseController@index')->name('user.home');
+    Route::get('/my-orders', 'Users\UserOrdersController@myOrders')->name('user.orders');
+    Route::get('/order/details/{id}', 'Users\UserOrdersController@order_details')->name('order.details');
+
+    Route::get('/my-reviews', 'Users\UserReviewsController@myReviews')->name('user.reviews');
+    Route::delete('/review-delete/{id}', 'Users\UserReviewsController@deleteReview')->name('review.delete');
+});
+// End of users route
+
+Route::get('/logout', 'CustomLogoutController@logout')->name('custom.logout');
+//Tác giả
