@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('nguong_mien_phi_van_chuyen', 8, 2);
             $table->timestamps();
 
-            $table->foreign('khu_vuc_van_chuyen_id')->references('id')->on('khu_vuc_van_chuyen');
+            // $table->foreign('khu_vuc_van_chuyen_id')->references('id')->on('khu_vuc_van_chuyen');
         });
     }
 

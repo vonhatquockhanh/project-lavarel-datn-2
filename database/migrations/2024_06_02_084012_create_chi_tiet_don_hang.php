@@ -20,9 +20,9 @@ return new class extends Migration
             $table->integer('so_luong');
             $table->timestamps();
 
-            $table->foreign('don_hang_id')->references('id')->on('don_hang');
-            $table->foreign('sach_id')->references('id')->on('sach')->nullable();
-            $table->foreign('combo_id')->references('id')->on('combo')->nullable();
+            // $table->foreign('don_hang_id')->references('id')->on('don_hang');
+            // $table->foreign('sach_id')->references('id')->on('sach')->nullable();
+            // $table->foreign('combo_id')->references('id')->on('combo')->nullable();
         });
     }
 

@@ -16,6 +16,6 @@
     <div class="alert alert-danger my-3">{{session('alert_message')}}</div>
 @endif
 
-@if(session('cart_alert'))
-    <div class="text-danger my-2"><strong>{{session('cart_alert')}}</strong></div>
+@if(session('giohang_alert'))
+    <div class="text-danger my-2"><strong>{{session('giohang_alert')}}</strong></div>
 @endif

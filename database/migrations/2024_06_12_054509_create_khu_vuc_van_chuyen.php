@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('ten_khu_vuc')->unique();
             $table->timestamps();
 
-            $table->foreign('don_hang_id')->references('id')->on('don_hang');
+            // $table->foreign('don_hang_id')->references('id')->on('don_hang');
         });
     }
 

@@ -1,16 +1,16 @@
 <nav class="navbar navbar-expand-sm navbar-light custom-bg p-1 border-bottom" id="nav-top">
     <div class="container">
-        <a href="{{route('bookshop.home')}}" class="logo-img"><img src="{{asset('/')}}assets/img/logo.png" alt=""></a>
+        <a href="{{route('trang-chu-sach')}}" class="logo-img"><img src="{{asset('/')}}assets/img/logo.png" alt=""></a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#nav-collapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="nav-collapse">
             <ul class="navbar-nav">
                 <li class="nav-item px-2">
-                    <a href="{{route('bookshop.home')}}" class="nav-link">Trang chủ</a>
+                    <a href="{{route('trang-chu-sach')}}" class="nav-link">Trang chủ</a>
                 </li>
                 <li class="nav-item px-2">
-                    <a href="{{route('all-books')}}" class="nav-link">Tất cả sách</a>
+                    <a href="{{route('tatCaSach')}}" class="nav-link">Tất cả sách</a>
                 </li>
                 <!-- <li class="nav-item px-2">
                     <a href="{{route('discount-books')}}" class="nav-link">Discount's Book</a>

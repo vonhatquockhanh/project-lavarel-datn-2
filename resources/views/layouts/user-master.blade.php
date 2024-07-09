@@ -20,17 +20,17 @@
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark custom-bg p-1 border-bottom" id="nav-top">
     <div class="container">
-        <a href="{{route('bookshop.home')}}" class="logo-img"><img src="{{asset('/')}}assets/img/logo.png" alt=""></a>
+        <a href="{{route('trang-chu-sach')}}" class="logo-img"><img src="{{asset('/')}}assets/img/logo.png" alt=""></a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#nav-collapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="nav-collapse">
             <ul class="navbar-nav">
                 <li class="nav-item px-2">
-                    <a href="{{route('bookshop.home')}}" class="nav-link">Trang chủ</a>
+                    <a href="{{route('trang-chu-sach')}}" class="nav-link">Trang chủ</a>
                 </li>
                 <li class="nav-item px-2">
-                    <a href="{{route('all-books')}}" class="nav-link">Tất cả sách</a>
+                    <a href="{{route('tatCaSach')}}" class="nav-link">Tất cả sách</a>
                 </li>
                 <!-- <li class="nav-item px-2">
                     <a href="{{route('discount-books')}}" class="nav-link">Discount's Books</a>
@@ -72,7 +72,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="headings">
-                    <h3><a href="{{route('bookshop.home')}}" class="text-secondary"><b class="text-danger">Book</b> Shop</a></h3>
+                    <h3><a href="{{route('trang-chu-sach')}}" class="text-secondary"><b class="text-danger">Book</b> Shop</a></h3>
                 </div>
             </div>
             <div class="col-md-4">
@@ -82,8 +82,8 @@
                             <!-- <a class="nav-link text-danger" href="#" data-toggle="dropdown"><i class="fas fa-cog"></i> Your
                                 activities</a> -->
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{route('user.reviews')}}">Reviews</a>
-                                <a class="dropdown-item" href="{{route('user.orders')}}">Orders</a>
+                                <a class="dropdown-item" href="{{route('user.reviews')}}">Đánh giá</a>
+                                <a class="dropdown-item" href="{{route('user.orders')}}">Đơn hàng</a>
                             </div>
                         </li>
                     </ul>
@@ -91,7 +91,7 @@
             </div>
             <div class="col-md-4">
                 <div class="shopping-cart text-right">
-                    <a href="{{route('cart')}}" ><i class="fas fa-shopping-cart fa-2x m-1"></i>
+                    <a href="{{route('gioHang')}}" ><i class="fas fa-shopping-cart fa-2x m-1"></i>
                         @if(Cart::content()->count())
                             <span class="count-cart">{{Cart::content()->count()}}</span>
                         @endif

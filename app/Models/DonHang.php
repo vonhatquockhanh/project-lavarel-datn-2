@@ -43,4 +43,12 @@ class DonHang extends Model
     {
         return $this->hasMany(KhuVucVanChuyen::class, 'don_hang_id', 'id');
     }
+
+    protected $guarded = [];
+
+    public function user()
+    {
+        // return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
+    }
 }

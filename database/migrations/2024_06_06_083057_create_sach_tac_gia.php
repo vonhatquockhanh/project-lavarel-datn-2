@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('sach_id');
             $table->timestamps();
 
-            $table->foreign('tac_gia_id')->references('id')->on('tac_gia');
-            $table->foreign('sach_id')->references('id')->on('sach');
+            // $table->foreign('tac_gia_id')->references('id')->on('tac_gia');
+            // $table->foreign('sach_id')->references('id')->on('sach');
         });
     }
 

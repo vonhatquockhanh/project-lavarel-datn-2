@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('noi_dung')->nullable();
             $table->timestamps();
 
-            $table->foreign('khach_hang_ten_dang_nhap')->references('ten_dang_nhap')->on('khach_hang');
-            $table->foreign('combo_id')->references('id')->on('combo');
+            // $table->foreign('khach_hang_ten_dang_nhap')->references('ten_dang_nhap')->on('khach_hang');
+            // $table->foreign('combo_id')->references('id')->on('combo');
         });
     }
 

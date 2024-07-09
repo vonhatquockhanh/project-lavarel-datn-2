@@ -22,4 +22,26 @@ class NhaXuatBan extends Model
     {
         return $this->belongsTo(PhieuNhapHang::class, 'phieu_nhap_hang_id');
     }
+
+    public function sach()
+    {
+        return $this->hasMany(Sach::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /*
+     * Image Accessor
+     */
+    public function getImageUrlAttribute($value)
+    {
+        return asset('/').'assets/img/'.$this->hinhAnh->url;
+    }
+    public function getDefaultImgAttribute($value)
+    {
+        return asset('/').'assets/img/'.'user-placeholder.png';
+    }
 }

@@ -6,6 +6,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Models\HinhAnh;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -39,9 +41,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Role');
     }
-    public function image()
+    public function hinhAnh()
     {
-        return $this->belongsTo('App\Image');
+        // return $this->belongsTo('App\Image');
+        return $this->belongsTo(HinhAnh::class);
     }
     public function orders()
     {
@@ -57,7 +60,7 @@ class User extends Authenticatable
     */
     public function getImageUrlAttribute($value)
     {
-        return asset('/').'assets/img/'.$this->image->file;
+        return asset('/').'assets/img/'.$this->hinhAnh->url;
     }
     public function getDefaultImgAttribute($value)
     {

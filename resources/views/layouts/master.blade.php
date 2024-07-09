@@ -24,11 +24,11 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="headings">
-                    <h3><a href="{{route('bookshop.home')}}" class="text-secondary">Sách <b class="text-danger">Mới</b></a></h3>
+                    <h3><a href="{{route('trang-chu-sach')}}" class="text-secondary">Sách <b class="text-danger">Mới</b></a></h3>
                 </div>
             </div>
             <div class="col-md-4">
-                <form action="{{route('all-books')}}">
+                <form action="{{route('tatCaSach')}}">
                     <div class="input-group custom-input-group m-1">
                         <input type="text" name="term" value="{{request('term')}}" class="form-control custom-input" placeholder="Tìm sách..">
                         <div class="input-group-append">
@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-4">
                 <div class="shopping-cart text-right">
-                    <a href="{{route('cart')}}"><i class="fas fa-shopping-cart fa-2x m-1"></i>
+                    <a href="{{route('gioHang')}}"><i class="fas fa-shopping-cart fa-2x m-1"></i>
                         @if(Cart::content()->count())
                             <span class="count-cart">{{Cart::content()->count()}}</span>
                         @endif

@@ -17,11 +17,34 @@ class LoaiSach extends Model
     ];
 
     protected $keyType = 'string';
+    protected $guarded = [];
     public $incrementing = false;
 
     protected $dates = ['deleted_at'];
+    public function sachs()
+    {
+        return $this->hasMany(Sach::class);
+    }
+
     public function sach()
     {
         return $this->hasMany(Sach::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /*
+     * Image Accessor
+     */
+    public function getImageUrlAttribute($value)
+    {
+        return asset('/').'assets/img/'.$this->hinhAnh->url;
+    }
+    public function getDefaultImgAttribute($value)
+    {
+        return asset('/').'assets/img/'.'user-placeholder.png';
     }
 }

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-        $table->foreign('nha_xuat_ban_id')->references('id')->on('nha_xuat_ban');
+        // $table->foreign('nha_xuat_ban_id')->references('id')->on('nha_xuat_ban');
         });
     }
 

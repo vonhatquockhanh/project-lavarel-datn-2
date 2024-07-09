@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('danh_gia_sach', function (Blueprint $table) {
             $table->string('id')->primary();
+            $table->string('user_id');
             $table->string('khach_hang_ten_dang_nhap');
             $table->string('sach_id')->nullable();
             $table->tinyInteger('danh_gia');
             $table->string('noi_dung')->nullable();
+            $table->string('trang_thai')->nullable();
             $table->timestamps();
 
-            $table->foreign('khach_hang_ten_dang_nhap')->references('ten_dang_nhap')->on('khach_hang');
-            $table->foreign('sach_id')->references('id')->on('sach');
+            // $table->foreign('khach_hang_ten_dang_nhap')->references('ten_dang_nhap')->on('khach_hang');
+            // $table->foreign('sach_id')->references('id')->on('sach');
         });
     }
 

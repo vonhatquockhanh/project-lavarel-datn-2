@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('bookshop.home')}}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('trang-chu-sach')}}">
         <div class="sidebar-brand-icon">
             <img src="{{asset('/')}}admin/img/logo.png" width="30" alt="">
         </div>

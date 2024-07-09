@@ -20,8 +20,8 @@ return new class extends Migration
             $table->tinyInteger('trang_thai')->default(1);
             $table->timestamps();
 
-            $table->foreign('nha_xuat_ban_id')->references('id')->on('nha_xuat_ban');
-            $table->foreign('admin_ten_dang_nhap')->references('ten_dang_nhap')->on('admin');
+            // $table->foreign('nha_xuat_ban_id')->references('id')->on('nha_xuat_ban');
+            // $table->foreign('admin_ten_dang_nhap')->references('ten_dang_nhap')->on('admin');
         });
     }
 

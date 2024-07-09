@@ -18,7 +18,7 @@ return new class extends Migration
             $table->year('cap_nhat_thoi_gian_trang_thai')->nullable();
             $table->timestamps();
 
-            $table->foreign('don_hang_id')->references('id')->on('don_hang');
+            // $table->foreign('don_hang_id')->references('id')->on('don_hang');
         });
     }
 

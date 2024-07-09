@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('combo_id');
             $table->timestamps();
 
-            $table->foreign('sach_id')->references('id')->on('sach');
-            $table->foreign('combo_id')->references('id')->on('combo');
+            // $table->foreign('sach_id')->references('id')->on('sach');
+            // $table->foreign('combo_id')->references('id')->on('combo');
         });
     }
 

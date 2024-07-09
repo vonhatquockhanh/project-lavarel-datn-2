@@ -28,8 +28,8 @@ return new class extends Migration
             $table->tinyInteger('trang_thai_thanh_toan')->default(0);
             $table->timestamps();
 
-            $table->foreign('khach_hang_ten_dang_nhap')->references('ten_dang_nhap')->on('khach_hang');
-            $table->foreign('admin_ten_dang_nhap')->references('ten_dang_nhap')->on('admin');
+            // $table->foreign('khach_hang_ten_dang_nhap')->references('ten_dang_nhap')->on('khach_hang');
+            // $table->foreign('admin_ten_dang_nhap')->references('ten_dang_nhap')->on('admin');
         });
     }
 

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('url');
             $table->timestamps();
 
-            $table->foreign('sach_id')->references('id')->on('sach');
+            // $table->foreign('sach_id')->references('id')->on('sach');
         });
     }
 

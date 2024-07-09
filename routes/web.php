@@ -8,7 +8,28 @@ use App\Http\Controllers\Admin\PhieuNhapHangController;
 use App\Http\Controllers\Admin\DanhGiaController;
 use App\Http\Controllers\Admin\DonHangController;
 
-Route::get('/', 'BookshopHomeController@index')->name('bookshop.home');
+
+Route::get('/', 'TrangChuController@index')->name('trang-chu-sach');
+Route::get('/tatCaSach', 'TrangChuController@tatCaSach')->name('tatCaSach');
+Route::get('/loaiSach/{loaiSach}', 'TrangChuController@loaiSach')->name('loaiSach');
+Route::get('/tacGia/{tacGia}', 'TrangChuController@tacGia')->name('tacGia');
+Route::get('/sach/{sach}', 'TrangChuController@chiTietSach')->name('chi-tiet-sach');
+
+// Route::post('/sach/{sach}/danhGiaSach', 'DanhGiaSachController@store')->name('danhGiaSach');
+Route::post('/sach/{book}/danhGia', 'DanhGiaSachController@store')->name('book.review');
+
+Route::post('/gioHang/them', 'GioHangController@them')->name('gioHang.them');
+Route::get('/gioHang/gioHang', 'GioHangController@gioHang')->name('gioHang');
+Route::get('/gioHang/xoa/{id}', 'GioHangController@xoa')->name('gioHang.xoa');
+Route::get('/gioHang/tangDan/{id}/{qty}/{sach_id}', 'GioHangController@tangDan')->name('gioHang.tangDan');
+Route::get('/gioHang/giamDan/{id}/{qty}', 'GioHangController@giamDan')->name('gioHang.giamDan');
+
+Route::post('/gioHang/thucThi', 'XacNhanThanhToanController@store')->name('gioHang.thucThi');
+Route::get('/gioHang/thanhToan', 'XacNhanThanhToanController@show')->name('gioHang.thanhToan');
+Route::get('/gioHang/xacNhanThanhToan', 'XacNhanThanhToanController@index')->name('gioHang.xacNhanThanhToan');
+Route::post('/gioHang/xacNhanThanhToan', 'XacNhanThanhToanController@pay')->name('gioHang.xacNhanThanhToan.pay'); 
+
+// Route::get('/', 'BookshopHomeController@index')->name('bookshop.home');
 
 Route::get('/all-books', 'BookshopHomeController@allBooks')->name('all-books');
 Route::get('/discount-books', 'BookshopHomeController@discountBooks')->name('discount-books');
@@ -17,7 +38,7 @@ Route::get('/author/{author}', 'BookshopHomeController@author')->name('author');
 
 Route::get('/book/{book}', 'BookshopHomeController@bookDetails')->name('book-details');
 
-Route::post('/book/{book}/review', 'ReviewsController@store')->name('book.review');
+// Route::post('/book/{book}/review', 'ReviewsController@store')->name('book.review');
 
 // Cart Route
 Route::post('/cart/add', 'ShoppingCartController@add_to_cart')->name('cart.add');
