@@ -44,7 +44,7 @@ class KhachHangController extends Controller
     }
     public function danhSach()
     {
-        $dskhachHang = KhachHang::all();
+        $dskhachHang = KhachHang::paginate(10); 
         return view('admin.khach-hang.danh-sach', compact('dskhachHang'));
     }
 

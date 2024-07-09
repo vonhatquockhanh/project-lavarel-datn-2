@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ComboController;
 use App\Http\Controllers\Admin\PhieuNhapHangController;
 use App\Http\Controllers\Admin\DanhGiaController;
 use App\Http\Controllers\Admin\DonHangController;
+use App\Http\Controllers\Admin\SachController;
 
 
 Route::get('/', 'TrangChuController@index')->name('trang-chu-sach');
@@ -132,19 +133,11 @@ Route::prefix('phieu-nhap-hang')->group(function () {
 //đánh Giá Combo
 Route::prefix('danh-gia-combo')->group(function () {
     Route::get('/', [DanhGiaController::class, 'danhSachDanhGiaCombo'])->name('admin.danh-gia-combo.danh-sach');
-    Route::get('/them-moi', [DanhGiaController::class, 'themDanhGiaCombo'])->name('admin.danh-gia-combo.them-moi');
-    Route::post('/them-moi', [DanhGiaController::class, 'xuLyThemDanhGiaCombo'])->name('admin.danh-gia-combo.xu-ly-them-moi');
-    Route::get('/cap-nhat/{id}', [DanhGiaController::class, 'capNhatDanhGiaCombo'])->name('admin.danh-gia-combo.cap-nhat');
-    Route::put('/cap-nhat/{id}', [DanhGiaController::class, 'xuLyCapNhatDanhGiaCombo'])->name('admin.danh-gia-combo.xu-ly-cap-nhat');
     Route::delete('/xoa/{id}', [DanhGiaController::class, 'xoaDanhGiaCombo'])->name('admin.danh-gia-combo.xoa');
 });
 //Đánh Giá Sách
 Route::prefix('danh-gia-sach')->group(function () {
     Route::get('/', [DanhGiaController::class, 'danhSachDanhGiaSach'])->name('admin.danh-gia-sach.danh-sach');
-    Route::get('/them-moi', [DanhGiaController::class, 'themDanhGiaSach'])->name('admin.danh-gia-sach.them-moi');
-    Route::post('/them-moi', [DanhGiaController::class, 'xuLyThemDanhGiaSach'])->name('admin.danh-gia-sach.xu-ly-them-moi');
-    Route::get('/cap-nhat/{id}', [DanhGiaController::class, 'capNhatDanhGiaSach'])->name('admin.danh-gia-sach.cap-nhat');
-    Route::put('/cap-nhat/{id}', [DanhGiaController::class, 'xuLyCapNhatDanhGiaSach'])->name('admin.danh-gia-sach.xu-ly-cap-nhat');
     Route::delete('/xoa/{id}', [DanhGiaController::class, 'xoaDanhGiaSach'])->name('admin.danh-gia-sach.xoa');
 });
 Route::prefix('don-hang')->group(function(){
@@ -156,6 +149,15 @@ Route::prefix('don-hang')->group(function(){
     Route::post('chi-tiet/store', [DonHangController::class, 'store'])->name('admin.don-hang.chi-tiet.store');
     Route::delete('/don-hang/chi-tiet/{id}', [DonHangController::class, 'xoaChiTiet'])->name('admin.don-hang.chi-tiet.xoa');
     Route::get('/don-hang/tim-kiem', [DonHangController::class, 'timKiem'])->name('admin.don-hang.tim-kiem');
+});
+Route::prefix('sach')->group(function () {
+    Route::get('/', [SachController::class, 'danhSach'])->name('admin.sach.danh-sach');
+    Route::get('/them-moi', [SachController::class, 'themMoi'])->name('admin.sach.them-moi');
+    Route::post('/xu-ly-them-moi', [SachController::class, 'xuLyThemMoi'])->name('admin.sach.xu-ly-them-moi');
+    Route::get('/cap-nhat/{id}', [SachController::class, 'capNhat'])->name('admin.sach.cap-nhat');
+    Route::post('/cap-nhat/{id}', [SachController::class, 'xuLyCapNhat'])->name('admin.sach.xu-ly-cap-nhat');
+    Route::get('/xoa/{id}', [SachController::class, 'xoa'])->name('admin.sach.xoa');
+    Route::get('/tim-kiem',[SachController::class,'timKiem'])->name('admin.sach.tim-kiem');
 });
 });
 // End of admin route

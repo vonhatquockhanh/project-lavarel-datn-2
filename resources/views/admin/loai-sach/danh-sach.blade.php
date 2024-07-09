@@ -51,10 +51,10 @@
                                         <td>{{ $loaiSach->slug }}</td>
                                         <td>
                                             <a href="{{ route('admin.loai-sach.cap-nhat', ['id' => $loaiSach->id]) }}" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-edit"></i> Cập nhật
+                                                <i class="fas fa-edit"></i>
                                             </a>
                                             <a href="{{ route('admin.loai-sach.xoa', ['id' => $loaiSach->id]) }}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa loại sách này không?')">
-                                                <i class="fas fa-trash"></i> Xóa
+                                                <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
                                     </tr>

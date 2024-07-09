@@ -1,26 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Sach;
 use App\Models\LoaiSach;
 use App\Models\NhaXuatBan;
+use App\Models\HinhAnh;
 use App\Http\Requests\SachRequest;
+use App\Http\Controllers\Controller;
 
 class SachController extends Controller
 {
     public function danhSach()
     {
-        $sachs = Sach::paginate(10);
-        return view('sach.danh-sach', compact('sachs'));
+        $sachs = Sach::with('hinhAnh')->paginate(10);
+        return view('admin.sach.danh-sach', compact('sachs'));
     }
 
     public function themMoi()
     {
         $loaiSachs = LoaiSach::all();
         $nhaXuatBans = NhaXuatBan::all();
-        return view('sach.them-moi', compact('loaiSachs','nhaXuatBans'));
+        return view('admin.sach.them-moi', compact('loaiSachs','nhaXuatBans'));
     }
     public function xuLyThemMoi(SachRequest $request)
     {
@@ -29,6 +31,7 @@ class SachController extends Controller
         $sach->loai_sach_id = $request->loai_sach_id;
         $sach->nha_xuat_ban_id = $request->nha_xuat_ban_id;
         $sach->ten_sach = $request->ten_sach;
+        $sach->hinh_anh_id=$request->hinh_anh_id;
         $sach->ngay_phat_hanh = $request->ngay_phat_hanh;
         $sach->gia = $request->gia;
         $sach->gia_sach_dien_tu = $request->gia_sach_dien_tu;
@@ -36,7 +39,7 @@ class SachController extends Controller
         $sach->mo_ta = $request->mo_ta;
         $sach->slug = $request->slug;
         $sach->save();
-        return redirect()->route('sach.danh-sach')->with('thong_bao', 'Thêm sách mới thành công!');
+        return redirect()->route('admin.sach.danh-sach')->with('thong_bao', 'Thêm sách mới thành công!');
     }
 
     public function capNhat($id)
@@ -45,16 +48,16 @@ class SachController extends Controller
         $loaiSachs = LoaiSach::all();
         $nhaXuatBans = NhaXuatBan::all();
         if (!$sach) {
-            return redirect()->route('sach.danh-sach')->with('thong_bao', 'Sách không tồn tại!');
+            return redirect()->route('admin.sach.danh-sach')->with('thong_bao', 'Sách không tồn tại!');
         }
-        return view('sach.cap-nhat', compact('sach','loaiSachs','nhaXuatBans'));
+        return view('admin.sach.cap-nhat', compact('sach','loaiSachs','nhaXuatBans'));
     }
 
     public function xuLyCapNhat(SachRequest $request, $id)
     {
         $sach = Sach::find($id);
         if (!$sach) {
-            return redirect()->route('sach.danh-sach')->with('thong_bao', 'Sách không tồn tại!');
+            return redirect()->route('admin.sach.danh-sach')->with('thong_bao', 'Sách không tồn tại!');
         }
         $loai_sach_id = $request->loai_sach_id;
         $nha_xuat_ban_id = $request->nha_xuat_ban_id;
@@ -81,7 +84,7 @@ class SachController extends Controller
         $sach->slug = $request->slug;
         $sach->save();
     
-        return redirect()->route('sach.danh-sach')->with('thong_bao', 'Cập nhật sách thành công!');
+        return redirect()->route('admin.sach.danh-sach')->with('thong_bao', 'Cập nhật sách thành công!');
     }
 
     public function xoa($id)
@@ -89,7 +92,7 @@ class SachController extends Controller
         $sach = Sach::findOrFail($id);
         $sach->delete();
 
-        return redirect()->route('sach.danh-sach')->with('success', 'Đã xóa sách thành công');
+        return redirect()->route('admin.sach.danh-sach')->with('success', 'Đã xóa sách thành công');
     }
     public function timKiem(Request $request)
     {
@@ -102,9 +105,9 @@ class SachController extends Controller
 
         if ($sachs->isEmpty()) {
             $errorMessage = "Không tìm thấy kết quả phù hợp với từ khóa tìm kiếm: '$searchTerm'";
-            return view('sach.danh-sach', compact('sachs', 'searchTerm', 'errorMessage'));
+            return view('admin.sach.danh-sach', compact('sachs', 'searchTerm', 'errorMessage'));
         }
 
-        return view('sach.danh-sach', compact('sachs', 'searchTerm'));
+        return view('admin.sach.danh-sach', compact('sachs', 'searchTerm'));
     }
 }

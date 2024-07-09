@@ -1,103 +1,106 @@
 @extends('layouts.admin-master')
-
 @section('content')
-
-<div class="card" style="margin-top: 50px;">
-    <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h3>Danh sách Đơn Hàng</h3>
-            <div class="d-flex align-items-center">
-                <form action="{{ route('admin.don-hang.tim-kiem') }}" method="GET" class="form-inline mr-2">
+<div class="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">DANH SÁCH KHÁCH HÀNG</h1>
+    <div class="my-2 px-1">
+        <div class="row">
+            <div class="col-6">
+                <div>
+                    <a href="{{ route('admin.khach-hang.them-moi') }}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus-circle mr-1"></i>
+                        Thêm mới khách hàng
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 text-right">
+                <form action="{{ route('admin.khach-hang.tim-kiem') }}" method="GET" class="form-inline">
                     <div class="input-group">
-                        <input type="text" name="search_name" class="form-control" placeholder="Tìm kiếm..." value="{{ $search ?? '' }}">
+                        <input type="text" name="search_name" class="form-control" placeholder="Tìm kiếm..." value="{{ request('search_name') }}">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit"><span data-feather="search"></span></button>
+                            <button class="btn btn-outline-secondary" type="submit" style="padding: 0.375rem 0.5rem;">
+                                <i class="fa fa-search"></i>
+                            </button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('admin.don-hang.them-moi') }}" class="btn btn-success"><span data-feather="plus-circle"></span> Thêm mới</a>
             </div>
         </div>
-        @if(session('thong_bao'))
-        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-            {{ session('thong_bao') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    @if (session('thong_bao'))
+        <div class="alert alert-success">{{ session('thong_bao') }}</div>
+    @endif
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <span class="m-0 font-weight-bold text-primary">Danh sách khách hàng</span>
         </div>
-        @endif
-        <div class="table-responsive">
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Khách hàng</th>
-                        <th>Admin</th>
-                        <th>Tên đơn hàng</th>
-                        <th>Số điện thoại</th>
-                        <th>Địa chỉ</th>
-                        <th>Tổng tiền</th>
-                        <th>Khu vực giao hàng</th>
-                        <th>Phí vận chuyển</th>
-                        <th>Tổng tiền thanh toán</th>
-                        <th>Ghi chú</th>
-                        <th>Trạng thái</th>
-                        <th>Phương thức thanh toán</th>
-                        <th>Trạng thái thanh toán</th>
-                        <th>Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($dsDonHang as $donHang)
-                    <tr>
-                        <td>{{ $donHang->id }}</td>
-                        <td>{{ $donHang->khach_hang_ten_dang_nhap }}</td>
-                        <td>{{ $donHang->admin->ten_admin }}</td>
-                        <td>{{ $donHang->ten_don_hang }}</td>
-                        <td>{{ $donHang->so_dien_thoai }}</td>
-                        <td>{{ $donHang->dia_chi }}</td>
-                        <td>{{ $donHang->tong_tien }}</td>
-                        <td>{{ $donHang->khu_vuc_giao_hang }}</td>
-                        <td>{{ $donHang->phi_van_chuyen }}</td>
-                        <td>{{ $donHang->tong_tien_thanh_toan }}</td>
-                        <td>{{ $donHang->ghi_chu }}</td>
-                        <td>
-                            @if ($donHang->trang_thai == 1)
-                            Đang xử lý
-                            @elseif ($donHang->trang_thai == 2)
-                            Đang giao
-                            @elseif ($donHang->trang_thai == 3)
-                            Đã hoàn thành
-                            @elseif ($donHang->trang_thai == 4)
-                            Đã hủy
-                            @endif
-                        </td>
-                        <td>
-                            @if($donHang->phuong_thuc_thanh_toan==1)
-                            Tiền Mặt
-                            @elseif($donHang->phuong_thuc_thanh_toan==2)
-                            Chuyển Khoản
-                            @elseif($donHang->phuong_thuc_thanh_toan==3)
-                            Thẻ Ngân Hàng
-                            @elseif($donHang->phuong_thuc_thanh_toan==4)
-                            Ví Điện tử
-                            @endif
-                        </td>
-                        <td>
-                            @if ($donHang->trang_thai_thanh_toan == 1)
-                            Đã thanh toán
-                            @elseif ($donHang->trang_thai_thanh_toan == 2)
-                            Chưa thanh toán
-                            @endif
-                        </td>
-                        <td>
-                            <a href="{{ route('admin.don-hang.chi-tiet', ['id' => $donHang->id]) }}" class="btn btn-outline-info btn-sm"><span data-feather="chevrons-right"></span> Chi tiết</a>
-                            <a href="{{ route('admin.don-hang.xoa', ['id' => $donHang->id]) }}" class="btn btn-outline-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này?');"><span data-feather="trash-2"></span> Xóa</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Tên đăng nhập</th>
+                            <th>Tên khách hàng</th>
+                            <th>Số điện thoại</th>
+                            <th>Email</th>
+                            <th>Địa chỉ</th>
+                            <th>Ảnh đại diện</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($dskhachHang as $khachHang)
+                            <tr>
+                                <td>{{ $khachHang->ten_dang_nhap }}</td>
+                                <td>{{ $khachHang->ten_khach_hang }}</td>
+                                <td>{{ $khachHang->so_dien_thoai }}</td>
+                                <td>{{ $khachHang->email }}</td>
+                                <td>{{ $khachHang->dia_chi }}</td>
+                                <td><img src="{{ asset('storage/' . $khachHang->anh_dai_dien) }}" alt="Avatar" style="width: 100px;"></td>
+                                <td>{{ $khachHang->trang_thai ? 'Hoạt động' : 'Không hoạt động' }}</td>
+                                <td>
+                                    <a href="{{ route('admin.khach-hang.cap-nhat', ['ten_dang_nhap' => $khachHang->ten_dang_nhap]) }}" class="btn btn-primary btn-sm">Cập nhật</a>
+                                    <form action="{{ route('admin.khach-hang.xoa', ['ten_dang_nhap' => $khachHang->ten_dang_nhap]) }}" method="POST" style="display: inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa khách hàng này không?')">Xóa</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="8" class="text-center">Không có kết quả tìm kiếm</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
 </div>
+
+<style>
+    .input-group .form-control {
+        width: 200px;
+    }
+
+    .input-group-append .btn {
+        padding: 0.375rem 0.5rem;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .input-group-append .btn i {
+        font-size: 1rem;
+        color: #6c757d;
+    }
+
+    .input-group-append .btn:hover i {
+        color: #6c757d;
+    }
+</style>
 
 @endsection

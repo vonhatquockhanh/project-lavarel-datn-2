@@ -17,6 +17,15 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="mb-3">
+                                <label for="inputID" class="form-label">ID</label>
+                                <input type="text" class="form-control @error('id') is-invalid @enderror" id="inputID" name="id" value="{{ old('id') }}">
+                                @error('id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
                                 <label for="inputTenCombo" class="form-label">Tên combo</label>
                                 <input type="text" class="form-control @error('ten_combo') is-invalid @enderror" id="inputTenCombo" name="ten_combo" value="{{ old('ten_combo') }}">
                                 @error('ten_combo')
@@ -80,6 +89,16 @@
                         </div>
                     </div>
                 </form>
+                <!-- Thêm dòng báo lỗi tổng quát dưới form -->
+                @if($errors->any())
+                    <div class="alert alert-danger mt-3">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
 

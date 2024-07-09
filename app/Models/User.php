@@ -93,4 +93,8 @@ class User extends Model
     {
         return $this->belongsTo(PhieuNhapHang::class, 'phieu_nhap_hang_id');
     }
+    public function danhGiaSachs()
+    {
+        return $this->hasMany(DanhGiaSach::class, 'user_id');
+    }
 }

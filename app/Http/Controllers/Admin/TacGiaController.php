@@ -12,7 +12,7 @@ class TacGiaController extends Controller
 {
     public function danhSach()
     {
-        $DStacGia = TacGia::paginate(10);
+        $DStacGia = TacGia::with('sach')->paginate(10); // Số lượng item trên mỗi trang, ví dụ 10 item
         return view('admin.tac-gia.danh-sach', compact('DStacGia'));
     }
 

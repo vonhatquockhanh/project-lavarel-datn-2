@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon">
             <img src="{{asset('/')}}admin/img/logo.png" width="30" alt="">
         </div>
-        <div class="sidebar-brand-text mx-3">Book shop</div>
+        <div class="sidebar-brand-text mx-3">Cửa Hàng Sách</div>
     </a>
 
     <!-- Divider -->
@@ -15,7 +15,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Activities
+        Hệ Thống Quản Lý Cửa Hàng Sách
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -38,6 +38,12 @@
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.sach.danh-sach')}}">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Quản Lý Sách</span>
+        </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="{{route('admin.nha-xuat-ban.danh-sach')}}">
             <i class="fas fa-fw fa-building"></i>
             <span>Quản Lý Nhà Xuất Bản</span>
@@ -45,7 +51,7 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.phieu-nhap-hang.danh-sach')}}">
-            <i class="fas fa-fw fa-building"></i>
+            <i class="fas fa-fw fa-truck"></i>
             <span>Quản Lý Phiếu Nhập Hàng</span>
         </a>
     </li>

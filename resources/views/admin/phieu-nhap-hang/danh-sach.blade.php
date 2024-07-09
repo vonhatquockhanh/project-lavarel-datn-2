@@ -58,10 +58,10 @@
                                     <td>{{ $phieuNhapHang->trang_thai ? 'Đã xử lý' : 'Chưa xử lý' }}</td>
                                     <td>
                                         <a href="{{ route('admin.phieu-nhap-hang.chi-tiet', ['id' => $phieuNhapHang->id]) }}" class="btn btn-outline-info">
-                                            <i class="fas fa-info-circle"></i> Chi tiết
+                                            <i class="fas fa-info-circle"></i>
                                         </a>
                                         <a href="{{ route('admin.phieu-nhap-hang.xoa', ['id' => $phieuNhapHang->id]) }}" class="btn btn-outline-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa phiếu nhập hàng này không?')">
-                                            <i class="fas fa-trash"></i> Xóa
+                                            <i class="fas fa-trash"></i>
                                         </a>
                                     </td>
                                 </tr>

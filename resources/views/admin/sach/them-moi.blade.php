@@ -1,9 +1,9 @@
-@extends('layouts')
+@extends('layouts.admin-master')
 @section('content')
 <div class="card mt-4">
     <div class="card-body">
         <h3>Thêm mới sách</h3>
-        <form method="POST" action="{{ route('sach.xu-ly-them-moi') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.sach.xu-ly-them-moi') }}" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="id" class="form-label">ID</label>
@@ -31,6 +31,10 @@
                 <label for="ten_sach" class="form-label">Tên sách</label>
                 <input type="text" class="form-control" id="ten_sach" name="ten_sach" required>
             </div>
+            <div class="md-3">
+            <label for="hinh_anh_id">Hình ảnh</label>
+            <input type="file" name="hinh_anh_id" class="form-control" id="hinh_anh_id">
+        </div>
             <div class="mb-3">
                 <label for="kich_co" class="form-label">Kích cỡ</label>
                 <input type="text" class="form-control" id="kich_co" name="kich_co">

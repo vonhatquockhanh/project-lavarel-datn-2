@@ -2,54 +2,79 @@
 
 @section('content')
 
-<div class="card" style="margin-top: 50px;">
-    <div class="card-body">
-        <h3>Danh sách tác giả sách</h3>
-        <a href="{{ route('admin.tac-gia.them-moi') }}" class="btn btn-primary mb-3">Thêm mới</a>
-        <form action="{{ route('admin.tac-gia.tim-kiem') }}" method="GET" class="form-inline mb-3">
-            <div class="input-group">
-                <input type="text" name="search_name" class="form-control" placeholder="Tìm kiếm" value="{{ request()->input('search_name') }}">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit">
-                        <i class="fa fa-search text-secondary"></i>
-                    </button>
+<div class="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">DANH SÁCH TÁC GIẢ SÁCH</h1>
+    <div class="my-2 px-1">
+        <div class="row">
+            <div class="col-6">
+                <div>
+                    <a href="{{ route('admin.tac-gia.them-moi') }}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus-circle mr-1"></i>
+                        Thêm Tác Giả Sách
+                    </a>
                 </div>
             </div>
-        </form>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Sách ID</th>
-                    <th>Tên tác giả</th>
-                    <th>Ngày sinh</th>
-                    <th>Quốc tịch</th>
-                    <th>Địa chỉ</th>
-                    <th>Thao tác</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($DStacGia as $tacgia)
-                <tr>
-                    <td>{{ $tacgia->id }}</td>
-                    <td>{{ $tacgia->sach_id }}</td>
-                    <td>{{ $tacgia->ten_tac_gia }}</td>
-                    <td>{{ $tacgia->ngay_sinh }}</td>
-                    <td>{{ $tacgia->quoc_tich }}</td>
-                    <td>{{ $tacgia->dia_chi }}</td>
-                    <td>
-                        <a href="{{ route('admin.tac-gia.cap-nhat', ['id' => $tacgia->id]) }}" class="btn btn-primary btn-sm">Sửa</a>
-                        <form action="{{ route('admin.tac-gia.xoa', ['id' => $tacgia->id]) }}" method="POST" style="display: inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+            <div class="col-6 text-right">
+            </div>
+        </div>
     </div>
+
+    @if (session('thong_bao'))
+        <div class="alert alert-success">{{ session('thong_bao') }}</div>
+    @endif
+
+    @if (isset($errorMessage))
+        <div class="alert alert-danger">{{ $errorMessage }}</div>
+    @endif
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <span class="m-0 font-weight-bold text-primary">Danh sách tác giả sách</span>
+        </div>
+        <div class="card-body">
+            @if($DStacGia->count())
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên sách</th>
+                                <th>Tên tác giả</th>
+                                <th>Ngày sinh</th>
+                                <th>Quốc tịch</th>
+                                <th>Địa chỉ</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($DStacGia as $tacgia)
+                                <tr>
+                                    <td>{{ $tacgia->id }}</td>
+                                    <td>{{ $tacgia->sach ? $tacgia->sach->ten_sach : 'Chưa có sách' }}</td>
+                                    <td>{{ $tacgia->ten_tac_gia }}</td>
+                                    <td>{{ $tacgia->ngay_sinh }}</td>
+                                    <td>{{ $tacgia->quoc_tich }}</td>
+                                    <td>{{ $tacgia->dia_chi }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.tac-gia.cap-nhat', ['id' => $tacgia->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                        <form action="{{ route('admin.tac-gia.xoa', ['id' => $tacgia->id]) }}" method="POST" style="display: inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa tác giả này không?')"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @else
+                <p>Không có tác giả nào.</p>
+            @endif
+        </div>
+    </div>
+
+    {{ $DStacGia->links() }}
 </div>
 
 <style>

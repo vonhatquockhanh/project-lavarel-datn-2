@@ -12,10 +12,9 @@ class TacGia extends Model
     public $incrementing = false;
 
     // public function books()
-    public function sachs()
+    public function sach()
     {
-        // return $this->hasMany('App\Book');
-        return $this->hasMany(Sach::class);
+        return $this->belongsTo(Sach::class, 'sach_id', 'id');
     }
 
     public function hinhAnh()

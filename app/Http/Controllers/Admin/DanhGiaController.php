@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\KhachHang;
 use App\Models\Sach;
 use App\Models\Combo;
+use App\Models\User;
 use App\Models\DanhGiaSach;
 use App\Models\DanhGiaCombo;
 use App\Http\Requests\DanhGiaComboRequest;
@@ -22,48 +23,9 @@ class DanhGiaController extends Controller
 
     public function danhSachDanhGiaSach()
     {
-        $danhGiaSachs = DanhGiaSach::paginate(10);
+        $danhGiaSachs = DanhGiaSach::with(['user', 'sach'])->paginate(10);
         return view('admin.danh-gia-sach.danh-sach', compact('danhGiaSachs'));
     }
-
-    public function themDanhGiaCombo()
-    {
-        $dskhachHang = KhachHang::all(); 
-        $combos = Combo::all();
-        return view('admin.danh-gia-combo.them-moi', compact('dskhachHang', 'combos'));
-    }
-
-    public function themDanhGiaSach()
-    {
-        $dskhachHang = KhachHang::all(); 
-        $sachs = Sach::all(); 
-        return view('admin.danh-gia-sach.them-moi', compact('dskhachHang', 'sachs'));
-    }
-
-    public function xuLyThemDanhGiaCombo(DanhGiaComboRequest $request)
-    {
-        $danhGiaCombo = new DanhGiaCombo();
-        $danhGiaCombo->khach_hang_id = $request->khach_hang_id;
-        $danhGiaCombo->combo_id = $request->combo_id;
-        $danhGiaCombo->danh_gia = $request->danh_gia;
-        $danhGiaCombo->noi_dung = $request->noi_dung;
-        $danhGiaCombo->save();
-
-        return redirect()->route('admin.danh-gia-combo.danh-sach')->with('thong_bao', 'Thêm đánh giá combo thành công!');
-    }
-
-    public function xuLyThemDanhGiaSach(DanhGiaSachRequest $request)
-    {
-        $danhGiaSach = new DanhGiaSach();
-        $danhGiaSach->khach_hang_id = $request->khach_hang_id;
-        $danhGiaSach->sach_id = $request->sach_id;
-        $danhGiaSach->danh_gia = $request->danh_gia;
-        $danhGiaSach->noi_dung = $request->noi_dung;
-        $danhGiaSach->save();
-
-        return redirect()->route('admin.danh-gia-sach.danh-sach')->with('thong_bao', 'Thêm đánh giá sách thành công!');
-    }
-
     public function xoaDanhGiaCombo($id)
     {
         $danhGiaCombo = DanhGiaCombo::findOrFail($id);
