@@ -16,7 +16,6 @@ Route::get('/loaiSach/{loaiSach}', 'TrangChuController@loaiSach')->name('loaiSac
 Route::get('/tacGia/{tacGia}', 'TrangChuController@tacGia')->name('tacGia');
 Route::get('/sach/{sach}', 'TrangChuController@chiTietSach')->name('chi-tiet-sach');
 
-// Route::post('/sach/{sach}/danhGiaSach', 'DanhGiaSachController@store')->name('danhGiaSach');
 Route::post('/sach/{book}/danhGia', 'DanhGiaSachController@store')->name('book.review');
 
 Route::post('/gioHang/them', 'GioHangController@them')->name('gioHang.them');
@@ -26,34 +25,7 @@ Route::get('/gioHang/tangDan/{id}/{qty}/{sach_id}', 'GioHangController@tangDan')
 Route::get('/gioHang/giamDan/{id}/{qty}', 'GioHangController@giamDan')->name('gioHang.giamDan');
 
 Route::post('/gioHang/thucThi', 'XacNhanThanhToanController@store')->name('gioHang.thucThi');
-Route::get('/gioHang/thanhToan', 'XacNhanThanhToanController@show')->name('gioHang.thanhToan');
 Route::get('/gioHang/xacNhanThanhToan', 'XacNhanThanhToanController@index')->name('gioHang.xacNhanThanhToan');
-Route::post('/gioHang/xacNhanThanhToan', 'XacNhanThanhToanController@pay')->name('gioHang.xacNhanThanhToan.pay'); 
-
-// Route::get('/', 'BookshopHomeController@index')->name('bookshop.home');
-
-Route::get('/all-books', 'BookshopHomeController@allBooks')->name('all-books');
-Route::get('/discount-books', 'BookshopHomeController@discountBooks')->name('discount-books');
-Route::get('/category/{category}', 'BookshopHomeController@category')->name('category');
-Route::get('/author/{author}', 'BookshopHomeController@author')->name('author');
-
-Route::get('/book/{book}', 'BookshopHomeController@bookDetails')->name('book-details');
-
-// Route::post('/book/{book}/review', 'ReviewsController@store')->name('book.review');
-
-// Cart Route
-Route::post('/cart/add', 'ShoppingCartController@add_to_cart')->name('cart.add');
-Route::get('/cart/page', 'ShoppingCartController@cart')->name('cart');
-Route::get('/cart/delete/{id}', 'ShoppingCartController@cart_delete')->name('cart.delete');
-Route::get('/cart/increment/{id}/{qty}/{book_id}', 'ShoppingCartController@cart_increment')->name('cart.increment');
-Route::get('/cart/decrement/{id}/{qty}', 'ShoppingCartController@cart_decrement')->name('cart.decrement');
-
-Route::post('/cart/proceed', 'CheckoutController@store')->name('cart.proceed');
-Route::get('/cart/payment', 'CheckoutController@show')->name('cart.payment');
-Route::get('/cart/checkout', 'CheckoutController@index')->name('cart.checkout');
-Route::post('/cart/checkout', 'CheckoutController@pay')->name('cart.checkout.pay'); // Đổi tên route này
-
-// End of cart route
 
 Auth::routes();
 
@@ -164,12 +136,13 @@ Route::prefix('sach')->group(function () {
 
 // Users route group
 Route::group(['middleware' => 'user'], function (){
-    Route::get('/user-home', 'Users\UsersBaseController@index')->name('user.home');
-    Route::get('/my-orders', 'Users\UserOrdersController@myOrders')->name('user.orders');
-    Route::get('/order/details/{id}', 'Users\UserOrdersController@order_details')->name('order.details');
+    Route::get('/user-trang-chu', 'Users\UsersBaseController@index')->name('user.trang-chu');
 
-    Route::get('/my-reviews', 'Users\UserReviewsController@myReviews')->name('user.reviews');
-    Route::delete('/review-delete/{id}', 'Users\UserReviewsController@deleteReview')->name('review.delete');
+    Route::get('/don-hang-cua-toi', 'Users\DonHangKhachHangController@donHangCuaToi')->name('user.don-hang');
+    Route::get('/don-hang/chi-tiet/{id}', 'Users\DonHangKhachHangController@chiTietDonHang')->name('user.chi-tiet-don-hang');
+
+    Route::get('/danh-gia-cua-toi', 'Users\DanhGiaKhachHangController@danhGiaCuaToi')->name('user.danh-gia-cua-toi');
+    Route::delete('/danh-gia/{id}', 'Users\DanhGiaKhachHangController@xoaDanhGia')->name('danhGia.xoa');
 });
 // End of users route
 

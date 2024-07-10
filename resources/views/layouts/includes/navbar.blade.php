@@ -12,12 +12,6 @@
                 <li class="nav-item px-2">
                     <a href="{{route('tatCaSach')}}" class="nav-link">Tất cả sách</a>
                 </li>
-                <!-- <li class="nav-item px-2">
-                    <a href="{{route('discount-books')}}" class="nav-link">Discount's Book</a>
-                </li>
-                <li class="nav-item px-2">
-                    <a href="#" class="nav-link">About</a>
-                </li> -->
             </ul>
             <ul class="navbar-nav ml-auto">
                 @if(Auth::check() == false)
@@ -40,7 +34,7 @@
                                     Profile
                                 </a>
                             @elseif(Auth::user()->role->name == "User")
-                                <a class="dropdown-item" href="{{route('user.home')}}">
+                                <a class="dropdown-item" href="{{route('user.trang-chu')}}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-muted"></i>
                                     Profile
                                 </a>

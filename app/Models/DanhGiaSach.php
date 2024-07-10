@@ -19,7 +19,7 @@ class DanhGiaSach extends Model
     ];
     public function sach()
     {
-        return $this->belongsTo(Sach::class, 'sach_id');
+        return $this->belongsTo(Sach::class);
     }
 
     public function khachHang()

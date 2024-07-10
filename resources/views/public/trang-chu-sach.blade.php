@@ -107,9 +107,9 @@
                                                             <span class="mr-1">Giá gốc: </span>
                                                             @endif
                                                             @if($sach_item->gia_goc - $sach_item->gia > 0)
-                                                                <span></span><strong class="line-through">{{$sach_item->gia_goc}} VNĐ</strong>
+                                                                <span></span><strong class="line-through">{{number_format($sach_item->gia_goc, 0, ',', '.')}} VNĐ</strong>
                                                             @endif
-                                                                <br><span>Giá: </span><strong class="text-danger"> {{$sach_item->gia}} VNĐ</strong>
+                                                                <br><span>Giá: </span><strong class="text-danger"> {{number_format($sach_item->gia, 0, ',', '.')}} VNĐ</strong>
                                                         </div>
                                                     </div>
                                                 </div>

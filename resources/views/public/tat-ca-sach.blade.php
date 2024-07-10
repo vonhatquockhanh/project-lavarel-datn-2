@@ -62,9 +62,9 @@
                                                         <div class="book-price mb-2">
                                                             <span class="mr-1">Giá gốc: </span>
                                                             @if($sach->gia_goc - $sach->gia > 0)
-                                                                <span></span><strong class="line-through">{{$sach->gia_goc}} VNĐ</strong>
+                                                                <span></span><strong class="line-through">{{number_format($sach->gia_goc, 0, ',', '.')}} VNĐ</strong>
                                                             @endif
-                                                                <br><span>Giá: </span><strong class="text-danger"> {{$sach->gia}} VNĐ</strong>
+                                                                <br><span>Giá: </span><strong class="text-danger"> {{number_format($sach->gia, 0, ',', '.')}} VNĐ</strong>
                                                         </div>
                                                     </div>
                                                     

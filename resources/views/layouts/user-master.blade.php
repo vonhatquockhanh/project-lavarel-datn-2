@@ -32,12 +32,6 @@
                 <li class="nav-item px-2">
                     <a href="{{route('tatCaSach')}}" class="nav-link">Tất cả sách</a>
                 </li>
-                <!-- <li class="nav-item px-2">
-                    <a href="{{route('discount-books')}}" class="nav-link">Discount's Books</a>
-                </li>
-                <li class="nav-item px-2">
-                    <a href="#" class="nav-link">About</a>
-                </li> -->
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
@@ -46,7 +40,7 @@
                         {{Auth::user()->name}}
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{route('user.home')}}">
+                        <a class="dropdown-item" href="{{route('user.trang-chu')}}">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-muted"></i>
                             Profile
                         </a>
@@ -82,8 +76,8 @@
                             <!-- <a class="nav-link text-danger" href="#" data-toggle="dropdown"><i class="fas fa-cog"></i> Your
                                 activities</a> -->
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{route('user.reviews')}}">Đánh giá</a>
-                                <a class="dropdown-item" href="{{route('user.orders')}}">Đơn hàng</a>
+                                <a class="dropdown-item" href="{{route('user.danh-gia-cua-toi')}}">Đánh giá</a>
+                                <a class="dropdown-item" href="{{route('user.don-hang')}}">Đơn hàng</a>
                             </div>
                         </li>
                     </ul>

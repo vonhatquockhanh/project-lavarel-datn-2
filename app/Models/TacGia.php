@@ -12,11 +12,14 @@ class TacGia extends Model
     public $incrementing = false;
 
     // public function books()
+    public function sachs()
+    {
+        return $this->belongsTo(Sach::class, 'sach_id', 'id');
+    }
     public function sach()
     {
         return $this->belongsTo(Sach::class, 'sach_id', 'id');
     }
-
     public function hinhAnh()
     {
         // return $this->belongsTo('App\Image');

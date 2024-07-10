@@ -7,6 +7,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Models\HinhAnh;
+use App\Models\DanhGiaSach;
+use App\Models\DonHang;
 
 class User extends Authenticatable
 {
@@ -46,13 +48,15 @@ class User extends Authenticatable
         // return $this->belongsTo('App\Image');
         return $this->belongsTo(HinhAnh::class);
     }
-    public function orders()
+    public function donHang()
     {
-        return $this->hasMany('App\Order');
+        // return $this->hasMany('App\Order');
+        return $this->hasMany(DonHang::class);
     }
-    public function reviews()
+    public function danhGiaSach()
     {
-        return $this->hasMany('App\Review');
+        // return $this->hasMany('App\Review');
+        return $this->hasMany(DanhGiaSach::class);
     }
 
     /*

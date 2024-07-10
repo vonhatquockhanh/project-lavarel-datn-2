@@ -23,7 +23,7 @@ php artisan view:clear
    php artisan key:generate
    php artisan migrate
    php artisan db:seed
-   php artisan serve.
+   php artisan serve
 ```
 
 admin test: Email `admin@bookshop.com` password `secret`.

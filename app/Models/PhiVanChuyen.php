@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class LoaiSach extends Model
+class PhiVanChuyen extends Model
 {
     use HasFactory;
     protected $table='phi_van_chuyen';
@@ -16,7 +16,12 @@ class LoaiSach extends Model
         'phi_van_chuyen',
     ];
 
-    public function sachs()
+    public function khuVucVanChuyen()
+    {
+        return $this->belongsTo(KhuVucVanChuyen::class, 'khu_vuc_van_chuyen_id', 'id');
+    }
+
+    public function sach()
     {
         return $this->hasMany(Sach::class);
     }

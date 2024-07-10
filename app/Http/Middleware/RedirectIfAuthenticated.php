@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
             }
             elseif(Auth::user()->role->name == 'User')
             {
-                return redirect('/user-home');
+                return redirect('/user-trang-chu');
             }
             else
             {

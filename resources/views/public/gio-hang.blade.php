@@ -16,12 +16,11 @@
                 <thead class="bg-light">
                 <tr>
                   <th></th>
-                  <th scope="col">Hình ảnh</th>
+                  <th scope="col" width="100">Hình ảnh</th>
                   <th scope="col">Tên sách</th>
-                  <th scope="col">Giá</th>
+                  <th scope="col" width="150">Giá</th>
                   <th scope="col" width="100">Số lượng</th>
-                  <th scope="col" width="100">Cân nặng</th>
-                  <th scope="col">Tổng cộng</th>
+                  <th scope="col" width="150">Tổng cộng</th>
                 </tr>
                 </thead>
                     @foreach(Cart::content() as $item)
@@ -33,7 +32,7 @@
 
                     <td>{{$item->name}}</td>
 
-                    <td>{{$item->price}} VNĐ</td>
+                    <td>{{number_format($item->price, 0, ',', '.')}} VNĐ</td>
 
                     <td>
                     <span class="quantity-input mr-2 mb-2 d-flex flex-row">
@@ -43,9 +42,9 @@
                     </span>
                     </td>
 
-                      <td>{{$item->weight}} gram</td>
+                      <!-- <td>{{$item->weight}} gram</td> -->
 
-                      <td>{{$item->subtotal()}} VNĐ</td>
+                      <td>{{number_format($item->subtotal(), 0, ',', '.')}} VNĐ</td>
                     </tr>
                     </tbody>
                     @endforeach
@@ -53,7 +52,11 @@
                     <tr>
                         <td colspan="4"><a href="{{route('tatCaSach')}}" class="text-primary">Tiếp tục mua sắm</a></td>
                         <td><strong>Tổng cộng</strong></td>
-                        <td>{{Cart::total()}} VNĐ</td>
+                        <td>
+                            <span style="font-weight: bold; font-size: 1.2em; color: red; background-color: yellow;">
+                                {{ number_format(Cart::total(), 0, ',', '.') }} VNĐ
+                            </span>
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="4"></td>

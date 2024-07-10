@@ -22,4 +22,9 @@ class KhuVucVanChuyen extends Model
     {
         return $this->belongsTo(DonHang::class, 'don_hang_id', 'id');
     }
+
+    public function phiVanChuyen()
+    {
+        return $this->hasMany(PhiVanChuyen::class, 'khu_vuc_van_chuyen_id', 'id');
+    }
 }

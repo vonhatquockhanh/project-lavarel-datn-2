@@ -61,11 +61,11 @@ Chi tiết sách
                                         <div class="book-price mb-2">
                                             <span class="mr-1">Giá gốc: </span>
                                             @if($sach->gia_goc - $sach->gia > 0)
-                                                <span></span><strong class="line-through">{{$sach->gia_goc}} VNĐ</strong>
+                                                <span></span><strong class="line-through">{{number_format($sach->gia_goc, 0, ',', '.')}} VNĐ</strong>
                                             @endif
-                                                <br><span>Giá: </span><strong> {{$sach->gia}} VNĐ</strong>
+                                                <br><span>Giá: </span><strong> {{number_format($sach->gia, 0, ',', '.') }} VNĐ</strong>
                                             @if($sach->gia_goc - $sach->gia > 0)
-                                                <div><strong class="text-danger">Tiết kiệm được {{$sach->gia_goc - $sach->gia}} VNĐ</strong></div>
+                                                <div><strong class="text-danger">Tiết kiệm được {{number_format($sach->gia_goc - $sach->gia, 0, ',', '.')}} VNĐ</strong></div>
                                             @endif
                                         </div>
                                         <!-- <div class="book-category mb-2 py-1 d-flex flex-row border-top border-bottom">

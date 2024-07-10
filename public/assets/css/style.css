@@ -320,83 +320,78 @@ span.quantity-input input:focus{
     align-items: center;
 }
 
-/* Tạo lớp tùy chỉnh cho navbar */
 .custom-bg {
-    background-color: #0056b3 !important; /* Màu nền xanh */
-    color: white !important; /* Màu chữ trắng */
+    background-color: #0056b3 !important; 
+    color: white !important; 
 }
 
-/* Đảm bảo tất cả các phần tử bên trong navbar có màu chữ trắng */
 .custom-bg .navbar-nav .nav-link,
 .custom-bg .navbar-brand,
 .custom-bg .navbar-toggler-icon {
     color: white !important;
 }
 
-/* Đảm bảo các phần tử được đổi màu khi hover */
 .custom-bg .navbar-nav .nav-link:hover,
 .custom-bg .navbar-brand:hover {
-    color: #d1e7ff !important; /* Màu chữ nhạt hơn khi hover */
+    color: #d1e7ff !important; 
 }
 
-/* Đổi màu biểu tượng toggler khi hover */
 .custom-bg .navbar-toggler:hover {
-    background-color: #004494 !important; /* Màu nền xanh đậm hơn khi hover */
+    background-color: #004494 !important; 
 }
 
-
-
-/* Tạo lớp tùy chỉnh cho navbar với nền xanh và chữ trắng */
 .custom-bg {
-    background-color: #0056b3 !important; /* Màu nền xanh */
-    color: white !important; /* Màu chữ trắng */
+    background-color: #0056b3 !important; 
+    color: white !important; 
 }
 
-/* Đảm bảo tất cả các phần tử bên trong navbar có màu chữ trắng */
 .custom-bg .navbar-nav .nav-link,
 .custom-bg .navbar-brand,
 .custom-bg .navbar-toggler-icon {
     color: white !important;
 }
 
-/* Đảm bảo các phần tử được đổi màu khi hover */
 .custom-bg .navbar-nav .nav-link:hover,
 .custom-bg .navbar-brand:hover {
-    color: #d1e7ff !important; /* Màu chữ nhạt hơn khi hover */
+    color: #d1e7ff !important; 
 }
 
-/* Đổi màu biểu tượng toggler khi hover */
 .custom-bg .navbar-toggler:hover {
-    background-color: #004494 !important; /* Màu nền xanh đậm hơn khi hover */
+    background-color: #004494 !important; 
 }
 
-/* Tạo lớp tùy chỉnh cho navbar với nền sáng và chữ xanh */
 .custom-bg-light {
-    background-color: #f8f9fa !important; /* Màu nền sáng */
-    color: #0056b3 !important; /* Màu chữ xanh */
+    background-color: #f8f9fa !important; 
+    color: #0056b3 !important; 
 }
 
-/* Đảm bảo tất cả các phần tử bên trong navbar có màu chữ xanh */
 .custom-bg-light .navbar-nav .nav-link,
 .custom-bg-light .navbar-brand,
 .custom-bg-light .navbar-toggler-icon {
     color: #0056b3 !important;
 }
 
-/* Đảm bảo các phần tử được đổi màu khi hover */
 .custom-bg-light .navbar-nav .nav-link:hover,
 .custom-bg-light .navbar-brand:hover {
-    color: #003f7f !important; /* Màu chữ xanh đậm hơn khi hover */
+    color: #003f7f !important; 
 }
 
-/* Đổi màu biểu tượng toggler khi hover */
 .custom-bg-light .navbar-toggler:hover {
-    background-color: #e0e0e0 !important; /* Màu nền xám nhạt hơn khi hover */
+    background-color: #e0e0e0 !important; 
 }
 
-/* Tạo lớp tùy chỉnh cho card-header với nền xanh và chữ trắng */
 .custom-card-bg {
-    background-color: #0056b3 !important; /* Màu nền xanh */
-    color: white !important; /* Màu chữ trắng */
+    background-color: #0056b3 !important; 
+    color: white !important;
+}
+
+.label-inline {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.inline-select {
+    display: inline-block;
+    width: auto;
 }
 

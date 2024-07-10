@@ -34,7 +34,7 @@ class LoginController extends Controller
                 return '';
                 break;
             case '3':
-                return '/user-home';
+                return '/user-trang-chu';
                 break;
             default:
                 return '/login';

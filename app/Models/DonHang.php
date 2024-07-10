@@ -28,7 +28,7 @@ class DonHang extends Model
         'tong_tien_thanh_toan',
         'ghi_chu',
         'trang_thai',
-        'phuong_thuc_thanh_toan',
+        'phuong_thuc_thanh_toan', // 1: Tiền mặt, 2: Chuyển khoản
         'trang_thai_thanh_toan',
     ];
     public function admin()
