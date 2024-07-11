@@ -84,8 +84,9 @@
             <i class="fas fa-fw fa-book"></i>
             <span>Books</span>
         </a>
-    </li>
-    <li class="nav-item">
+    </li> -->
+
+    <!-- <li class="nav-item">
         <a class="nav-link" href="{{route('categories.index')}}">
             <i class="fas fa-fw fa-folder"></i>
             <span>Categories</span>

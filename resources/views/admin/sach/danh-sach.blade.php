@@ -9,10 +9,7 @@
             <div class="row">
                 <div class="col-6">
                     <div>
-                        <a href="{{ route('admin.sach.them-moi') }}" class="btn btn-primary btn-sm">
-                            <i class="fas fa-plus-circle mr-1"></i>
-                            Thêm Sách
-                        </a>
+                        <a href="{{ route('admin.sach.them-moi') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle mr-1"></i>Thêm Sách</a>
                     </div>
                 </div>
                 <div class="col-6 text-right">
@@ -65,6 +62,9 @@
                                         <td>{{ $sach->mo_ta }}</td>
                                         <td>
                                             <div class="d-flex">
+                                            <a href="{{ route('admin.sach.chi-tiet', ['id' => $sach->id]) }}" class="btn btn-sm btn-info mr-2">
+                                                <i class="fas fa-info-circle"></i>
+                                             </a>
                                                 <a href="{{ route('admin.sach.cap-nhat', ['id' => $sach->id]) }}" class="btn btn-sm btn-primary mr-2">
                                                     <i class="fas fa-edit"></i>
                                                 </a>

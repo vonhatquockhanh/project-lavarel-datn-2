@@ -136,6 +136,7 @@ Route::prefix('sach')->group(function () {
     Route::post('/cap-nhat/{id}', [SachController::class, 'xuLyCapNhat'])->name('admin.sach.xu-ly-cap-nhat');
     Route::get('/xoa/{id}', [SachController::class, 'xoa'])->name('admin.sach.xoa');
     Route::get('/tim-kiem',[SachController::class,'timKiem'])->name('admin.sach.tim-kiem');
+    Route::get('/sach/{id}', [SachController::class, 'chiTiet'])->name('admin.sach.chi-tiet');
 });
 });
 // End of admin route
