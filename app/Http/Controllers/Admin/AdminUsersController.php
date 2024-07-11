@@ -17,7 +17,7 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::where('role_id', '!=', 1)->get();
         return view('admin.user.index', compact('users'));
     }
 
@@ -47,7 +47,7 @@ class AdminUsersController extends Controller
             'image_id'  => 'image|max:500'
         ];
         $message = [
-            'role_id.required' => "Role can't be empty ",
+            '.required' => "Role can't be empty ",
             'image_id.image'   => "Image format should be png, jpg, jpeg type."
         ];
 

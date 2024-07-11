@@ -65,17 +65,20 @@ class TrangChuController extends Controller
     public function tacGia(TacGia $tacGia)
     {
         $tenTacGia = $tacGia->ten_tac_gia;
+ 
         $sachs = $tacGia->sachs()
             ->with('loaiSach', 'tacGia', 'hinhAnh')
             ->orderBy('id', 'DESC')
             ->paginate(12);
+
         return view('public.tat-ca-sach', compact('sachs', 'tenTacGia'));
     }
 
     public function chiTietSach($id)
     {
         $sach = Sach::findOrFail($id);
-        $danhGiaSach = $sach->danhGia()->latest()->get();
+        $danhGiaSach = $sach->danhGia()->with('user')->latest()->get();
+
         return view('public.chi-tiet-sach' , compact('sach', 'danhGiaSach'));
     }
 }

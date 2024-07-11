@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('hinh_anh', function (Blueprint $table) {
             $table->id();
             $table->string('sach_id')->nullable();
-            $table->string('url');
+            $table->text('url');
             $table->timestamps();
 
             // $table->foreign('sach_id')->references('id')->on('sach');

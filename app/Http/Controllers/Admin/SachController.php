@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Sach;
-use App\Models\TacGia;
 use App\Models\LoaiSach;
 use App\Models\NhaXuatBan;
 use App\Models\HinhAnh;
@@ -94,6 +93,11 @@ class SachController extends Controller
         $sach->delete();
 
         return redirect()->route('admin.sach.danh-sach')->with('success', 'Đã xóa sách thành công');
+    }
+    public function chiTiet($id)
+    {
+        $sach = Sach::with(['tacGia', 'nhaXuatBan', 'loaiSach'])->findOrFail($id);
+        return view('admin.sach.chi-tiet', compact('sach'));
     }
     public function timKiem(Request $request)
     {

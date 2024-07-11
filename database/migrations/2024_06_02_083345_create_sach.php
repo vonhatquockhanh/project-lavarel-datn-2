@@ -27,7 +27,7 @@ return new class extends Migration
                 $table->integer('gia_goc');
                 $table->integer('gia_sach_dien_tu')->nullable();
                 $table->integer('so_luong');
-                $table->string('mo_ta', 1000)->nullable();
+                $table->text('mo_ta')->nullable();;
                 $table->decimal('danh_gia', 3, 1)->nullable();
                 $table->string('slug')->unique();
                 $table->timestamps();

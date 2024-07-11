@@ -15,7 +15,7 @@ class DanhGiaSach extends Model
     use HasFactory;
     protected $table = 'danh_gia_sach';
     protected $fillable = [
-        'id', 'user_id', 'sach_id', 'noi_dung', 'trang_thai'
+        'id', 'khach_hang_ten_dang_nhap', 'danh_gia', 'user_id', 'sach_id', 'noi_dung', 'trang_thai'
     ];
     public function sach()
     {

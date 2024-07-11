@@ -17,7 +17,7 @@ class DonHangController extends Controller
 {
     public function danhSach()
     {
-        $dsDonHang = DonHang::paginate(10);
+        $dsDonHang = DonHang::with('user')->paginate(10);
         
         return view('admin.don-hang.danh-sach', compact('dsDonHang'));
     }

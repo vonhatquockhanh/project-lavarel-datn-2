@@ -22,12 +22,24 @@ class NhaXuatBanTableSeeder extends Seeder
         $faker = Faker::create();
 
         $nhaXuatBan = [];
+        $nhaXuatBanNames = [
+            'Nhà xuất bản Trẻ',
+            'Nhà xuất bản Kim Đồng',
+            'Nhà xuất bản Giáo dục Việt Nam',
+            'Nhà xuất bản Lao động',
+            'Nhà xuất bản Phụ nữ Việt Nam',
+            'Nhà xuất bản Tổng hợp Thành phố Hồ Chí Minh',
+            'Nhà xuất bản Văn hóa - Văn nghệ',
+            'Nhà xuất bản Hội Nhà Văn',
+            'Nhà xuất bản Thông tin và Truyền thông',
+            'Nhà xuất bản Thanh niên',
+        ];
 
         for ($i = 1; $i <= 10; $i++) // Tạo 10 nhà xuất bản
         {
             $nhaXuatBan[] = [
                 'id'                 => $i,
-                'ten_nha_xuat_ban'   => $faker->unique()->company,
+                'ten_nha_xuat_ban'   => $nhaXuatBanNames[$i - 1],
                 'so_dien_thoai'      => $faker->unique()->phoneNumber,
                 'email'              => $faker->unique()->safeEmail,
                 'dia_chi'            => $faker->address,

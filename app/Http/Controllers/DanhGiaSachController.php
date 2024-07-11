@@ -26,6 +26,8 @@ class DanhGiaSachController extends Controller
 
         $input['id'] = (string) Str::uuid();
         $input['user_id'] = Auth::user()->id;
+        $input['khach_hang_ten_dang_nhap'] = Auth::user()->name;
+        $input['danh_gia'] = 0;
         $input['trang_thai'] = '0';
 
         $danhGiaSach = DanhGiaSach::create($input);
