@@ -30,6 +30,15 @@
                     </select>
                 </div>
                 <div class="mb-3">
+                        <label for="tac_gia_id" class="form-label">Tác Giả</label>
+                        <select class="form-control" id="tac_gia_id" name="tac_gia_id" required>
+                            <option value="">Chọn tác giả</option>
+                            @foreach($tacGias as $tacGia)
+                                <option value="{{ $tacGia->id }}">{{ $tacGia->ten_tac_gia}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                <div class="mb-3">
                     <label for="ten_sach" class="form-label">Tên sách</label>
                     <input type="text" class="form-control" id="ten_sach" name="ten_sach" value="{{ $sach->ten_sach }}" required>
                 </div>
@@ -57,6 +66,10 @@
                     <label for="gia" class="form-label">Giá</label>
                     <input type="text" class="form-control" id="gia" name="gia" value="{{ $sach->gia }}" required>
                 </div>
+                <div class="mb-3">
+                        <label for="gia_goc" class="form-label">Giá gốc</label>
+                        <input type="text" class="form-control" id="gia_goc" name="gia_goc" required>
+                    </div>
                 <div class="mb-3">
                     <label for="gia_sach_dien_tu" class="form-label">Giá sách điện tử</label>
                     <input type="text" class="form-control" id="gia_sach_dien_tu" name="gia_sach_dien_tu" value="{{ $sach->gia_sach_dien_tu }}">
@@ -91,4 +104,30 @@
         </div>
     </div>
 </div>
+@endsection
+    @section('script')
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // Tạo slug khi blur khỏi trường tên sách
+                $('#ten_sach').on('blur', function() {
+                    var title = this.value.trim();
+                    if (title === '') {
+                        $('#slug').val('');
+                    } else {
+                        var slug = slugify(title);
+                        $('#slug').val(slug);
+                    }
+                });
+
+                // Hàm tạo slug từ tiêu đề
+                function slugify(text) {
+                    text = text.toLowerCase();
+                    text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                    text = text.replace(/đ/g, 'd');
+                    text = text.replace(/[^a-z0-9]+/g, '-');
+                    text = text.replace(/^-|-$/g, '');
+                    return text;
+                }
+            });
+        </script>
 @endsection

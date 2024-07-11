@@ -130,7 +130,7 @@ Route::prefix('don-hang')->group(function(){
 });
 Route::prefix('sach')->group(function () {
     Route::get('/', [SachController::class, 'danhSach'])->name('admin.sach.danh-sach');
-    Route::get('/them-moi', [SachController::class, 'themMoi'])->name('admin.sach.them-moi');
+    Route::get('/admin/sach/them-moi', [SachController::class, 'themMoi'])->name('admin.sach.them-moi');
     Route::post('/xu-ly-them-moi', [SachController::class, 'xuLyThemMoi'])->name('admin.sach.xu-ly-them-moi');
     Route::get('/cap-nhat/{id}', [SachController::class, 'capNhat'])->name('admin.sach.cap-nhat');
     Route::post('/cap-nhat/{id}', [SachController::class, 'xuLyCapNhat'])->name('admin.sach.xu-ly-cap-nhat');
