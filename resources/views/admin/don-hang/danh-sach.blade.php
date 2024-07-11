@@ -1,18 +1,18 @@
 @extends('layouts.admin-master')
 @section('content')
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">DANH SÁCH KHÁCH HÀNG</h1>
+    <h1 class="h3 mb-2 text-gray-800">DANH SÁCH ĐƠN HÀNG</h1>
     <div class="my-2 px-1">
         <div class="row">
-            <div class="col-6">
+            <!-- <div class="col-6">
                 <div>
                     <a href="{{ route('admin.khach-hang.them-moi') }}" class="btn btn-primary btn-sm">
                         <i class="fas fa-plus-circle mr-1"></i>
                         Thêm mới khách hàng
                     </a>
                 </div>
-            </div>
-            <div class="col-6 text-right">
+            </div> -->
+            <!-- <div class="col-6 text-right">
                 <form action="{{ route('admin.khach-hang.tim-kiem') }}" method="GET" class="form-inline">
                     <div class="input-group">
                         <input type="text" name="search_name" class="form-control" placeholder="Tìm kiếm..." value="{{ request('search_name') }}">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -33,40 +33,49 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <span class="m-0 font-weight-bold text-primary">Danh sách khách hàng</span>
+            <span class="m-0 font-weight-bold text-primary">Danh sách đơn hàng</span>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Tên đăng nhập</th>
+                            <th>ID Đơn hàng</th>
                             <th>Tên khách hàng</th>
                             <th>Số điện thoại</th>
-                            <th>Email</th>
                             <th>Địa chỉ</th>
                             <th>Ảnh đại diện</th>
                             <th>Trạng thái</th>
-                            <th>Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($dskhachHang as $khachHang)
+                        @forelse ($dsDonHang as $donHang)
                             <tr>
-                                <td>{{ $khachHang->ten_dang_nhap }}</td>
-                                <td>{{ $khachHang->ten_khach_hang }}</td>
-                                <td>{{ $khachHang->so_dien_thoai }}</td>
-                                <td>{{ $khachHang->email }}</td>
-                                <td>{{ $khachHang->dia_chi }}</td>
-                                <td><img src="{{ asset('storage/' . $khachHang->anh_dai_dien) }}" alt="Avatar" style="width: 100px;"></td>
-                                <td>{{ $khachHang->trang_thai ? 'Hoạt động' : 'Không hoạt động' }}</td>
+                                <td>{{ $donHang->id }}</td>
+                                <td>{{ $donHang->khach_hang_ten_dang_nhap }}</td>
+                                <td>{{ $donHang->so_dien_thoai }}</td>
+                                <td>{{ $donHang->dia_chi }}</td>
                                 <td>
-                                    <a href="{{ route('admin.khach-hang.cap-nhat', ['ten_dang_nhap' => $khachHang->ten_dang_nhap]) }}" class="btn btn-primary btn-sm">Cập nhật</a>
-                                    <form action="{{ route('admin.khach-hang.xoa', ['ten_dang_nhap' => $khachHang->ten_dang_nhap]) }}" method="POST" style="display: inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa khách hàng này không?')">Xóa</button>
-                                    </form>
+                                    <img src="{{$donHang->user->hinhAnh ? $donHang->user->image_url : Auth::user()->default_img}}" alt="" width="60">
+                                
+                                </td>
+                                <td>
+                                    @switch($donHang->trang_thai)
+                                        @case(1)
+                                            <span class="badge badge-warning badge-large">Chờ xử lý</span>
+                                            @break
+                                        @case(2)
+                                            <span class="badge badge-info badge-large">Đang giao</span>
+                                            @break
+                                        @case(3)
+                                            <span class="badge badge-success badge-large">Hoàn thành</span>
+                                            @break
+                                        @case(4)
+                                            <span class="badge badge-danger badge-large">Đã hủy</span>
+                                            @break
+                                        @default
+                                            <span class="badge badge-secondary badge-large">Không xác định</span>
+                                    @endswitch
                                 </td>
                             </tr>
                         @empty
@@ -101,6 +110,11 @@
     .input-group-append .btn:hover i {
         color: #6c757d;
     }
+
+    .badge-large {
+           font-size: 1.2em;
+           padding: 0.5em 1em;
+       }
 </style>
 
 @endsection

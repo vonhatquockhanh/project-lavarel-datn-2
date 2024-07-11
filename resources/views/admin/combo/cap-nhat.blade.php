@@ -56,4 +56,32 @@
         </div>
 
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tenCombo = document.getElementById('ten_combo'); // Đã sửa lại ID cho đúng
+            const slug = document.getElementById('slug');
+
+            tenCombo.addEventListener('input', function () {
+                slug.value = slugify(tenCombo.value);
+            });
+
+            function slugify(text) {
+                // Chuyển đổi các ký tự tiếng Việt có dấu thành không dấu
+                const from = "áàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵđÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬÉÈẺẼẸÊẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰÝỲỶỸỴĐ";
+                const to   = "aaaaaaaaaaaaaaaaaeeeeeeeeeeeiiiiiooooooooooooooooouuuuuuuuuuuyyyyydAAAAAAAAAAAAAAAAAEEEEEEEEEEEIIIIIOOOOOOOOOOOOOOOOOOUUUUUUUUUUUYYYYYD";
+                const regex = new RegExp(from.split('').join('|'), 'g');
+
+                text = text.replace(regex, function (c) {
+                    return to.charAt(from.indexOf(c));
+                });
+
+                return text.toString().toLowerCase()
+                    .replace(/\s+/g, '-')           // Thay thế khoảng trắng bằng dấu gạch ngang
+                    .replace(/[^\w\-]+/g, '')       // Loại bỏ tất cả các ký tự không phải từ hoặc dấu gạch ngang
+                    .replace(/\-\-+/g, '-')         // Thay thế nhiều dấu gạch ngang liên tiếp bằng một dấu gạch ngang
+                    .replace(/^-+/, '')             // Xóa các dấu gạch ngang ở đầu chuỗi
+                    .replace(/-+$/, '');            // Xóa các dấu gạch ngang ở cuối chuỗi
+            }
+        });
+    </script>
 @endsection

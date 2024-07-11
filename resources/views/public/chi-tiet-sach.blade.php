@@ -52,27 +52,31 @@ Chi tiết sách
                                         <div class="author mb-2">
                                             Ngôn ngữ: {{$sach->ngon_ngu}}
                                         </div>
+
+                                        <div class="author mb-2">
+                                            Số lượng hàng còn: <strong class="text-danger">{{$sach->so_luong}}</strong>
+                                        </div>
+
                                         @if(($sach->so_luong) > 0)
-                                            <div class="badge badge-success mb-2">Còn hàng</div>
+                                            <div class="badge badge-success mb-2 badge-large">Còn hàng</div>
                                         @else
-                                            <div class="badge badge-danger mb-2">Hết hàng</div>
+                                            <div class="badge badge-danger mb-2 badge-large">Hết hàng</div>
                                         @endif
                                       
                                         <div class="book-price mb-2">
-                                            <span class="mr-1">Giá gốc: </span>
-                                            @if($sach->gia_goc - $sach->gia > 0)
-                                                <span></span><strong class="line-through">{{number_format($sach->gia_goc, 0, ',', '.')}} VNĐ</strong>
-                                            @endif
-                                                <br><span>Giá: </span><strong> {{number_format($sach->gia, 0, ',', '.') }} VNĐ</strong>
-                                            @if($sach->gia_goc - $sach->gia > 0)
-                                                <div><strong class="text-danger">Tiết kiệm được {{number_format($sach->gia_goc - $sach->gia, 0, ',', '.')}} VNĐ</strong></div>
-                                            @endif
+                                        <div class="author mb-2">
+                                            Giá gốc: <strong class="line-through">{{number_format($sach->gia_goc, 0, ',', '.')}} VNĐ</strong>
                                         </div>
-                                        <!-- <div class="book-category mb-2 py-1 d-flex flex-row border-top border-bottom">
-                                            <a href="{{route('loaiSach', $sach->loaiSach->slug)}}" class="mr-4"><i class="fas fa-folder"></i> {{$sach->loaiSach->tenLoaiSach}}</a>
-                                            <a href="#review-section" class="mr-4"><i class="fas fa-comments"></i> Reviews</a>
-                                        </div> -->
+                                        <div class="author mb-2">
+                                            Giá: <strong> {{number_format($sach->gia, 0, ',', '.') }} VNĐ</strong>
+                                        </div>
 
+                                        @if($sach->gia_goc - $sach->gia > 0)
+                                        <div class="author mb-2">
+                                                <strong class="text-danger">Tiết kiệm được {{number_format($sach->gia_goc - $sach->gia, 0, ',', '.')}} VNĐ</strong>
+                                                </div>
+                                            @endif                                            
+                                        </div>
                                         <form action="{{route('gioHang.them')}}" method="post">
                                             @csrf
                                             <div class="cart">
@@ -121,4 +125,11 @@ Chi tiết sách
             </div>
         </div>
     </section>
+
+    <style>
+       .badge-large {
+           font-size: 1em;
+           padding: 0.5em 1em;
+       }
+   </style>
 @endsection
