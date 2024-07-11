@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container-fluid">
-
         <!-- Tiêu đề trang -->
         <h1 class="h3 mb-2 text-gray-800">DANH SÁCH SÁCH</h1>
         <div class="my-2 px-1">
@@ -24,6 +23,7 @@
         @if (isset($errorMessage))
             <div class="alert alert-danger">{{ $errorMessage }}</div>
         @endif
+
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <span class="m-0 font-weight-bold text-primary">Danh sách sách</span>
@@ -37,10 +37,12 @@
                                     <th>ID</th>
                                     <th>Loại sách</th>
                                     <th>Nhà xuất bản</th>
+                                    <th>Tác giả</th>
                                     <th>Tên sách</th>
                                     <th>Hình ảnh</th>
                                     <th>Ngày phát hành</th>
                                     <th>Giá</th>
+                                    <th>Giá gốc</th>
                                     <th>Giá sách điện tử</th>
                                     <th>Số lượng</th>
                                     <th>Mô tả</th>
@@ -53,18 +55,20 @@
                                         <td>{{ $sach->id }}</td>
                                         <td>{{ isset($sach->loaiSach) ? $sach->loaiSach->ten_loai_sach : 'N/A' }}</td>
                                         <td>{{ isset($sach->nhaXuatBan) ? $sach->nhaXuatBan->ten_nha_xuat_ban : 'N/A' }}</td>
+                                        <td>{{ isset($sach->tacGia) ? $sach->tacGia->ten_tac_gia : 'N/A' }}</td>
                                         <td>{{ $sach->ten_sach }}</td>
                                         <td><img src="{{ $sach->image_url }}" width="60" alt=""></td>
                                         <td>{{ $sach->ngay_phat_hanh }}</td>
                                         <td>{{ $sach->gia }}</td>
+                                        <td>{{ $sach->gia_goc }}</td>
                                         <td>{{ $sach->gia_sach_dien_tu }}</td>
                                         <td>{{ $sach->so_luong }}</td>
                                         <td>{{ $sach->mo_ta }}</td>
                                         <td>
                                             <div class="d-flex">
-                                            <a href="{{ route('admin.sach.chi-tiet', ['id' => $sach->id]) }}" class="btn btn-sm btn-info mr-2">
-                                                <i class="fas fa-info-circle"></i>
-                                             </a>
+                                                <a href="{{ route('admin.sach.chi-tiet', ['id' => $sach->id]) }}" class="btn btn-sm btn-info mr-2">
+                                                    <i class="fas fa-info-circle"></i>
+                                                </a>
                                                 <a href="{{ route('admin.sach.cap-nhat', ['id' => $sach->id]) }}" class="btn btn-sm btn-primary mr-2">
                                                     <i class="fas fa-edit"></i>
                                                 </a>

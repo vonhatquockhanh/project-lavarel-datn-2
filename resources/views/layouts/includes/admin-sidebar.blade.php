@@ -75,7 +75,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{route('admin.danh-gia-sach.danh-sach')}}">Đánh giá sách</a>
-                <a class="collapse-item" href="{{route('admin.danh-gia-combo.danh-sach')}}">Đánh giá combo</a>
+                <!-- <a class="collapse-item" href="{{route('admin.danh-gia-combo.danh-sach')}}">Đánh giá combo</a> -->
             </div>
         </div>
     </li>
