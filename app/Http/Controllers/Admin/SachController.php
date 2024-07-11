@@ -94,6 +94,11 @@ class SachController extends Controller
 
         return redirect()->route('admin.sach.danh-sach')->with('success', 'Đã xóa sách thành công');
     }
+    public function chiTiet($id)
+    {
+        $sach = Sach::with(['tacGia', 'nhaXuatBan', 'loaiSach'])->findOrFail($id);
+        return view('admin.sach.chi-tiet', compact('sach'));
+    }
     public function timKiem(Request $request)
     {
         $searchTerm = $request->input('search');

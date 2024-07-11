@@ -48,7 +48,7 @@ class AdminUsersController extends Controller
             'image_id'  => 'image|max:500'
         ];
         $message = [
-            'role_id.required' => "Role can't be empty ",
+            '.required' => "Role can't be empty ",
             'image_id.image'   => "Image format should be png, jpg, jpeg type."
         ];
 
