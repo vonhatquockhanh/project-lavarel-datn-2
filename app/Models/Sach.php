@@ -92,7 +92,12 @@ class Sach extends Model
      */
     public function getImageUrlAttribute($value)
     {
-        return asset('/').'assets/img/'.$this->hinhAnh->url;
+        if (isset($this->hinhAnh) && !is_null($this->hinhAnh->url)) {
+            return asset('/') . 'assets/img/' . $this->hinhAnh->url;
+        } else {
+            // Trả về một đường dẫn mặc định hoặc thông báo lỗi
+            return asset('/') . 'assets/img/default.png'; // hoặc giá trị mặc định bạn muốn
+        }
     }
     public function getDefaultImgAttribute($value)
     {

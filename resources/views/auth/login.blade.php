@@ -9,7 +9,7 @@
                 <div class="col-md-4 mx-auto">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="text-center">Account Login</h4>
+                            <h4 class="text-center">Đăng Nhập</h4>
                         </div>
                         <div class="card-body">
                             <form method="post" action="{{url('/login')}}">
@@ -25,7 +25,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Password</label>
+                                    <label for="password">Mật Khẩu</label>
                                     <input type="password" name="password" class="form-control {{$errors->has('password')? 'is-invalid': ''}} form-control-sm">
                                     @if($errors->has('password'))
                                         <span class="invalid-feedback">
@@ -33,19 +33,19 @@
                                         </span>
                                     @endif
 
-                                    <div><small><a href="#" class="text-muted">Forget password</a></small></div>
+                                    <div><small><a href="#" class="text-muted">Quên Mật Khẩu?</a></small></div>
 
                                 </div>
                                 <div class="checkbox icheck">
                                     <label>
-                                        <input type="checkbox" name="remember"> Remember Me
+                                        <input type="checkbox" name="remember"> Nhớ mật khẩu
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-block btn-md">Login</button>
+                                    <button type="submit" class="btn btn-success btn-block btn-md">Đăng Nhập</button>
                                 </div>
                             </form>
-                            <small>Don't have an account? <a href="{{route('register')}}">Register here</a></small>
+                            <small>Bạn đã có tài khoản đăng ký chưa?-> <a href="{{route('register')}}">Đăng ký ở đây</a></small>
                         </div>
                     </div>
                 </div>

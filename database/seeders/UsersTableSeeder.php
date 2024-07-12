@@ -25,6 +25,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Mr. Admin',
                 'email' => 'admin@bookshop.com',
+                'address' => 'Sóc Trăng',
                 'password'=> bcrypt('secret'),
                 'role_id'=> 1,
                 'is_active'=> 1
@@ -32,6 +33,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'=> 'Mr. User',
                 'email'=> 'user@bookshop.com',
+                'address' => 'TP HCM',
                 'password'=> bcrypt('secret'),
                 'role_id'=> 3,
                 'is_active'=> 1
@@ -39,6 +41,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'=> 'Mr. Editor',
                 'email'=> 'editor@bookshop.com',
+                'address' =>'Long An',
                 'password'=> bcrypt('secret'),
                 'role_id'=> 2,
                 'is_active'=> 1

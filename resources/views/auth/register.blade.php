@@ -8,19 +8,19 @@
                     <div class="col-md-6 mx-auto">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="text-center">{{__('Register Account')}}</h4>
+                                <h4 class="text-center">{{__('Đăng Ký Tài Khoản')}}</h4>
                             </div>
                             <div class="card-body">
                                 <form method="post" action="{{url('/register')}}">
                                     {{csrf_field()}}
                                     <div class="form-group">
-                                        <label for="name">Name</label>
+                                        <label for="name">Họ Tên</label>
                                         <input type="text" name="name" value="{{old('name')}}" class="form-control {{$errors->has('name')? 'is-invalid': ''}}">
 
                                         @if($errors->has('name'))
                                             <span class="invalid-feedback">
-                                            <strong>{{$errors->first('name')}}</strong>
-                                        </span>
+                                                <strong>{{$errors->first('name')}}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                     <div class="form-group">
@@ -29,28 +29,37 @@
 
                                         @if($errors->has('email'))
                                             <span class="invalid-feedback">
-                                            <strong>{{$errors->first('email')}}</strong>
-                                        </span>
+                                                <strong>{{$errors->first('email')}}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        <label for="password">Password</label>
+        <label for="address">Địa Chỉ</label>
+        <input type="text" name="address" value="{{old('address')}}" class="form-control {{$errors->has('address')? 'is-invalid': ''}}">
+        @if($errors->has('address'))
+            <span class="invalid-feedback">
+                <strong>{{$errors->first('address')}}</strong>
+            </span>
+        @endif
+    </div>
+                                    <div class="form-group">
+                                        <label for="password">Mật Khẩu</label>
                                         <input type="password" name="password" class="form-control {{$errors->has('password')? 'is-invalid': ''}}">
                                         @if($errors->has('password'))
                                             <span class="invalid-feedback">
-                                            <strong>{{$errors->first('password')}}</strong>
-                                        </span>
+                                                <strong>{{$errors->first('password')}}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        <label for="confirm password">Confirm Password</label>
+                                        <label for="confirm password">Nhắc Lại Mật Khẩu</label>
                                         <input type="password" name="password_confirmation" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-block btn-md">Register</button>
+                                        <button type="submit" class="btn btn-success btn-block btn-md">Đăng Ký</button>
                                     </div>
                                 </form>
-                                <small>Already have an account? <a href="{{url('login')}}">Login here</a></small>
+                                <small>Bạn đã đăng ký chưa nếu đăng ký rồi thì -> <a href="{{url('login')}}">Đăng Nhập Tại Đây</a></small>
                             </div>
                         </div>
                     </div>

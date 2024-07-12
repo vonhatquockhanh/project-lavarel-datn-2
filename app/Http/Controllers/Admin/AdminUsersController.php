@@ -42,6 +42,7 @@ class AdminUsersController extends Controller
         $rules = [
             'name'      => 'required',
             'email'     => 'required|email|unique:users',
+            'address' => 'required|string|max:255',
             'password'  => 'required|confirmed|min:6',
             'role_id'   => 'required',
             'image_id'  => 'image|max:500'
@@ -115,6 +116,7 @@ class AdminUsersController extends Controller
         $rules = [
             'name'      => 'required',
             'email'     => 'required|email|unique:users,email,'.$id,
+            'address' => 'required|string|max:255',
             'password'  => 'confirmed',
             'role_id'   => 'required',
             'image_id'  => 'image|max:500'
