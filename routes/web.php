@@ -20,9 +20,15 @@ Route::post('/sach/{book}/danhGia', 'DanhGiaSachController@store')->name('book.r
 
 Route::post('/gioHang/them', 'GioHangController@them')->name('gioHang.them');
 Route::get('/gioHang/gioHang', 'GioHangController@gioHang')->name('gioHang');
-Route::get('/gioHang/xoa/{id}', 'GioHangController@xoa')->name('gioHang.xoa');
-Route::get('/gioHang/tangDan/{id}/{qty}/{sach_id}', 'GioHangController@tangDan')->name('gioHang.tangDan');
-Route::get('/gioHang/giamDan/{id}/{qty}', 'GioHangController@giamDan')->name('gioHang.giamDan');
+
+// Route::get('/gioHang/xoa/{id}', 'GioHangController@xoa')->name('gioHang.xoa');
+// Route::get('/gioHang/tangDan/{id}/{qty}/{sach_id}', 'GioHangController@tangDan')->name('gioHang.tangDan');
+// Route::get('/gioHang/giamDan/{id}/{qty}', 'GioHangController@giamDan')->name('gioHang.giamDan');
+
+Route::post('/gio-hang/giam-dan', 'GioHangController@giamDan')->name('gioHang.giamDan');
+Route::post('/gio-hang/tang-dan', 'GioHangController@tangDan')->name('gioHang.tangDan');
+Route::post('/gio-hang/xoa', 'GioHangController@xoa')->name('gioHang.xoa');
+
 
 Route::post('/gioHang/thucThi', 'XacNhanThanhToanController@store')->name('gioHang.thucThi');
 Route::get('/gioHang/xacNhanThanhToan', 'XacNhanThanhToanController@index')->name('gioHang.xacNhanThanhToan');
@@ -124,13 +130,12 @@ Route::prefix('don-hang')->group(function(){
 });
 Route::prefix('sach')->group(function () {
     Route::get('/', [SachController::class, 'danhSach'])->name('admin.sach.danh-sach');
-    Route::get('/admin/sach/them-moi', [SachController::class, 'themMoi'])->name('admin.sach.them-moi');
+    Route::get('/them-moi', [SachController::class, 'themMoi'])->name('admin.sach.them-moi');
     Route::post('/xu-ly-them-moi', [SachController::class, 'xuLyThemMoi'])->name('admin.sach.xu-ly-them-moi');
     Route::get('/cap-nhat/{id}', [SachController::class, 'capNhat'])->name('admin.sach.cap-nhat');
     Route::post('/cap-nhat/{id}', [SachController::class, 'xuLyCapNhat'])->name('admin.sach.xu-ly-cap-nhat');
     Route::get('/xoa/{id}', [SachController::class, 'xoa'])->name('admin.sach.xoa');
     Route::get('/tim-kiem',[SachController::class,'timKiem'])->name('admin.sach.tim-kiem');
-    Route::get('/sach/{id}', [SachController::class, 'chiTiet'])->name('admin.sach.chi-tiet');
 });
 });
 // End of admin route
@@ -146,6 +151,8 @@ Route::group(['middleware' => 'user'], function (){
     Route::delete('/danh-gia/{id}', 'Users\DanhGiaKhachHangController@xoaDanhGia')->name('danhGia.xoa');
 });
 // End of users route
+
+Route::get('/don-hang/cap-nhat-trang-thai-don-hang/{id}', 'Users\DonHangKhachHangController@daNhanHang')->name('user.cap-nhat-trang-thai-don-hang');
 
 Route::get('/logout', 'CustomLogoutController@logout')->name('custom.logout');
 //Tác giả

@@ -6,6 +6,7 @@ use App\Models\Sach;
 use App\Http\Requests\ShippingAddressRequest;
 use App\Models\DonHang;
 use App\Models\CTDonHang;
+use App\Models\GioHang;
 use App\ShippingAddress;
 use App\Models\KhuVucVanChuyen;
 use App\Models\PhiVanChuyen;
@@ -49,7 +50,7 @@ class XacNhanThanhToanController extends Controller
         $input['user_id'] = Auth::user()->id;
 
         // Tạo mã tự động tăng cho DonHang
-        $lastOrder = DonHang::orderBy('id', 'desc')->first();
+        $lastOrder = DonHang::orderBy('created_at', 'desc')->first();
         $newOrderId = 'DON_HANG_' . ($lastOrder ? ((int)str_replace('DON_HANG_', '', $lastOrder->id) + 1) : 1);
 
         // Tính tổng tiền đơn hàng và phí vận chuyển
@@ -73,7 +74,7 @@ class XacNhanThanhToanController extends Controller
         $order->ghi_chu = $input['ghi_chu'];
         $order->trang_thai = 1;
         $order->phuong_thuc_thanh_toan = $input['phuong_thuc_thanh_toan'] == 'Tiền mặt' ? 1 : 2; // 1: Tiền mặt, 2: Chuyển khoản
-        $order->trang_thai_thanh_toan = 1;
+        $order->trang_thai_thanh_toan = 0;
         $order->save();
 
         // Tạo chi tiết đơn hàng cho mỗi sản phẩm trong giỏ hàng
@@ -100,6 +101,14 @@ class XacNhanThanhToanController extends Controller
 
             // Xóa sản phẩm khỏi giỏ hàng
             Cart::remove($cartItem->rowId);
+
+            $gioHang = GioHang::where('user_id', Auth::user()->id)
+                        ->where('sach_id', $cartItem->id)
+                        ->first();
+            if ($gioHang) 
+            {
+                $gioHang->delete();
+            }
         }
 
         return redirect()->route('user.don-hang')->with('success_message', 'Đơn hàng được đặt thành công. Vui chờ xác nhận và liên hệ.');

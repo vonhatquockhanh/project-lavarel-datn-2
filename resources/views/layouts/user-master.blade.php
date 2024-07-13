@@ -83,6 +83,8 @@
                     </ul>
                 </div>
             </div>
+            @if(Auth::check() == true && Auth::user()->role->name == "Admin")
+            @else
             <div class="col-md-4">
                 <div class="shopping-cart text-right">
                     <a href="{{route('gioHang')}}" ><i class="fas fa-shopping-cart fa-2x m-1"></i>
@@ -93,6 +95,7 @@
 
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </section>
@@ -121,6 +124,10 @@
 <script type="text/javascript" src="{{asset('/')}}assets/js/bootstrap.min.js"></script>
 <!-- Your custom scripts (optional) -->
 <script type="text/javascript" src="{{asset('/')}}assets/js/script.js"></script>
+
+<script type="text/javascript" src="{{asset('/')}}assets/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>
 

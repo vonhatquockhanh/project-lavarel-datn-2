@@ -38,7 +38,6 @@
                                     <th>Giá</th>
                                     <th>Số lượng</th>
                                     <th>Hình ảnh</th>
-                                    <th>Slug</th>
                                     <th>Mô tả</th>
                                     <th>Thao tác</th>
                                 </tr>
@@ -52,7 +51,6 @@
                                         <td>{{ $combo->so_luong }}</td>
                                         <td><img src="{{ asset('storage/' . $combo->hinh_anh) }}" alt="Hình ảnh combo" style="width: 100px;"></td>
                                         <td>{{ $combo->mo_ta }}</td>
-                                        <td>{{$combo->slug}}</td>
                                         <td>
                                             <a href="{{ route('admin.combo.cap-nhat', ['id' => $combo->id]) }}" class="btn btn-sm btn-primary">
                                                 <i class="fas fa-edit"></i>

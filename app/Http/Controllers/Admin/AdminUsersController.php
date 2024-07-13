@@ -19,7 +19,7 @@ class AdminUsersController extends Controller
     {
         $users = User::where('role_id', '!=', 1)->get();
         return view('admin.user.index', compact('users'));
-    }
+    }    
 
     /**
      * Show the form for creating a new resource.
@@ -48,7 +48,7 @@ class AdminUsersController extends Controller
             'image_id'  => 'image|max:500'
         ];
         $message = [
-            '.required' => "Role can't be empty ",
+            'role_id.required' => "Role can't be empty ",
             'image_id.image'   => "Image format should be png, jpg, jpeg type."
         ];
 

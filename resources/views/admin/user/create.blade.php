@@ -4,18 +4,18 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Thêm mới người dùng</h1>
+        <h1 class="h3 mb-2 text-gray-800">Add new user</h1>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <!-- <div class="card-header py-3">
+            <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">User create form</h6>
-            </div> -->
+            </div>
             <div class="card-body">
                 {!! Form::open(['method'=>'POST', 'action'=>'Admin\AdminUsersController@store', 'files'=>true]) !!}
 
                 <div class="form-group">
-                    {!! Form::label('tên') !!}
+                    {!! Form::label('name') !!}
                     {!! Form::text('name', null, ['class'=>'form-control '.($errors->has('name')? 'is-invalid': '')]) !!}
                     @if($errors->has('name'))
                         <span class="invalid-feedback">
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('Mật khẩu') !!}
+                    {!! Form::label('password') !!}
                     {!! Form::password('password',['class'=>'form-control '.($errors->has('password')? 'is-invalid': '')]) !!}
                     @if($errors->has('password'))
                         <span class="invalid-feedback">
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('Xác nhận mật khẩu', 'Confirm Password') !!}
+                    {!! Form::label('password_confirmation', 'Confirm Password') !!}
                     {!! Form::password('password_confirmation',['class'=>'form-control']) !!}
                 </div>
 
@@ -71,8 +71,8 @@
                 <input type="hidden" name="is_active" value="1">
 
                 <div class="form-group">
-                    {!! Form::submit('Thêm mới', ['class'=>'btn btn-primary']) !!}
-                    <!-- {!! Form::reset('Reset', ['class'=>'btn btn-danger']) !!} -->
+                    {!! Form::submit('Create', ['class'=>'btn btn-primary']) !!}
+                    {!! Form::reset('Reset', ['class'=>'btn btn-danger']) !!}
                 </div>
                 {!! Form::close() !!}
             </div>

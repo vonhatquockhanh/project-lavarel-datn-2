@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{asset('/')}}assets/css/bootstrap.min.css">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="{{asset('/')}}assets/css/style.css">
+
+    <script type="text/javascript" src="{{asset('/')}}assets/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <!-- NAVBAR -->
@@ -37,6 +39,8 @@
                     </div>
                 </form>
             </div>
+            @if(Auth::check() == true && Auth::user()->role->name == "Admin")
+            @else
             <div class="col-md-4">
                 <div class="shopping-cart text-right">
                     <a href="{{route('gioHang')}}"><i class="fas fa-shopping-cart fa-2x m-1"></i>
@@ -46,12 +50,14 @@
                     </a>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </section>
 
 <!-- HEADER END -->
 
+@yield('scripts')
 @yield('content')
 
 <footer class="py-3 text-center border-top bg-light">
@@ -75,6 +81,8 @@
 <script type="text/javascript" src="{{asset('/')}}assets/js/bootstrap.min.js"></script>
 <!-- Your custom scripts (optional) -->
 <script type="text/javascript" src="{{asset('/')}}assets/js/script.js"></script>
+
+
 
 </body>
 </html>

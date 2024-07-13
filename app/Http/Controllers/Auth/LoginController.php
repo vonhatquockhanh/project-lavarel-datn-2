@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request; // Sử dụng đúng lớp Request
+use App\Http\Controllers\GioHangController;
 
 class LoginController extends Controller
 {
@@ -20,6 +22,29 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        // Di chuyển giỏ hàng từ session vào cơ sở dữ liệu sau khi người dùng đăng nhập
+        $gioHangController = new GioHangController();
+        $gioHangController->saveGioHangVaoDatabase();
+
+        // Kiểm tra vai trò và chuyển hướng
+        if ($user->role->id == 1) {
+            return redirect('/admin-home');
+        } elseif ($user->role->id == 3) {
+            return redirect('/user-trang-chu');
+        } else {
+            return redirect('/');
+        }
+    }
 
     public function redirectTo()
     {

@@ -75,24 +75,22 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{route('admin.danh-gia-sach.danh-sach')}}">Đánh giá sách</a>
-                <!-- <a class="collapse-item" href="{{route('admin.danh-gia-combo.danh-sach')}}">Đánh giá combo</a> -->
+                <a class="collapse-item" href="{{route('admin.danh-gia-combo.danh-sach')}}">Đánh giá combo</a>
             </div>
         </div>
     </li>
-
-     <!-- <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="{{route('books.index')}}">
             <i class="fas fa-fw fa-book"></i>
             <span>Books</span>
         </a>
-    </li> -->
-
-    <!-- <li class="nav-item">
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="{{route('categories.index')}}">
             <i class="fas fa-fw fa-folder"></i>
             <span>Categories</span>
         </a>
-    </li> -->
+    </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
@@ -102,7 +100,7 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <!-- <a class="collapse-item" href="{{route('authors.index')}}">Authors</a> -->
+                <a class="collapse-item" href="{{route('authors.index')}}">Authors</a>
                 <a class="collapse-item" href="{{route('users.index')}}">Users</a>
             </div>
         </div>
@@ -112,7 +110,7 @@
     <hr class="sidebar-divider">
 
     <!-- Heading -->
-    <!-- <div class="sidebar-heading">
+    <div class="sidebar-heading">
         Activities from users
     </div>
 
@@ -120,26 +118,26 @@
         <a class="nav-link" href="{{route('orders.index')}}">
             <i class="fas fa-fw fa-shopping-basket"></i>
             <span>Orders</span></a>
-    </li> -->
+    </li>
 
-    <!-- <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="{{route('reviews.index')}}">
             <i class="fas fa-fw fa-comments"></i>
             <span>Reviews</span></a>
-    </li> -->
+    </li>
     <!-- Nav Item - Charts -->
-    <!-- <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="#">
             <i class="fas fa-fw fa-envelope"></i>
             <span>Messages</span></a>
-    </li> -->
+    </li>
 
     <!-- Nav Item - Tables -->
-    <!-- <li class="nav-item active">
+    <li class="nav-item active">
         <a class="nav-link" href="#">
             <i class="fas fa-fw fa-table"></i>
             <span>Accounts</span></a>
-    </li> -->
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

@@ -395,3 +395,6 @@ span.quantity-input input:focus{
     width: auto;
 }
 
+#empty-cart-alert {
+    display: none;
+}

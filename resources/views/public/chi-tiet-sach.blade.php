@@ -3,7 +3,6 @@
     use Illuminate\Support\Str;
 @endphp
 
-
 @section('title')
 Chi tiết sách
 @endsection
@@ -54,7 +53,7 @@ Chi tiết sách
                                         </div>
 
                                         <div class="author mb-2">
-                                            Số lượng hàng còn: <strong class="text-danger">{{$sach->so_luong}}</strong>
+                                            Số lượng hàng còn: <strong class="text-danger" id="so_luong_ton">{{$sach->so_luong}}</strong>
                                         </div>
 
                                         @if(($sach->so_luong) > 0)
@@ -77,12 +76,14 @@ Chi tiết sách
                                                 </div>
                                             @endif                                            
                                         </div>
+                                        @if(Auth::check() == true && Auth::user()->role->name == "Admin")
+                                        @else
                                         <form action="{{route('gioHang.them')}}" method="post">
                                             @csrf
                                             <div class="cart">
                                             <span class="quantity-input mr-2 mb-2">
                                                 <a href="#" class="cart-minus" id="cart-minus">-</a>
-                                                <input title="Số lượng" name="so_luong" type="text" value="1" class="qty-text">
+                                                <input title="Số lượng" name="so_luong" type="text" value="1" class="qty-text" id="quantity-input">
                                                 <a href="#" class="cart-plus" id="cart-plus">+</a>
                                             </span>
                                                 <input type="hidden" name="sach_id" value="{{$sach->id}}">
@@ -90,6 +91,7 @@ Chi tiết sách
                                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
                                             </div>
                                         </form>
+                                        @endif
                                         @include('layouts.includes.flash-message')
                                     </div>
                                 </div>
@@ -131,5 +133,95 @@ Chi tiết sách
            font-size: 1em;
            padding: 0.5em 1em;
        }
-   </style>
+    </style>
+
+    <!-- Modal -->
+    <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="warningModalLabel">Cảnh báo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Số lượng mua vượt quá số lượng tồn kho.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const cartPlus = document.getElementById('cart-plus');
+            const cartMinus = document.getElementById('cart-minus');
+            const quantityInput = document.getElementById('quantity-input');
+            const warningModal = new bootstrap.Modal(document.getElementById('warningModal'), {});
+            const soLuongTonElement = document.getElementById('so_luong_ton');
+            const soLuongTonGoc = parseInt(soLuongTonElement.innerText); // Lưu giá trị gốc của soLuongTon
+            let soLuongTon = soLuongTonGoc;
+
+            if (soLuongTonGoc != 0) {
+                soLuongTon -= 1;
+                soLuongTonElement.innerText = soLuongTon;
+
+                cartPlus.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    let currentQuantity = parseInt(quantityInput.value);
+
+                    if (soLuongTon == 0) {
+                        warningModal.show();
+                        quantityInput.value = soLuongTonGoc;
+                        currentQuantity--;
+                    } else {
+                        soLuongTon--;
+                        soLuongTonElement.innerText = soLuongTon;
+                    }
+                });
+
+                cartMinus.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    if (soLuongTonGoc == soLuongTon + 1) {
+                        quantityInput.value = 1;
+                        soLuongTonElement.innerText = soLuongTon;
+                    } else {
+                        let currentQuantity = parseInt(quantityInput.value);
+                        if (currentQuantity >= 1) {
+                            soLuongTon++;
+                            soLuongTonElement.innerText = soLuongTon;
+                        } else {
+                            quantityInput.value = 1;
+                        }
+                    }
+                });
+
+                quantityInput.addEventListener('input', (e) => {
+                    let currentQuantity = parseInt(quantityInput.value);
+                    if (currentQuantity > soLuongTonGoc) {
+                        warningModal.show();
+                        quantityInput.value = soLuongTon;
+                    }
+                });
+            } else {
+                quantityInput.value = soLuongTonGoc;
+
+                cartPlus.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    warningModal.show();
+                    quantityInput.value = soLuongTonGoc;
+                });
+
+                cartMinus.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    warningModal.show();
+                    quantityInput.value = soLuongTonGoc;
+                });
+            }
+        });
+    </script>
 @endsection

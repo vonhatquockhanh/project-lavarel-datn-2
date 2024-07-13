@@ -40,12 +40,13 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>ID Đơn hàng</th>
+                            <th>Mã Đơn hàng</th>
                             <th>Tên khách hàng</th>
                             <th>Số điện thoại</th>
                             <th>Địa chỉ</th>
-                            <th>Ảnh đại diện</th>
+                            <!-- <th>Ảnh đại diện</th> -->
                             <th>Trạng thái</th>
+                            <th>Trạng thái giao hàng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,27 +56,37 @@
                                 <td>{{ $donHang->khach_hang_ten_dang_nhap }}</td>
                                 <td>{{ $donHang->so_dien_thoai }}</td>
                                 <td>{{ $donHang->dia_chi }}</td>
-                                <td>
+                                <!-- <td>
                                     <img src="{{$donHang->user->hinhAnh ? $donHang->user->image_url : Auth::user()->default_img}}" alt="" width="60">
                                 
+                                </td> -->
+                                <td>
+                                @switch($donHang->trang_thai)
+                                    @case(1)
+                                        <span class="badge badge-warning badge-large">Đang chờ xử lý</span>
+                                        @break
+                                    @case(2)
+                                        <span class="badge badge-info badge-large">Đang giao hàng</span>
+                                        @break
+                                    @case(3)
+                                        <span class="badge badge-success badge-large">Đã nhận hàng</span>
+                                        @break
+                                    @case(4)
+                                        <span class="badge badge-success badge-large">Hoàn thành</span>
+                                        @break
+                                    @case(5)
+                                        <span class="badge badge-danger badge-large">Đã hủy</span>
+                                        @break
+                                    @default
+                                        <span class="badge badge-secondary badge-large">Không xác định</span>
+                                @endswitch
                                 </td>
                                 <td>
-                                    @switch($donHang->trang_thai)
-                                        @case(1)
-                                            <span class="badge badge-warning badge-large">Chờ xử lý</span>
-                                            @break
-                                        @case(2)
-                                            <span class="badge badge-info badge-large">Đang giao</span>
-                                            @break
-                                        @case(3)
-                                            <span class="badge badge-success badge-large">Hoàn thành</span>
-                                            @break
-                                        @case(4)
-                                            <span class="badge badge-danger badge-large">Đã hủy</span>
-                                            @break
-                                        @default
-                                            <span class="badge badge-secondary badge-large">Không xác định</span>
-                                    @endswitch
+                                    @if($donHang->trang_thai_thanh_toan == 1)
+                                        <span class="badge badge-success badge-large">Đã nhận hàng</span>
+                                    @else
+                                        <span class="badge badge-info badge-large">Chưa nhận hàng</span>
+                                    @endif
                                 </td>
                             </tr>
                         @empty

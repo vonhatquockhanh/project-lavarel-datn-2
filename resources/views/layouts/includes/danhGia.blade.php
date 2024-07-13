@@ -25,6 +25,8 @@
             @endforeach
         </div>
     </div>
+    @if(Auth::check() == true && Auth::user()->role->name == "Admin")
+    @else
     <div class="card card-body my-4">
         @if(Auth::check())
             <div class="comment-form">
@@ -48,4 +50,5 @@
             <div><a href="{{url('login')}}">Đăng nhập tại đây</a> để đánh giá sách.</div>
         @endif
     </div>
+    @endif
 </div>

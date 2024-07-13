@@ -24,7 +24,6 @@ class SachRequest extends FormRequest
         return [
             'loai_sach_id' => 'required|string',
             'nha_xuat_ban_id' => 'required|string',
-            'tac_gia_id' => 'required|string', // Thêm rule cho trường tac_gia_id
             'ten_sach' => 'required|string|max:255',
             'kich_co' => 'required|string|max:255',
             'can_nang' => 'required|numeric',
@@ -32,7 +31,6 @@ class SachRequest extends FormRequest
             'ngon_ngu' => 'required|string|max:50',
             'ngay_phat_hanh' => 'required|date',
             'gia' => 'required|numeric',
-            'gia_goc' => 'required|numeric', // Thêm rule cho trường gia_goc
             'gia_sach_dien_tu' => 'nullable|numeric',
             'so_luong' => 'required|integer',
             'mo_ta' => 'nullable|string',
@@ -41,12 +39,10 @@ class SachRequest extends FormRequest
         ];
     }
     
-    public function messages(): array
-    {
-        return [
+    public function messages():array {
+        return[
             'loai_sach_id.required' => 'Vui lòng nhập loại sách.',
             'nha_xuat_ban_id.required' => 'Vui lòng nhập nhà xuất bản.',
-            'tac_gia_id.required' => 'Vui lòng nhập tác giả.', // Thêm message cho trường tac_gia_id
             'ten_sach.required' => 'Vui lòng nhập tên sách.',
             'ten_sach.max' => 'Tên sách không được vượt quá :max ký tự.',
             'kich_co.required' => 'Vui lòng nhập kích cỡ sách.',
@@ -61,8 +57,6 @@ class SachRequest extends FormRequest
             'ngay_phat_hanh.date' => 'Ngày phát hành không hợp lệ.',
             'gia.required' => 'Vui lòng nhập giá sách.',
             'gia.numeric' => 'Giá sách phải là số.',
-            'gia_goc.required' => 'Vui lòng nhập giá gốc.', // Thêm message cho trường gia_goc
-            'gia_goc.numeric' => 'Giá gốc phải là số.',
             'gia_sach_dien_tu.numeric' => 'Giá sách điện tử phải là số.',
             'so_luong.required' => 'Vui lòng nhập số lượng sách.',
             'so_luong.integer' => 'Số lượng sách phải là số nguyên.',
