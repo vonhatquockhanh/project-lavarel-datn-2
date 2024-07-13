@@ -41,7 +41,7 @@
                                     <th>Loại sách</th>
                                     <th>Nhà xuất bản</th>
                                     <th>Tên sách</th>
-                                    <th>Hình ảnh</th>
+                                    <!-- <th>Hình ảnh</th> -->
                                     <th>Ngày phát hành</th>
                                     <th>Giá</th>
                                     <th>Giá sách điện tử</th>
@@ -57,7 +57,7 @@
                                         <td>{{ isset($sach->loaiSach) ? $sach->loaiSach->ten_loai_sach : 'N/A' }}</td>
                                         <td>{{ isset($sach->nhaXuatBan) ? $sach->nhaXuatBan->ten_nha_xuat_ban : 'N/A' }}</td>
                                         <td>{{ $sach->ten_sach }}</td>
-                                        <td><img src="{{ $sach->image_url }}" width="60" alt=""></td>
+                                        <!-- <td><img src="{{ $sach->image_url }}" width="60" alt=""></td> -->
                                         <td>{{ $sach->ngay_phat_hanh }}</td>
                                         <td>{{ $sach->gia }}</td>
                                         <td>{{ $sach->gia_sach_dien_tu }}</td>
