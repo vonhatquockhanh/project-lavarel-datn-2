@@ -32,7 +32,7 @@ class TrangChuController extends Controller
     {
         # ComposerServiceProvider load here
         $sachs = Sach::with('tacGia', 'hinhAnh', 'loaiSach', 'nhaXuatBan')
-                    ->orderBy('id', 'DESC')
+                    ->orderBy('created_at', 'DESC')
                     ->search(request('term')) #...Search Query
                     ->paginate(16);
         return view('public.tat-ca-sach', compact('sachs'));

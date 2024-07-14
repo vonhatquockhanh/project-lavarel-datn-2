@@ -31,22 +31,29 @@
                             @if(Auth::user()->role->name == "Admin")
                                 <a class="dropdown-item" href="{{route('admin.home')}}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-muted"></i>
-                                    Profile
+                                    Hồ sơ cá nhân
                                 </a>
+                                <div class="dropdown-divider"></div>
                             @elseif(Auth::user()->role->name == "User")
                                 <a class="dropdown-item" href="{{route('user.trang-chu')}}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-muted"></i>
-                                    Profile
+                                     Hồ sơ cá nhân
                                 </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-muted"></i>
+                                    Cài đặt tài khoản
+                                </a>
+                                <div class="dropdown-divider"></div>
                             @else
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-muted"></i>
-                                    Profile
+                                     Hồ sơ cá nhân
                                 </a>
                             @endif
                             <a class="dropdown-item" href="{{url('logout')}}">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-muted"></i>
-                                Logout
+                                Đăng xuất
                             </a>
                         </div>
                     </li>

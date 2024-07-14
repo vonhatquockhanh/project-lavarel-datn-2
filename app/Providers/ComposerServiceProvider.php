@@ -46,7 +46,8 @@ class ComposerServiceProvider extends ServiceProvider
          * Load Recent books in  sidebar views
          */
         view()->composer('layouts.includes.side-bar', function ($view){
-            $sachGanDay = Sach::latestFirst()->take(4)->get();
+            // lấy ra 6 quyền sách, dụa trên ngày thêm vào database gần nhất (desc; sắp xếp cột ngày thêm - ngày mới lên đầu danh sách)
+            $sachGanDay = Sach::take(6)->orderBy('created_at', 'desc')->get();
             return $view->with('sachGanDay', $sachGanDay);
         });
 

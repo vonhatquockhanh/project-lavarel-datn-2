@@ -22,7 +22,7 @@ class TacGiaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'sach_id' => 'required|string',
+            // 'sach_id' => 'required|string',
             'ten_tac_gia' => 'required|string|max:255',
             'ngay_sinh' => 'required|date',
             'quoc_tich' => 'required|string|max:255',
@@ -32,7 +32,7 @@ class TacGiaRequest extends FormRequest
     public function messages()
     {
         return[
-            'sach_id.required' => 'Trường sách ID là bắt buộc.',
+            // 'sach_id.required' => 'Trường sách ID là bắt buộc.',
             'sach_id.string' => 'Sách ID phải là chuỗi ký tự.',
             'ten_tac_gia.required' => 'Trường tên tác giả là bắt buộc.',
             'ten_tac_gia.string' => 'Tên tác giả phải là chuỗi ký tự.',

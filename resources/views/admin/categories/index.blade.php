@@ -60,7 +60,7 @@
 
                                         <a href="{{route('categories.edit', $category->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
 
-                                        <button type="submit" onclick="return confirm('Category will delete permanently. All books related with this category will deleted. Are you sure to delete??')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        <button type="submit" onclick="return confirm('Bạn có chắc chắn xoá ?')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
 
                                         {!! Form::close() !!}
                                     </td>

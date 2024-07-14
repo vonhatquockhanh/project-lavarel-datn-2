@@ -63,7 +63,7 @@
                                         <div class="action d-flex flex-row">
                                             <a href="{{route('authors.edit', $author->id)}}" class="btn-primary btn btn-sm mr-2"><i class="fas fa-edit"></i></a>
 
-                                            <button type="submit" onclick="return confirm('Author will delete permanently! Are you sure to delete??')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                            <button type="submit" onclick="return confirm('Bạn có chắc chắn xoá ?')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                                         </div>
                                      {!! Form::close() !!}
                                     </td>

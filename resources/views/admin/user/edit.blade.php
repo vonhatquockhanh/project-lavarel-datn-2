@@ -4,13 +4,13 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Edit user</h1>
+        <h1 class="h3 mb-2 text-gray-800">Cập nhật khách hàng</h1>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <span class="mr-3"><a href="{{route('users.index')}}" cl><i class="fas fa-long-arrow-alt-left"></i> Back</a></span>
-                <span class="m-0 font-weight-bold text-primary">user edit form</span>
+                <span class="mr-3"><a href="{{route('users.index')}}" cl><i class="fas fa-long-arrow-alt-left"></i> Quay lại</a></span>
+                <span class="m-0 font-weight-bold text-primary">Thông tin chỉnh sửa</span>
             </div>
             <div class="row">
                 <div class="col-lg-3">
@@ -23,7 +23,7 @@
                         {!! Form::model($user,['method'=>'PATCH', 'action'=>['Admin\AdminUsersController@update', $user->id], 'files'=>true]) !!}
 
                         <div class="form-group">
-                            {!! Form::label('name') !!}
+                            {!! Form::label('Tên người dùng') !!}
                             {!! Form::text('name', null, ['class'=>'form-control '.($errors->has('name')? 'is-invalid': '')]) !!}
                             @if($errors->has('name'))
                                 <span class="invalid-feedback">
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('password') !!}
+                            {!! Form::label('Mật khẩu') !!}
                             {!! Form::password('password',['class'=>'form-control '.($errors->has('password')? 'is-invalid': '')]) !!}
                             @if($errors->has('password'))
                                 <span class="invalid-feedback">
@@ -52,7 +52,7 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('password_confirmation', 'Confirm Password') !!}
+                            {!! Form::label('password_confirmation', 'Xác nhận mật khẩu') !!}
                             {!! Form::password('password_confirmation',['class'=>'form-control']) !!}
                         </div>
 
@@ -67,7 +67,7 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('image_id', 'Image') !!}
+                            {!! Form::label('image_id', 'Hình ảnh') !!}
                             {!! Form::file('image_id', ['class'=>'form-control '.($errors->has('image_id')? 'is-invalid':''), 'rows'=> 5]) !!}
                             <small>Max size 500 KB</small>
                             @if($errors->has('image_id'))

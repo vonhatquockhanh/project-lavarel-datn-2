@@ -6,10 +6,9 @@
         <div class="row">
             <div class="col-12"> <!-- Thay đổi col-md-8 thành col-12 để chiếm toàn bộ chiều ngang -->
                 <div class="content-area">
+                <h1 class="h3 mb-2 text-gray-800">Chi tiết sách</h1>
+                <span class="mr-3"><a href="{{ route('admin.sach.danh-sach') }}"><i class="fas fa-long-arrow-alt-left"></i> Quay lại</a></span>
                     <div class="card my-4">
-                        <div class="card-header bg-dark">
-                            <h4 class="text-white">Chi tiết sách</h4>
-                        </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -42,18 +41,6 @@
                                     <h5><strong>Mô tả sách</strong></h5>
                                     <p>{!! Markdown::convertToHtml(e($sach->mo_ta)) !!}</p>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card-body my-4">
-                        <div class="author-description d-flex flex-row">
-                            <div class="des">
-                                <h5>Tác giả: {{$sach->tacGia->ten_tac_gia}}</h5>
-                                <small>
-                                    <i class="fas fa-book"></i>
-                                    {{$sach->tacGia->sachs()->count()}} sách
-                                </small>
-                                <!-- <p>{!! Markdown::convertToHtml(e($sach->tacGia->bio)) !!}</p> -->
                             </div>
                         </div>
                     </div>

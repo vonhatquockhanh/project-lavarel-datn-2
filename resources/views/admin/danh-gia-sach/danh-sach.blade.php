@@ -59,4 +59,14 @@
 
     {{ $danhGiaSachs->links() }}
 </div>
+
+<script>
+        $(document).ready(function() {
+        $('#dataTable').DataTable({
+            "paging": false, // Tắt phân trang của DataTables
+            "searching": true, // Bật tìm kiếm nếu bạn muốn giữ chức năng tìm kiếm của DataTables
+            "info": false // Tắt thông tin tổng quan (hiển thị số dòng)
+        });
+    });
+    </script>
 @endsection
