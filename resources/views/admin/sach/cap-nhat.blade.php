@@ -39,6 +39,10 @@
                         </select>
                     </div>
                 <div class="mb-3">
+                        <label for="hinh_anh_id" class="form-label">Hình ảnh</label>
+                        <input type="file" class="form-control" id="hinh_anh_id" name="hinh_anh_id">
+                </div>
+                <div class="mb-3">
                     <label for="ten_sach" class="form-label">Tên sách</label>
                     <input type="text" class="form-control" id="ten_sach" name="ten_sach" value="{{ $sach->ten_sach }}" required>
                 </div>

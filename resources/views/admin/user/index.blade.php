@@ -38,6 +38,7 @@
                                 <th>Hình ảnh</th>
                                 <th>Tên</th>
                                 <th>Email</th>
+                                <th>Địa chỉ</th>
                                 <th>Chức vụ</th>
                             </tr>
                             </thead>
@@ -56,6 +57,7 @@
                                     <td><img src="{{$user->image? $user->image_url : $user->default_img}}" height="50" alt=""></td>
                                     <td><a href="{{route('users.edit', $user->id)}}">{{$user->name}}</a></td>
                                     <td>{{$user->email}}</td>
+                                    <td>{{$user->address}}</td>
                                     <td>{{$user->role->name}}</td>
                                 </tr>
                             @endforeach

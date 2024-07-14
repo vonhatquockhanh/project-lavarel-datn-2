@@ -2,9 +2,9 @@
 
 @section('content')
 <section class="main-content">
-    <div class="container">
+    <div class="container-fluid"> <!-- Sử dụng container-fluid để chiếm toàn bộ chiều ngang màn hình -->
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-12"> <!-- Thay đổi col-md-8 thành col-12 để chiếm toàn bộ chiều ngang -->
                 <div class="content-area">
                     <div class="card my-4">
                         <div class="card-header bg-dark">
@@ -19,8 +19,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="book-info">
-                                        <h5 class="book-title">{{$sach->ten_sach}}</h5>
-                                        <p><strong>Tác giả:</strong> <a href="{{route('tacGia', $sach->tacGia->id)}}">{{$sach->tacGia->ten_tac_gia}}</a></p>
+                                        <h5 class="book-title larger-text">{{$sach->ten_sach}}</h5> <!-- Thêm lớp larger-text -->
+                                        <p><strong>Tác giả:</strong> {{$sach->tacGia->ten_tac_gia}}</p>
                                         <p><strong>Nhà xuất bản:</strong> {{$sach->nhaXuatBan->ten_nha_xuat_ban}}</p>
                                         <p><strong>Thể loại:</strong> {{$sach->loaiSach->ten_loai_sach}}</p>
                                         <p><strong>Kích cỡ:</strong> {{$sach->kich_co}}</p>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="row mt-4">
                                 <div class="col-12">
-                                    <h5>Mô tả sách</h5>
+                                    <h5><strong>Mô tả sách</strong></h5>
                                     <p>{!! Markdown::convertToHtml(e($sach->mo_ta)) !!}</p>
                                 </div>
                             </div>
@@ -48,12 +48,10 @@
                     <div class="card card-body my-4">
                         <div class="author-description d-flex flex-row">
                             <div class="des">
-                                <h5>Tác giả: <a href="{{route('tacGia', $sach->tacGia->id)}}">{{$sach->tacGia->ten_tac_gia}}</a></h5>
+                                <h5>Tác giả: {{$sach->tacGia->ten_tac_gia}}</h5>
                                 <small>
-                                    <a href="{{route('tacGia', $sach->tacGia->id)}}">
-                                        <i class="fas fa-book"></i>
-                                        {{$sach->tacGia->sachs()->count()}} sách
-                                    </a>
+                                    <i class="fas fa-book"></i>
+                                    {{$sach->tacGia->sachs()->count()}} sách
                                 </small>
                                 <!-- <p>{!! Markdown::convertToHtml(e($sach->tacGia->bio)) !!}</p> -->
                             </div>
@@ -61,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            @include('layouts.includes.side-bar')
+            <!-- @include('layouts.includes.side-bar') -->
         </div>
     </div>
 </section>
@@ -73,6 +71,9 @@
     }
     .line-through {
         text-decoration: line-through;
+    }
+    .larger-text {
+        font-size: 1.75em; /* Điều chỉnh kích thước font theo ý bạn */
     }
 </style>
 @endsection

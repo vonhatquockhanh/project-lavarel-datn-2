@@ -26,9 +26,21 @@
         </a>
     </li> -->
     <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.combo.danh-sach')}}">
-            <i class="fas fa-fw fa-book"></i>
-            <span>Quản Lý Combo</span>
+    <a class="nav-link" href="{{ route('users.index') }}">
+        <i class="fas fa-fw fa-users"></i>
+        <span>Quản Lý Khách Hàng</span>
+    </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.tac-gia.danh-sach')}}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Quản Lý Tác Giả</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.nha-xuat-ban.danh-sach')}}">
+            <i class="fas fa-fw fa-building"></i>
+            <span>Quản Lý Nhà Xuất Bản</span>
         </a>
     </li>
     <li class="nav-item">
@@ -44,9 +56,9 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.nha-xuat-ban.danh-sach')}}">
-            <i class="fas fa-fw fa-building"></i>
-            <span>Quản Lý Nhà Xuất Bản</span>
+        <a class="nav-link" href="{{route('admin.combo.danh-sach')}}">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Quản Lý Combo</span>
         </a>
     </li>
     <li class="nav-item">
@@ -56,18 +68,18 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.tac-gia.danh-sach')}}">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Quản Lý Tác Giả</span>
-        </a>
-    </li>
-    <li class="nav-item">
     <a class="nav-link" href="{{ route('admin.don-hang.danh-sach') }}">
         <i class="fas fa-fw fa-shopping-cart"></i>
         <span>Quản Lý Đơn Hàng</span>
     </a>
     </li>
     <li class="nav-item">
+    <a class="nav-link" href="{{ route('admin.danh-gia-sach.danh-sach') }}">
+        <i class="fas fa-fw fa-star"></i>
+        <span>Quản Lý Đánh Giá Sách</span>
+    </a>
+    </li>
+    <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-user-cog"></i>
             <span>Đánh giá</span>
@@ -75,10 +87,10 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{route('admin.danh-gia-sach.danh-sach')}}">Đánh giá sách</a>
-                <!-- <a class="collapse-item" href="{{route('admin.danh-gia-combo.danh-sach')}}">Đánh giá combo</a> -->
+                <a class="collapse-item" href="{{route('admin.danh-gia-combo.danh-sach')}}">Đánh giá combo</a>
             </div>
         </div>
-    </li>
+    </li> -->
     <!-- <li class="nav-item">
         <a class="nav-link" href="{{route('books.index')}}">
             <i class="fas fa-fw fa-book"></i>
@@ -94,18 +106,18 @@
     </li> -->
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-user-cog"></i>
             <span>Users</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <!-- <a class="collapse-item" href="{{route('authors.index')}}">Authors</a> -->
+                <a class="collapse-item" href="{{route('authors.index')}}">Authors</a>
                 <a class="collapse-item" href="{{route('users.index')}}">Users</a>
             </div>
         </div>
-    </li>
+    </li> -->
 
     <!-- Divider -->
     <hr class="sidebar-divider">

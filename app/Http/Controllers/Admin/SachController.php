@@ -79,6 +79,7 @@ class SachController extends Controller
         $sach->loai_sach_id = $loai_sach_id;
         $sach->nha_xuat_ban_id = $nha_xuat_ban_id;
         $sach->tac_gia_id=$request->tac_gia_id;
+         $sach->hinh_anh_id=$request->hinh_anh_id;
         $sach->ten_sach = $request->ten_sach;
         $sach->kich_co = $request->kich_co;
         $sach->can_nang = $request->can_nang;
