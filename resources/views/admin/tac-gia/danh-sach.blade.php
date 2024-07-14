@@ -38,7 +38,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Tên sách</th>
+                                <!-- <th>Tên sách</th> -->
                                 <th>Tên tác giả</th>
                                 <th>Ngày sinh</th>
                                 <th>Quốc tịch</th>
@@ -50,11 +50,13 @@
                             @foreach ($DStacGia as $tacgia)
                                 <tr>
                                     <td>{{ $tacgia->id }}</td>
-                                    <td>{{ $tacgia->sach ? $tacgia->sach->ten_sach : 'Chưa có sách' }}</td>
+                                    <!-- <td>{{ $tacgia->sach ? $tacgia->sach->ten_sach : 'Chưa có sách' }}</td> -->
                                     <td>{{ $tacgia->ten_tac_gia }}</td>
-                                    <td>{{ $tacgia->ngay_sinh }}</td>
-                                    <td>{{ $tacgia->quoc_tich }}</td>
-                                    <td>{{ $tacgia->dia_chi }}</td>
+
+                                    <td>{{ $tacgia->sach ? $tacgia->sach->ngay_sinh : 'Dữ liệu đang cập nhật' }}</td>
+                                    <td>{{ $tacgia->sach ? $tacgia->sach->quoc_tich : 'Dữ liệu đang cập nhật' }}</td>
+                                    <td>{{ $tacgia->sach ? $tacgia->sach->dia_chi : 'Dữ liệu đang cập nhật' }}</td>
+                                    
                                     <td>
                                         <a href="{{ route('admin.tac-gia.cap-nhat', ['id' => $tacgia->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                                         <form action="{{ route('admin.tac-gia.xoa', ['id' => $tacgia->id]) }}" method="POST" style="display: inline-block;">
@@ -114,5 +116,15 @@
         margin-bottom: 1rem !important;
     }
 </style>
+
+<script>
+        $(document).ready(function() {
+        $('#dataTable').DataTable({
+            "paging": false, // Tắt phân trang của DataTables
+            "searching": true, // Bật tìm kiếm nếu bạn muốn giữ chức năng tìm kiếm của DataTables
+            "info": false // Tắt thông tin tổng quan (hiển thị số dòng)
+        });
+    });
+    </script>
 
 @endsection

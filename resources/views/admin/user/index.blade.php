@@ -34,17 +34,22 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                             <tr>
-                                <th>Thao tác</th>
                                 <th>Hình ảnh</th>
                                 <th>Tên</th>
                                 <th>Email</th>
                                 <th>Địa chỉ</th>
                                 <th>Chức vụ</th>
+                                <th>Thao tác</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($users as $user)
                                 <tr>
+                                    <td><img src="{{$user->image? $user->image_url : $user->default_img}}" height="50" alt=""></td>
+                                    <td><a href="{{route('users.edit', $user->id)}}">{{$user->name}}</a></td>
+                                    <td>{{$user->email}}</td>
+                                    <td>{{$user->address}}</td>
+                                    <td>{{$user->role->name}}</td>
                                     <td>
                                         {!! Form::open(['method'=>'DELETE', 'action'=>['Admin\AdminUsersController@destroy', $user->id]]) !!}
                                         <div class="action d-flex flex-row">
@@ -54,11 +59,6 @@
                                         </div>
                                         {!! Form::close() !!}
                                     </td>
-                                    <td><img src="{{$user->image? $user->image_url : $user->default_img}}" height="50" alt=""></td>
-                                    <td><a href="{{route('users.edit', $user->id)}}">{{$user->name}}</a></td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->address}}</td>
-                                    <td>{{$user->role->name}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -67,6 +67,16 @@
                 @endif
             </div>
         </div>
-
+        {{ $users->links() }}
     </div>
+
+    <script>
+        $(document).ready(function() {
+        $('#dataTable').DataTable({
+            "paging": false, // Tắt phân trang của DataTables
+            "searching": true, // Bật tìm kiếm nếu bạn muốn giữ chức năng tìm kiếm của DataTables
+            "info": false // Tắt thông tin tổng quan (hiển thị số dòng)
+        });
+    });
+    </script>
 @endsection

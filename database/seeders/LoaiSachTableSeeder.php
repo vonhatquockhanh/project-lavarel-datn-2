@@ -25,15 +25,15 @@ class LoaiSachTableSeeder extends Seeder
           [
             [
               "id" => 1,
-              "ten_loai_sach" => "Lịch sử - truyền thống",
-              "slug" => "lich-su-truyen-thong",
+              "ten_loai_sach" => "Combo",
+              "slug" => "combo",
               "created_at" => Carbon::now()->format('Y-m-d H:i:s'),
               "updated_at" => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
               "id" => 2,
-              "ten_loai_sach" => "Văn học Việt Nam",
-              "slug" => "van-hoc-viet-nam",
+              "ten_loai_sach" => "Giải mã bản thân",
+              "slug" => "giai-ma-ban-than",
               "created_at" => Carbon::now()->format('Y-m-d H:i:s'),
               "updated_at" => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -46,29 +46,29 @@ class LoaiSachTableSeeder extends Seeder
             ],
             [
               "id" => 4,
+              "ten_loai_sach" => "Lịch sử - truyền thống",
+              "slug" => "lich-su-truyen-thong",
+              "created_at" => Carbon::now()->format('Y-m-d H:i:s'),
+              "updated_at" => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+              "id" => 5,
+              "ten_loai_sach" => "Manga",
+              "slug" => "manga",
+              "created_at" => Carbon::now()->format('Y-m-d H:i:s'),
+              "updated_at" => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+              "id" => 6,
               "ten_loai_sach" => "Truyện tranh",
               "slug" => "truyen-tranh",
               "created_at" => Carbon::now()->format('Y-m-d H:i:s'),
               "updated_at" => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-              "id" => 5,
-              "ten_loai_sach" => "Giải mã bản thân",
-              "slug" => "giai-ma-ban-than",
-              "created_at" => Carbon::now()->format('Y-m-d H:i:s'),
-              "updated_at" => Carbon::now()->format('Y-m-d H:i:s')
-            ],
-            [
-              "id" => 6,
-              "ten_loai_sach" => "Combo",
-              "slug" => "combo",
-              "created_at" => Carbon::now()->format('Y-m-d H:i:s'),
-              "updated_at" => Carbon::now()->format('Y-m-d H:i:s')
-            ],
-            [
               "id" => 7,
-              "ten_loai_sach" => "Manga",
-              "slug" => "manga",
+              "ten_loai_sach" => "Văn học Việt Nam",
+              "slug" => "van-hoc-viet-nam",
               "created_at" => Carbon::now()->format('Y-m-d H:i:s'),
               "updated_at" => Carbon::now()->format('Y-m-d H:i:s')
             ]

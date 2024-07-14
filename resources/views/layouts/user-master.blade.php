@@ -42,15 +42,15 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{route('user.trang-chu')}}">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-muted"></i>
-                            Profile
+                            Hồ sơ cá nhân 
                         </a>
                         <a class="dropdown-item" href="#">
                             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-muted"></i>
-                            Settings
+                            Cài đặt tài khoản
                         </a>
                         <a class="dropdown-item" href="{{url('logout')}}">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-muted"></i>
-                            Logout
+                            Đăng xuất
                         </a>
                     </div>
                 </li>

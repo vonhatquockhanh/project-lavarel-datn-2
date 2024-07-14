@@ -40,10 +40,10 @@
                                     <th>Tác giả</th>
                                     <th>Tên sách</th>
                                     <!-- <th>Hình ảnh</th> -->
-                                    <th>Ngày phát hành</th>
-                                    <th>Giá</th>
+                                    <!-- <th>Ngày phát hành</th> -->
                                     <th>Giá gốc</th>
-                                    <th>Giá sách điện tử</th>
+                                    <th>Giá</th>
+                                    <!-- <th>Giá sách điện tử</th> -->
                                     <th>Số lượng</th>
                                     <th>Mô tả</th>
                                     <th>Hành động</th>
@@ -58,12 +58,12 @@
                                         <td>{{ isset($sach->tacGia) ? $sach->tacGia->ten_tac_gia : 'N/A' }}</td>
                                         <td>{{ $sach->ten_sach }}</td>
                                         <!-- <td><img src="{{ $sach->image_url }}" width="60" alt=""></td> -->
-                                        <td>{{ $sach->ngay_phat_hanh }}</td>
-                                        <td>{{ $sach->gia }}</td>
-                                        <td>{{ $sach->gia_goc }}</td>
-                                        <td>{{ $sach->gia_sach_dien_tu }}</td>
+                                        <!-- <td>{{ $sach->ngay_phat_hanh }}</td> -->
+                                        <td>{{number_format($sach->gia_goc, 0, ',', '.')}}</td>
+                                        <td>{{number_format($sach->gia, 0, ',', '.')}}</td>
+                                        <!-- <td>{{ $sach->gia_sach_dien_tu }}</td> -->
                                         <td>{{ $sach->so_luong }}</td>
-                                        <td>{{ $sach->mo_ta }}</td>
+                                        <td>{{ Str::limit($sach->mo_ta, 100) }}</td>
                                         <td>
                                             <div class="d-flex">
                                                 <a href="{{ route('admin.sach.chi-tiet', ['id' => $sach->id]) }}" class="btn btn-sm btn-info mr-2">
@@ -128,4 +128,13 @@
             vertical-align: middle;
         }
     </style>
+        <script>
+        $(document).ready(function() {
+        $('#dataTable').DataTable({
+            "paging": false, // Tắt phân trang của DataTables
+            "searching": true, // Bật tìm kiếm nếu bạn muốn giữ chức năng tìm kiếm của DataTables
+            "info": false // Tắt thông tin tổng quan (hiển thị số dòng)
+        });
+    });
+    </script>
 @endsection
