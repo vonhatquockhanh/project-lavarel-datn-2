@@ -23,6 +23,10 @@
     <!-- Custom CSS -->
     <link href="{{asset('admin/css/custom.css')}}" rel="stylesheet">
 
+    <script type="text/javascript" src="{{asset('/')}}assets/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body id="page-top">

@@ -90,10 +90,11 @@ class DonHangController extends Controller
     public function chiTiet($id)
     {
         $donHang = DonHang::findOrFail($id);
+
         $donHang->load('chiTietDonHang.sach', 'chiTietDonHang.combo');
         $list_of_don_hang= DonHang::all();
         $list_of_books=Sach::all();
-        $list_of_combos=Combo::all();
+        $list_of_combos=Combo::all();   
         return view('admin.don-hang.chi-tiet', compact('donHang','list_of_don_hang','list_of_books','list_of_combos'));
     }
     public function store(Request $request)
@@ -116,6 +117,30 @@ class DonHangController extends Controller
 
         $chiTietDonHang->save();
         return redirect()->back()->with('success', 'Thêm chi tiết đơn hàng thành công!');
+    }
+
+    public function updateThongTinDonHang(Request $request)
+    {
+        $donHang = DonHang::findOrFail($request['id']);
+    
+        if ($request->has('khach_hang_ten_dang_nhap')) {
+            $donHang->khach_hang_ten_dang_nhap = $request['khach_hang_ten_dang_nhap'];
+        }
+        if ($request->has('so_dien_thoai')) {
+            $donHang->so_dien_thoai = $request['so_dien_thoai'];
+        }
+        if ($request->has('dia_chi')) {
+            $donHang->dia_chi = $request['dia_chi'];
+        }
+        if ($request->has('phuong_thuc_thanh_toan')) {
+            $donHang->phuong_thuc_thanh_toan = $request['phuong_thuc_thanh_toan'];
+        }
+        if ($request->has('trang_thai')) {
+            $donHang->trang_thai = $request['trang_thai'];
+        }
+    
+        $donHang->save();
+        return redirect()->back()->with('success', 'Cập nhật đơn hàng thành công!');
     }
 
     public function xoaChiTiet($id)

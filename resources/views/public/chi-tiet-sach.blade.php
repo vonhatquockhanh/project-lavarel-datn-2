@@ -97,7 +97,7 @@ Chi tiết sách
                                 </div>
                                 <div class="row">
                                     <div class="book-description p-3">
-                                        <p>{!! Markdown::convertToHtml(e($sach->mo_ta)) !!}</p>
+                                        <p>{!! Markdown::convertToHtml(html_entity_decode(e($sach->mo_ta))) !!}</p>
                                     </div>
                                 </div>
                             </div>

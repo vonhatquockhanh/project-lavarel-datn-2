@@ -4,26 +4,6 @@
     <h1 class="h3 mb-2 text-gray-800">DANH SÁCH ĐƠN HÀNG</h1>
     <div class="my-2 px-1">
         <div class="row">
-            <!-- <div class="col-6">
-                <div>
-                    <a href="{{ route('admin.khach-hang.them-moi') }}" class="btn btn-primary btn-sm">
-                        <i class="fas fa-plus-circle mr-1"></i>
-                        Thêm mới khách hàng
-                    </a>
-                </div>
-            </div> -->
-            <!-- <div class="col-6 text-right">
-                <form action="{{ route('admin.khach-hang.tim-kiem') }}" method="GET" class="form-inline">
-                    <div class="input-group">
-                        <input type="text" name="search_name" class="form-control" placeholder="Tìm kiếm..." value="{{ request('search_name') }}">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit" style="padding: 0.375rem 0.5rem;">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div> -->
         </div>
     </div>
 
@@ -44,9 +24,9 @@
                             <th>Tên khách hàng</th>
                             <th>Số điện thoại</th>
                             <th>Địa chỉ</th>
-                            <!-- <th>Ảnh đại diện</th> -->
                             <th>Trạng thái</th>
                             <th>Trạng thái giao hàng</th>
+                            <th>Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,37 +36,36 @@
                                 <td>{{ $donHang->khach_hang_ten_dang_nhap }}</td>
                                 <td>{{ $donHang->so_dien_thoai }}</td>
                                 <td>{{ $donHang->dia_chi }}</td>
-                                <!-- <td>
-                                    <img src="{{$donHang->user->hinhAnh ? $donHang->user->image_url : Auth::user()->default_img}}" alt="" width="60">
-                                
-                                </td> -->
                                 <td>
-                                @switch($donHang->trang_thai)
-                                    @case(1)
-                                        <span class="badge badge-warning badge-large">Đang chờ xử lý</span>
-                                        @break
-                                    @case(2)
-                                        <span class="badge badge-info badge-large">Đang giao hàng</span>
-                                        @break
-                                    @case(3)
-                                        <span class="badge badge-success badge-large">Đã nhận hàng</span>
-                                        @break
-                                    @case(4)
-                                        <span class="badge badge-success badge-large">Hoàn thành</span>
-                                        @break
-                                    @case(5)
-                                        <span class="badge badge-danger badge-large">Đã hủy</span>
-                                        @break
-                                    @default
-                                        <span class="badge badge-secondary badge-large">Không xác định</span>
-                                @endswitch
+                                    @switch($donHang->trang_thai)
+                                        @case(1)
+                                            <b><span class="text-warning">Đang chờ xử lý</span></b>
+                                            @break
+                                        @case(2)
+                                            <b><span class="text-info">Đang giao hàng</span></b>
+                                            @break
+                                        @case(3)
+                                            <b><span class="text-success">Hoàn thành</span></b>
+                                            @break
+                                        @case(4)
+                                            <b><span class="text-danger">Đã hủy</span></b>
+                                            @break
+                                        @default
+                                            <b><span class="text-secondary">Không xác định</span></b>
+                                    @endswitch
                                 </td>
                                 <td>
                                     @if($donHang->trang_thai_thanh_toan == 1)
-                                        <span class="badge badge-success badge-large">Đã nhận hàng</span>
+                                        <b><span class="text-success">Đã nhận hàng</span></b>
                                     @else
-                                        <span class="badge badge-info badge-large">Chưa nhận hàng</span>
+                                        <b><span class="text-info">Chưa nhận hàng</span></b>
                                     @endif
+                                </td>
+                                <td>
+                                    <!-- Nút "Chỉnh sửa" với lớp Bootstrap và tùy chỉnh CSS -->
+                                    <button type="button" class="btn btn-primary btn-sm custom-edit-button editOrderButton" data-id="{{ $donHang->id }}">
+                                        <i class="fas fa-edit"></i> Chỉnh sửa đơn hàng
+                                    </button>
                                 </td>
                             </tr>
                         @empty
@@ -99,7 +78,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <style>
@@ -123,9 +101,28 @@
     }
 
     .badge-large {
-           font-size: 1.2em;
-           padding: 0.5em 1em;
-       }
+        font-size: 0.9em;
+        padding: 0.5em 0.5em;
+    }
 </style>
 
+<script>
+    $(document).ready(function() {
+        console.log('jQuery is ready');
+
+        // Gán sự kiện click cho tất cả các nút có lớp 'editOrderButton'
+        $('body').on('click', '.editOrderButton', function() {
+            var orderId = $(this).data('id');
+            var url = '{{ route("admin.don-hang.chi-tiet", ":id") }}';
+            url = url.replace(':id', orderId);
+
+            // Debug để kiểm tra xem sự kiện có được kích hoạt không
+            console.log('Clicked edit button for order ID:', orderId);
+            console.log('Redirecting to URL:', url);
+
+            // Redirect đến URL của route GET
+            window.location.href = url;
+        });
+    });
+</script>
 @endsection

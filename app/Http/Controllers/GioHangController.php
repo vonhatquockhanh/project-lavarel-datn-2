@@ -15,6 +15,7 @@ class GioHangController extends Controller
         $sach = Sach::findOrFail($request->sach_id);
 
         $soLuongTrongGioHang = 0;
+        $tongSoLuongBanDau = $sach->so_luong;
 
         if (Auth::check()) {
             // Nếu người dùng đã đăng nhập, lấy số lượng từ giỏ hàng của người dùng
@@ -38,7 +39,8 @@ class GioHangController extends Controller
         // Tổng số lượng yêu cầu là số lượng trong giỏ hàng hiện tại cộng với số lượng mới yêu cầu
         $tongSoLuongYeuCau = $soLuongTrongGioHang + $request->so_luong;
 
-        if ($sach->so_luong >= $tongSoLuongYeuCau) {
+        // Kiểm tra nếu tổng số lượng yêu cầu không vượt quá tổng số lượng ban đầu
+        if ($tongSoLuongBanDau >= $tongSoLuongYeuCau) {
             if ($request->so_luong >= 1) {
                 if (Auth::check()) {
                     // Nếu người dùng đã đăng nhập
@@ -50,7 +52,7 @@ class GioHangController extends Controller
                         [
                             'so_luong' => $tongSoLuongYeuCau,
                             'gia' => $sach->gia,
-                            'so_luong_ton' => $sach->so_luong,
+                            'so_luong_ton' => $tongSoLuongBanDau - $tongSoLuongYeuCau,
                             'user_id' => Auth::user()->id,
                         ]
                     );
@@ -69,10 +71,14 @@ class GioHangController extends Controller
                         // Sản phẩm chưa tồn tại, thêm mới
                         Cart::add($sach->id, $sach->ten_sach, $request->so_luong, $sach->gia, 0, [
                             'image' => $sach->hinhAnh->url,
-                            'so_luong_ton' => $sach->so_luong
+                            'so_luong_ton' => $tongSoLuongBanDau - $tongSoLuongYeuCau
                         ]);
                     }
                 }
+
+                // Cập nhật lại số lượng tồn kho của sản phẩm
+                $sach->so_luong = $tongSoLuongBanDau - $tongSoLuongYeuCau;
+                $sach->save();
 
                 return redirect()->back();
             } else {
@@ -85,6 +91,7 @@ class GioHangController extends Controller
                 ->with('giohang_alert', $message);
         }
     }
+
 
     public function gioHang()
     {
@@ -144,24 +151,39 @@ class GioHangController extends Controller
         $rowId = $request->input('id');
         
         if (Auth::check()) {
-            // Xóa sản phẩm khỏi thư viện Cart
+            // Lấy sản phẩm khỏi thư viện Cart
             $item = Cart::get($rowId);
-            Cart::remove($rowId);
 
-            // Xóa sản phẩm khỏi bảng gio_hang trong cơ sở dữ liệu
             if ($item) {
+                // Tăng số lượng tồn kho của sản phẩm tương ứng
+                $sach = Sach::findOrFail($item->id);
+                $sach->so_luong += $item->qty;
+                $sach->save();
+                
+                // Xóa sản phẩm khỏi giỏ hàng trong database
                 $gioHang = GioHang::where('user_id', Auth::user()->id)
                                 ->where('sach_id', $item->id)
                                 ->first();
                 if ($gioHang) {
                     $gioHang->delete();
                 }
+
+                // Xóa sản phẩm khỏi thư viện Cart
+                Cart::remove($rowId);
             }
 
             $this->capNhatGioHangVaoDatabase();
         } else {
             // Xóa sản phẩm khỏi session Cart
-            Cart::remove($rowId);
+            $item = Cart::get($rowId);
+            if ($item) {
+                // Tăng số lượng tồn kho của sản phẩm tương ứng
+                $sach = Sach::findOrFail($item->id);
+                $sach->so_luong += $item->qty;
+                $sach->save();
+
+                Cart::remove($rowId);
+            }
         }
 
         return response()->json(['success' => true]);
@@ -170,8 +192,12 @@ class GioHangController extends Controller
     {
         $rowId = $request->input('id');
         $qty = $request->input('qty');
-        $stock = $request->input('stock');
         
+        // Lấy tổng số lượng ban đầu của sản phẩm
+        $item = Cart::get($rowId);
+        $sach = Sach::findOrFail($item->id);
+        $tongSoLuongBanDau = $sach->so_luong + $item->qty;
+
         if (Auth::check()) {
             $item = Cart::get($rowId);
             if ($item) {
@@ -180,28 +206,48 @@ class GioHangController extends Controller
                                 ->where('sach_id', $item->id)
                                 ->first();
 
-                if ($gioHang && $sach->so_luong >= $gioHang->so_luong + 1) {
-                    $gioHang->so_luong += 1;
-                    $gioHang->save();
-                    Cart::update($rowId, $item->qty + 1);
-                    
-                    return response()->json(['success' => true]);
-                } else {
-                    return response()->json(['success' => false, 'message' => 'Số lượng vượt quá số lượng tồn kho']);
+                if ($gioHang) {
+                    $tongSoLuongYeuCau = $gioHang->so_luong + 1;
+
+                    if ($tongSoLuongBanDau >= $tongSoLuongYeuCau) {
+                        $gioHang->so_luong += 1;
+                        $gioHang->save();
+
+                        $sach->so_luong -= 1;
+                        $sach->save();
+
+                        Cart::update($rowId, $item->qty + 1);
+
+                        return response()->json(['success' => true]);
+                    } else {
+                        return response()->json(['success' => false, 'message' => 'Số lượng vượt quá số lượng tồn kho']);
+                    }
                 }
             }
         } else {
             // Tăng số lượng trong session Cart
             $item = Cart::get($rowId);
             if ($item) {
-                if ($item->qty + 1 <= $stock) {
+                $sach = Sach::findOrFail($item->id);
+                $tongSoLuongYeuCau = $item->qty + 1;
+
+                if ($tongSoLuongBanDau >= $tongSoLuongYeuCau) {
                     Cart::update($rowId, $item->qty + 1);
-                    return response()->json(['success' => true]);
+                    
+                    // Cập nhật số lượng tồn kho của sản phẩm
+                    $sach->so_luong -= 1;
+                    $sach->save();
+
+                    return response()->json(['success' => true, 'current_qty' => $item->qty, 'attempted_qty' => $tongSoLuongYeuCau, 'stock' => $sach->so_luong]);
                 } else {
                     return response()->json(['success' => false, 'message' => 'Số lượng vượt quá số lượng tồn kho']);
                 }
+            } else {
+                // Debug thông tin khi không có item trong giỏ hàng session
+                return response()->json(['success' => false, 'message' => 'Item không tồn tại trong giỏ hàng session', 'rowId' => $rowId]);
             }
         }
+
         return response()->json(['success' => false]);
     }
 
@@ -210,10 +256,11 @@ class GioHangController extends Controller
     {
         $rowId = $request->input('id');
         $qty = $request->input('qty');
-        
+    
         if (Auth::check()) {
             $item = Cart::get($rowId);
             if ($item) {
+                $sach = Sach::findOrFail($item->id);
                 $gioHang = GioHang::where('user_id', Auth::user()->id)
                                 ->where('sach_id', $item->id)
                                 ->first();
@@ -222,23 +269,52 @@ class GioHangController extends Controller
                         $gioHang->so_luong -= 1;
                         $gioHang->save();
                         Cart::update($rowId, $item->qty - 1);
+    
+                        // Tăng số lượng tồn kho của sản phẩm
+                        $sach->so_luong += 1;
+                        $sach->save();
+    
+                        return response()->json(['success' => true, 'current_qty' => $item->qty - 1, 'stock' => $sach->so_luong]);
                     } else if ($gioHang->so_luong == 1) {
                         $gioHang->delete();
                         Cart::remove($rowId);
+    
+                        // Tăng số lượng tồn kho của sản phẩm
+                        $sach->so_luong += 1;
+                        $sach->save();
+    
+                        return response()->json(['success' => true, 'current_qty' => 0, 'stock' => $sach->so_luong]);
                     }
                 }
             }
         } else {
             // Giảm số lượng trong session Cart
             $item = Cart::get($rowId);
-            if ($item->qty > 1) {
-                Cart::update($rowId, $item->qty - 1);
-            } else {
-                Cart::remove($rowId);
+            if ($item) {
+                $sach = Sach::findOrFail($item->id);
+                if ($item->qty > 1) {
+                    Cart::update($rowId, $item->qty - 1);
+    
+                    // Tăng số lượng tồn kho của sản phẩm
+                    $sach->so_luong += 1;
+                    $sach->save();
+    
+                    return response()->json(['success' => true, 'current_qty' => $item->qty - 1, 'stock' => $sach->so_luong]);
+                } else {
+                    Cart::remove($rowId);
+    
+                    // Tăng số lượng tồn kho của sản phẩm
+                    $sach->so_luong += 1;
+                    $sach->save();
+    
+                    return response()->json(['success' => true, 'current_qty' => 0, 'stock' => $sach->so_luong]);
+                }
             }
         }
-        return response()->json(['success' => true]);
+    
+        return response()->json(['success' => false, 'message' => 'Item không tồn tại trong giỏ hàng']);
     }
+    
 
         public function saveGioHangVaoDatabase()
         {
