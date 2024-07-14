@@ -164,13 +164,13 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         $user = User::findOrfail($id);
-        if(! is_null($user->image_id))
-        {
-            unlink(public_path().'/assets/img/'.$user->image->file);
-        }
-        $user->image()->delete();
-        $user->orders()->delete();
-        $user->reviews()->delete();
+        // if(! is_null($user->image_id))
+        // {
+        //     unlink(public_path().'/assets/img/'.$user->image->file);
+        // }
+        // $user->image()->delete();
+        $user->donHang()->delete();
+        $user->danhGiaSach()->delete();
         $user->delete();
         return redirect()->back()
             ->with('alert_message', 'User deleted successfully');

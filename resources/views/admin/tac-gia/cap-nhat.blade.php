@@ -24,10 +24,10 @@
             <form action="{{ route('admin.tac-gia.xu-ly-cap-nhat', ['id' => $tacgia->id]) }}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="sach_id">Sách ID</label>
                         <input type="text" class="form-control" id="sach_id" name="sach_id" value="{{ $tacgia->sach_id }}">
-                    </div>
+                    </div> -->
                     <div class="mb-3">
                         <label for="ten_tac_gia">Tên tác giả</label>
                         <input type="text" class="form-control" id="ten_tac_gia" name="ten_tac_gia" value="{{ $tacgia->ten_tac_gia }}">

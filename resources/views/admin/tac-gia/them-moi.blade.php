@@ -24,7 +24,7 @@
                     <label for="id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" value="{{ old('id') }}" required>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="sach_id">Chọn sách</label>
                     <select class="form-control" id="sach_id" name="sach_id" required>
                         <option value="">Chọn sách</option>
@@ -32,7 +32,7 @@
                             <option value="{{ $book->id }}">{{ $book->ten_sach }}</option>
                         @endforeach
                     </select>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="ten_tac_gia">Tên tác giả</label>
                     <input type="text" class="form-control" id="ten_tac_gia" name="ten_tac_gia" value="{{ old('ten_tac_gia') }}" required>

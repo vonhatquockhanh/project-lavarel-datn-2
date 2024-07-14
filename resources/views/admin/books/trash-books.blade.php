@@ -69,7 +69,7 @@
                                         {!! Form::close() !!}
 
                                         {!! Form::open(['method'=>'DELETE', 'route'=>['book.forceDelete', $book->id]]) !!}
-                                            <button type="submit" onclick="return confirm('Book will delete to permanently! Are you sure to delete??')" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button>
+                                            <button type="submit" onclick="return confirm('Bạn có chắc chắn xoá ?')" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button>
                                         {!! Form::close() !!}
                                     </div>
 
