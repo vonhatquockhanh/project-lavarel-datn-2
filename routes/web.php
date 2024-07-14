@@ -119,14 +119,18 @@ Route::prefix('danh-gia-sach')->group(function () {
     Route::delete('/xoa/{id}', [DanhGiaController::class, 'xoaDanhGiaSach'])->name('admin.danh-gia-sach.xoa');
 });
 Route::prefix('don-hang')->group(function(){
-    Route::get('/don-hang/danh-sach',[DonHangController::class,'danhSach'])->name('admin.don-hang.danh-sach');
+    // Route::get('/don-hang/danh-sach',[DonHangController::class,'danhSach'])->name('admin.don-hang.danh-sach');
+    Route::get('/danh-sach',[DonHangController::class,'danhSach'])->name('admin.don-hang.danh-sach');
     Route::get('/them-moi', [DonHangController::class, 'themMoi'])->name('admin.don-hang.them-moi');
     Route::post('/them-moi', [DonHangController::class, 'xuLyThemMoi'])->name('admin.don-hang.xu-ly-them-moi');
-    Route::get('/chi-tiet/{id}', [DonHangController::class, 'chiTiet'])->name('admin.don-hang.chi-tiet');
+    Route::get('/chi-tiet-don-hang/{id}', [DonHangController::class, 'chiTiet'])->name('admin.don-hang.chi-tiet');
     Route::get('/xoa/{id}', [DonHangController::class, 'xoa'])->name('admin.don-hang.xoa');
     Route::post('chi-tiet/store', [DonHangController::class, 'store'])->name('admin.don-hang.chi-tiet.store');
-    Route::delete('/don-hang/chi-tiet/{id}', [DonHangController::class, 'xoaChiTiet'])->name('admin.don-hang.chi-tiet.xoa');
-    Route::get('/don-hang/tim-kiem', [DonHangController::class, 'timKiem'])->name('admin.don-hang.tim-kiem');
+    // Route::delete('/don-hang/chi-tiet/{id}', [DonHangController::class, 'xoaChiTiet'])->name('admin.don-hang.chi-tiet.xoa');
+    Route::delete('/chi-tiet/{id}', [DonHangController::class, 'xoaChiTiet'])->name('admin.don-hang.chi-tiet.xoa');
+    // Route::get('/don-hang/tim-kiem', [DonHangController::class, 'timKiem'])->name('admin.don-hang.tim-kiem');
+    Route::get('/tim-kiem', [DonHangController::class, 'timKiem'])->name('admin.don-hang.tim-kiem');
+    Route::post('/cap-nhat', [DonHangController::class, 'updateThongTinDonHang'])->name('admin.don-hang.update');
 });
 Route::prefix('sach')->group(function () {
     Route::get('/', [SachController::class, 'danhSach'])->name('admin.sach.danh-sach');

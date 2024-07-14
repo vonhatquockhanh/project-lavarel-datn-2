@@ -153,10 +153,14 @@ $(document).on('click', '.cart-plus', function(event) {
     var $this = $(this);
     var id = $this.data('id');
     var qty = parseInt($this.data('qty'));
-    var stock = parseInt($this.data('stock'));
+
+    var rowMain = $this.closest('tr');
+    // var soLuongTon = parseInt(row.find('.so-luong-ton').text());
+    var stock = parseInt(rowMain.find('.so-luong-ton').text());
+
     var newQty = qty + 1;
 
-    if (newQty <= stock) {
+    if (stock > -1) {
         $.ajax({
             url: '{{ route("gioHang.tangDan") }}',
             method: 'POST',

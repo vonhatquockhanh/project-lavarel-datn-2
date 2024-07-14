@@ -71,7 +71,7 @@
                         </div>
                         <div class="form-group">
                             <label for="dia_chi">Địa chỉ giao hàng <span class="text-danger">*</span></label>
-                            <textarea name="dia_chi" class="form-control {{$errors->has('dia_chi')? 'is-invalid' : ''}}" cols="30" rows="5"></textarea>
+                            <textarea name="dia_chi" class="form-control {{$errors->has('dia_chi')? 'is-invalid' : ''}}" cols="30" rows="5">{{Auth::user()? Auth::user()->address : ''}}</textarea>
                             @if($errors->has('dia_chi'))
                                 <span class="invalid-feedback">
                                     <strong>{{$errors->first('dia_chi')}}</strong>

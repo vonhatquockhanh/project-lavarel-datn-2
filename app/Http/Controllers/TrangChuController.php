@@ -12,7 +12,7 @@ class TrangChuController extends Controller
 {
     public function index()
     {
-        $loai_sach = LoaiSach::take(5)->get();
+        $loai_sach = LoaiSach::orderBy('created_at', 'DESC')->take(5)->get();
         
         $sach_theo_loai = [];
         foreach ($loai_sach as $loai) {
