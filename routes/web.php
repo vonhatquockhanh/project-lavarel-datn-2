@@ -154,6 +154,10 @@ Route::group(['middleware' => 'user'], function (){
 
     Route::get('/danh-gia-cua-toi', 'Users\DanhGiaKhachHangController@danhGiaCuaToi')->name('user.danh-gia-cua-toi');
     Route::delete('/danh-gia/{id}', 'Users\DanhGiaKhachHangController@xoaDanhGia')->name('danhGia.xoa');
+
+    Route::get('/thong-tin-ca-nhan', 'Users\UsersBaseController@thongTinCaNhan')->name('user.thong-tin-ca-nhan');
+    Route::patch('/cai-dat-tai-khoan/{id}', 'Users\UsersBaseController@caiDatTaiKhoan')->name('user.cai-dat-tai-khoan');
+
 });
 // End of users route
 

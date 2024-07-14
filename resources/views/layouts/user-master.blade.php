@@ -44,10 +44,12 @@
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-muted"></i>
                             Hồ sơ cá nhân 
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{route('user.thong-tin-ca-nhan')}}">
                             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-muted"></i>
                             Cài đặt tài khoản
                         </a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{url('logout')}}">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-muted"></i>
                             Đăng xuất

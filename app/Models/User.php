@@ -42,7 +42,8 @@ class User extends Model
     }
     public function image()
     {
-        return $this->belongsTo('App\Image');
+        // return $this->belongsTo('App\Image');
+        return $this->belongsTo(HinhAnh::class);
     }
     public function donHang()
     {
@@ -60,7 +61,7 @@ class User extends Model
     */
     public function getImageUrlAttribute($value)
     {
-        return asset('/').'assets/img/'.$this->image->file;
+        return asset('/').'assets/img/'.$this->image->url;
     }
     public function getDefaultImgAttribute($value)
     {
