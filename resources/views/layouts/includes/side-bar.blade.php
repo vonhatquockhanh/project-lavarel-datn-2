@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div class="col-md-3">
     <div class="sidebar-items">
         <div class="card my-4">
             <div class="card-header bg-dark text-white">

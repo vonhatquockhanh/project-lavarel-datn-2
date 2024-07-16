@@ -398,3 +398,96 @@ span.quantity-input input:focus{
 #empty-cart-alert {
     display: none;
 }
+
+.container-fluid {
+    display: flex;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.sidebar {
+    min-width: 250px; /* Đảm bảo sidebar có chiều rộng tối thiểu */
+}
+
+
+.book-wrap {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.book-wrap:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.book-image {
+    height: 200px; /* Chiều cao cố định cho khung chứa hình ảnh */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.book-image img {
+    height: 100%; /* Chiều cao 100% để hình ảnh fit khung */
+    width: auto; /* Đảm bảo hình ảnh không bị méo */
+    object-fit: cover; /* Canh đều hình ảnh */
+}
+
+.book-title {
+    flex-grow: 1;
+}
+
+.book-price {
+    white-space: nowrap; /* Không xuống dòng cho phần giá tiền */
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+.text-danger {
+    color: red;
+}
+
+.book-wrap .book-title a {
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+}
+
+.book-wrap .book-title a:hover {
+    color: #007bff;
+}
+
+.book-wrap .book-author a {
+    font-size: 12px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.book-wrap .book-author a:hover {
+    text-decoration: underline;
+}
+
+.book-wrap .book-price {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.table img {
+    border-radius: 5px;
+    width: 100px; /* Thay đổi chiều rộng ảnh */
+    height: auto; /* Điều chỉnh chiều cao tự động để giữ tỷ lệ */
+}

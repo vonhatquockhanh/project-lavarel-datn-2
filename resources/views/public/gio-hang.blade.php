@@ -4,74 +4,66 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="card my-4">
+<div class="container-fluid d-flex justify-content-center">
+    <div class="card my-4 w-100">
         <div class="card-header custom-card-bg text-white">
-            <h4><i class="fas fa-shopping-cart"></i> Giỏ hàng</h4>
+            <h4><i class="fas fa-shopping-cart"></i> Kiểm tra đơn hàng</h4>
         </div>
         <div class="card-body">
             @include('layouts.includes.flash-message')
             @if(count($gioHang))
             <div id="cart-content">
-
                 <table class="table table-borderless">
-                <thead class="bg-light">
-                <tr>
-                <th></th>
-                <th scope="col" width="100">Hình ảnh</th>
-                <th scope="col">Tên sách</th>
-                <th scope="col" width="120">Số lượng tồn</th>
-                <th scope="col" width="140">Giá</th>
-                <th scope="col" width="100">Số lượng mua</th>
-                <th scope="col" width="170">Tổng cộng</th>
-                </tr>
-                </thead>
+                    <thead class="bg-light">
+                        <tr>
+                            <th></th>
+                            <th scope="col" width="100">Hình ảnh</th>
+                            <th scope="col">Tên sách</th>
+                            <th scope="col" width="120">Số lượng tồn</th>
+                            <th scope="col" width="140">Giá</th>
+                            <th scope="col" width="100">Số lượng mua</th>
+                            <th scope="col" width="170">Tổng cộng</th>
+                        </tr>
+                    </thead>
                     @foreach($gioHang as $item)
                     <tbody>
-                    <tr class="border-bottom">
-                    <td><a href="javascript:void(0);" class="text-danger remove-cart-item" data-id="{{ $item['id'] }}" title="Remove cart item"><i class="fas fa-times"></i></a></td>
-
-                    <td><img src="{{ asset('assets/img/'.$item['options']['image']) }}" alt="" width="50"></td>
-
-                    <td>{{ $item['name'] }}</td>
-
-                    <td class="so-luong-ton">{{ $item['options']['so_luong_ton'] }}</td>
-
-                    <td>{{ number_format($item['price'], 0, ',', '.') }} VNĐ</td>
-
-                    <td>
-                    <span class="quantity-input mr-2 mb-2 d-flex flex-row">
-                        <a href="javascript:void(0);" class="cart-minus" data-id="{{ $item['id'] }}" data-qty="{{ $item['qty'] }}">-</a>
-                        <input title="QTY" name="quantity" type="text" value="{{ $item['qty'] }}" class="qty-text" readonly>
-                        <a href="javascript:void(0);" class="cart-plus" data-id="{{ $item['id'] }}" data-qty="{{ $item['qty'] }}" data-stock="{{ $item['options']['so_luong_ton'] }}">+</a>
-                    </span>
-                    </td>
-
-                    <td>{{ number_format($item['price'] * $item['qty'], 0, ',', '.') }} VNĐ</td>
-                    </tr>
+                        <tr class="border-bottom">
+                            <td><a href="javascript:void(0);" class="text-danger remove-cart-item" data-id="{{ $item['id'] }}" title="Remove cart item"><i class="fas fa-times"></i></a></td>
+                            <td><img src="{{ asset('assets/img/'.$item['options']['image']) }}" alt="" width="50"></td>
+                            <td>{{ $item['name'] }}</td>
+                            <td class="so-luong-ton">{{ $item['options']['so_luong_ton'] }}</td>
+                            <td>{{ number_format($item['price'], 0, ',', '.') }} VNĐ</td>
+                            <td>
+                                <span class="quantity-input d-flex align-items-center">
+                                    <a href="javascript:void(0);" class="cart-minus" data-id="{{ $item['id'] }}" data-qty="{{ $item['qty'] }}">-</a>
+                                    <input title="QTY" name="quantity" type="text" value="{{ $item['qty'] }}" class="qty-text" readonly>
+                                    <a href="javascript:void(0);" class="cart-plus" data-id="{{ $item['id'] }}" data-qty="{{ $item['qty'] }}" data-stock="{{ $item['options']['so_luong_ton'] }}">+</a>
+                                </span>
+                            </td>
+                            <td>{{ number_format($item['price'] * $item['qty'], 0, ',', '.') }} VNĐ</td>
+                        </tr>
                     </tbody>
                     @endforeach
-                <tbody>
-                    <tr>
-                        <td colspan="5"><a href="{{ route('tatCaSach') }}" class="text-primary">Tiếp tục mua sắm</a></td>
-                        <td><strong>Tổng cộng</strong></td>
-                        <td colspan="5">
-                            <span class="total-amount-display" style="font-weight: bold; font-size: 1.2em; color: red; background-color: yellow;">
-                                {{ number_format(collect($gioHang)->sum(function($item) {
+                    <tbody>
+                        <tr>
+                            <td colspan="5"><a href="{{ route('tatCaSach') }}" class="text-primary">Tiếp tục mua sắm</a></td>
+                            <td><strong>Tổng cộng</strong></td>
+                            <td colspan="5">
+                                <span class="total-amount-display" style="font-weight: bold; font-size: 1.2em; color: red; background-color: yellow;">
+                                    {{ number_format(collect($gioHang)->sum(function($item) {
                                         return $item['price'] * $item['qty'];
                                     }), 0, ',', '.') }} VNĐ
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="5"></td>
-                        <td colspan="2">
-                        <a href="{{ route('gioHang.xacNhanThanhToan') }}" class="btn btn-outline-danger btn-sm">Thủ tục thanh toán <i class="fas fa-long-arrow-alt-right"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"></td>
+                            <td colspan="2">
+                                <a href="{{ route('gioHang.xacNhanThanhToan') }}" class="btn btn-outline-danger btn-sm">Thủ tục thanh toán <i class="fas fa-long-arrow-alt-right"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
-
             </div>
             @else
                 <div class="alert alert-warning">Không tìm thấy mặt hàng nào trong giỏ hàng. <a href="{{ route('tatCaSach') }}"> Tiếp tục mua sắm</a></div>
@@ -80,6 +72,74 @@
         </div>
     </div>
 </div>
+
+
+
+<style>
+
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    width: 85%;
+}
+
+.quantity-input {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-input a {
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #f0f0f0;
+    color: #000;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.quantity-input input {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 0 5px;
+    padding: 0;se
+    box-sizing: border-box;
+}
+
+
+.total-amount-display {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: red;
+    background-color: yellow;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap; /* Đảm bảo rằng văn bản không xuống dòng */
+}
+
+.custom-card-bg {
+    background-color: #343a40;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.table img {
+    border-radius: 5px;
+}
+
+.alert {
+    margin-bottom: 20px;
+}
+
+</style>
 
 <!-- Modal -->
 <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel" aria-hidden="true">
