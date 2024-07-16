@@ -17,7 +17,11 @@
                         </ul>
                     </div>
                 @endif
-
+                @if (session('thong_bao'))
+    <div class="alert alert-warning">
+        {{ session('thong_bao') }}
+    </div>
+@endif
                 <form action="{{ route('admin.loai-sach.xu-ly-them-moi') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">

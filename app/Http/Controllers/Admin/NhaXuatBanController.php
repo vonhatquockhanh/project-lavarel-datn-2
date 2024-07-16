@@ -22,16 +22,26 @@ class NhaXuatBanController extends Controller
 
     public function xuLyThemMoi(NhaXuatBanRequest $request)
     {
-        $nhaXuatBan = new NhaXuatBan();
-        $nhaXuatBan->id = $request->id;
-        $nhaXuatBan->ten_nha_xuat_ban = $request->ten_nha_xuat_ban;
-        $nhaXuatBan->so_dien_thoai = $request->so_dien_thoai;
-        $nhaXuatBan->email = $request->email;
-        $nhaXuatBan->dia_chi = $request->dia_chi;
-        $nhaXuatBan->mo_ta = $request->mo_ta;
-        $nhaXuatBan->save();
-
-        return redirect()->route('admin.nha-xuat-ban.danh-sach')->with(['thong_bao' => "Thêm nhà xuất bản {$nhaXuatBan->ten_nha_xuat_ban} thành công!"]);
+        try {
+            $nhaXuatBan = NhaXuatBan::find($request->id);
+            if ($nhaXuatBan) {
+                return back()->withInput()->with(['thong_bao' => "ID {$request->id} đã tồn tại! Vui lòng chọn ID khác."]);
+            }
+            
+            $nhaXuatBan = new NhaXuatBan();
+            $nhaXuatBan->id = $request->id;
+            $nhaXuatBan->ten_nha_xuat_ban = $request->ten_nha_xuat_ban;
+            $nhaXuatBan->so_dien_thoai = $request->so_dien_thoai;
+            $nhaXuatBan->email = $request->email;
+            $nhaXuatBan->dia_chi = $request->dia_chi;
+            $nhaXuatBan->mo_ta = $request->mo_ta;
+            $nhaXuatBan->save();
+        
+            return redirect()->route('admin.nha-xuat-ban.danh-sach')->with(['thong_bao' => "Thêm nhà xuất bản {$nhaXuatBan->ten_nha_xuat_ban} thành công!"]);
+        } catch (Exception $e) {
+            return back()->withInput()->with(['thong_bao' => "Lỗi thêm nhà xuất bản: " . $e->getMessage()]);
+        }
+        
     }
 
     public function capNhat($id)

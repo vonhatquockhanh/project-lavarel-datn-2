@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\LoaiSach;
 use App\Http\Requests\LoaiSachRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class LoaiSachController extends Controller
 {
@@ -16,13 +17,24 @@ class LoaiSachController extends Controller
 
     public function xuLyThemMoi(LoaiSachRequest $request)
     {
-        $loaiSach = new LoaiSach();
-        $loaiSach->id=$request->id;
-        $loaiSach->ten_loai_sach = $request->ten_loai_sach;
-        $loaiSach->slug = $request->slug;
-        $loaiSach->save();
+        try {
+            $loaiSach = LoaiSach::find($request->id);
+            if ($loaiSach) {
+                return back()->with(['thong_bao' => "ID {$request->id} đã tồn tại! Vui lòng chọn ID khác."]);
+            }
+            
+            $loaiSach = new LoaiSach();
+            $loaiSach->id = $request->id;
+            $loaiSach->ten_loai_sach = $request->ten_loai_sach;
+            $loaiSach->slug = $request->slug;
+            $loaiSach->save();
+        
+            return redirect()->route('admin.loai-sach.danh-sach')->with(['thong_bao' => "Thêm loại sách {$loaiSach->ten_loai_sach} thành công!"]);
+        } catch (Exception $e) {
+            return back()->with(['thong_bao' => "Lỗi thêm loại sách: " . $e->getMessage()]);
+        }
+      
 
-        return redirect()->route('admin.loai-sach.danh-sach')->with(['thong_bao' => "Thêm loại sách {$loaiSach->ten_loai_sach} thành công!"]);
     }
 
     public function danhSach()

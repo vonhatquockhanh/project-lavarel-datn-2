@@ -23,16 +23,16 @@ class UsersTableSeeder extends Seeder
         // insert 3 users
         DB::table('users')->insert([
             [
-                'name' => 'Admin',
-                'email' => 'admin@book.com',
+                'name' => 'Quốc Khang',
+                'email' => 'quockhangad@gmail.com',
                 'address' => 'Sóc Trăng',
                 'password'=> bcrypt('secret'),
                 'role_id'=> 1,
                 'is_active'=> 1
             ],
             [
-                'name'=> 'Quốc Khang',
-                'email'=> 'quockhang@gmail.com',
+                'name'=> 'Mai Liên',
+                'email'=> 'mailien@gmail.com',
                 'address' => 'TP HCM',
                 'password'=> bcrypt('secret'),
                 'role_id'=> 2,

@@ -7,6 +7,11 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Thêm Nhà Xuất Bản</h6>
             </div>
+            @if (session('thong_bao'))
+            <div class="alert alert-warning">
+                {{ session('thong_bao') }}
+            </div>
+            @endif
             <div class="card-body">
                 <form method="POST" action="{{ route('admin.nha-xuat-ban.xu-ly-them-moi') }}" enctype="multipart/form-data">
                     @csrf

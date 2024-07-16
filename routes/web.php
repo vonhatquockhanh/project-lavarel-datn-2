@@ -39,8 +39,9 @@ Auth::routes();
 
 // Admin Route group
 Route::group(['middleware' => 'admin'], function (){
+    // Route::get('/admin/tai-khoan', 'Admin\AdminController@TaiKhoan')->name('admin.tai-khoan');
     Route::get('/admin-home', 'Admin\AdminBaseController@index')->name('admin.home');
-
+    Route::patch('/users/{user}/lock', 'Admin\AdminUsersController@lock')->name('users.lock');
     Route::put('/admin/books/restore/{id}', 'Admin\AdminBooksController@restore')
         ->name('book.restore');
     Route::delete('admin/books/forceDelete/{id}', 'Admin\AdminBooksController@forceDelete')

@@ -55,12 +55,12 @@
             <span>Quản Lý Sách</span>
         </a>
     </li>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link" href="{{route('admin.combo.danh-sach')}}">
             <i class="fas fa-fw fa-book"></i>
             <span>Quản Lý Combo</span>
         </a>
-    </li>
+    </li> -->
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.phieu-nhap-hang.danh-sach')}}">
             <i class="fas fa-fw fa-truck"></i>

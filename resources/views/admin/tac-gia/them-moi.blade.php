@@ -17,7 +17,11 @@
                     </ul>
                 </div>
             @endif
-
+            @if (session('thong_bao'))
+            <div class="alert alert-warning">
+                {{ session('thong_bao') }}
+            </div>
+            @endif
             <form method="POST" action="{{ route('admin.tac-gia.xu-ly-them-moi') }}">
                 @csrf
                 <div class="form-group">

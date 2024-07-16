@@ -5,6 +5,11 @@
     <section class="login-area my-5" >
         <div class="container">
             @include('layouts.includes.flash-message')
+            @if(session('error_message'))
+    <div class="alert alert-danger">
+        {{ session('error_message') }}
+    </div>
+@endif
             <div class="row">
                 <div class="col-md-4 mx-auto">
                     <div class="card">

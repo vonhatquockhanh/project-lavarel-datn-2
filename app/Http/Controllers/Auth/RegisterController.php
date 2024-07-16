@@ -89,7 +89,7 @@ class RegisterController extends Controller
 
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath())
-                ->with('success_message', 'Your are registered, Now you can login.');
+                ->with('success_message', ' Bạn đã đăng ký thành công, Bây giờ bạn có thể đăng nhập.');
     }
 
 

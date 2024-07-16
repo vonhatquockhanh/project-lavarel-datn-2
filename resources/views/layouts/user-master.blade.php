@@ -111,7 +111,7 @@
             <a href="#nav-top" class="text-muted" title="Go to top"><i class="fas fa-angle-double-up"></i></a>
         </div>
         <div class="footer-text">
-            Copyright &copy; Quốc Khang - <span id="year"></span>
+            Copyright &copy; Quốc Khang - Mai Liên - <span id="year"></span>
         </div>
     </div>
 </footer>

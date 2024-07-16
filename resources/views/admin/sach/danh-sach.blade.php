@@ -16,10 +16,13 @@
             </div>
         </div>
 
+        
         @if (session('thong_bao'))
             <div class="alert alert-success">{{ session('thong_bao') }}</div>
         @endif
-
+        @if (session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
         @if (isset($errorMessage))
             <div class="alert alert-danger">{{ $errorMessage }}</div>
         @endif

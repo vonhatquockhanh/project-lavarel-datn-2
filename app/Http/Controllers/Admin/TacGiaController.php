@@ -25,16 +25,24 @@ class TacGiaController extends Controller
 
     public function xuLyThemMoi(TacGiaRequest $request)
     {
+        try {
+            $tacgia = TacGia::find($request->id);
+            if ($tacgia) {
+                return back()->withInput()->with(['thong_bao' => "ID {$request->id} đã tồn tại! Vui lòng chọn ID khác."]);
+            }
         $tacgia = new TacGia();
         $tacgia->id = $request->id; 
-        $tacgia->sach_id = $request->sach_id;
+        // $tacgia->sach_id = $request->sach_id;
         $tacgia->ten_tac_gia = $request->ten_tac_gia;
         $tacgia->ngay_sinh = $request->ngay_sinh;
         $tacgia->quoc_tich = $request->quoc_tich;
         $tacgia->dia_chi = $request->dia_chi;
         $tacgia->save();
 
-    return redirect()->route('admin.tac-gia.danh-sach')->with('thong_bao', 'Thêm tác giả mới thành công!');
+        return redirect()->route('admin.tac-gia.danh-sach')->with(['thong_bao' => "Thêm tác giả {$tacgia->ten_tac_gia} thành công!"]);
+        }catch (Exception $e) {
+            return back()->withInput()->with(['thong_bao' => "Lỗi thêm tác giả: " . $e->getMessage()]);
+        }
     }
 
     public function capNhat($id)
@@ -52,7 +60,7 @@ class TacGiaController extends Controller
         if (!$tacgia) {
             return redirect()->route('admin.tac-gia.danh-sach')->with('thong_bao', 'Tác giả không tồn tại!');
         }
-        $tacgia->sach_id = $request->sach_id;
+        // $tacgia->sach_id = $request->sach_id;
         $tacgia->ten_tac_gia = $request->ten_tac_gia;
         $tacgia->ngay_sinh = $request->ngay_sinh;
         $tacgia->quoc_tich = $request->quoc_tich;

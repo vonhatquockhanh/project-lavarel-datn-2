@@ -20,8 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('role_id')->default(3)->unsigned()->index();
+            $table->integer('role_id')->default(2)->unsigned()->index();
             $table->integer('image_id')->nullable()->unsigned()->index();
+            $table->boolean('locked')->default(false); // Thêm dòng này
             $table->integer('is_active')->default(0);
             $table->rememberToken();
             $table->timestamps();

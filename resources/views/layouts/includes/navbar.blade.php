@@ -31,7 +31,7 @@
                             @if(Auth::user()->role->name == "Admin")
                                 <a class="dropdown-item" href="{{route('admin.home')}}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-muted"></i>
-                                    Hồ sơ cá nhân
+                                    Hệ thống quản lý
                                 </a>
                                 <div class="dropdown-divider"></div>
                             @elseif(Auth::user()->role->name == "User")

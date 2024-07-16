@@ -42,43 +42,44 @@ class AdminUsersController extends Controller
         $rules = [
             'name'      => 'required',
             'email'     => 'required|email|unique:users',
-            'address' => 'required|string|max:255',
+            'address'   => 'required|string|max:255',
             'password'  => 'required|confirmed|min:6',
             'role_id'   => 'required',
             'image_id'  => 'image|max:500'
         ];
         $message = [
-            '.required' => "Role can't be empty ",
+            'role_id.required' => "Role can't be empty",
             'image_id.image'   => "Image format should be png, jpg, jpeg type."
         ];
-
-        $this->validate($request, $rules, $message);
-
-        $input = $request->all();
-        if(trim($request->password == ''))
-        {
-            $input = $request->except('password');
+    
+        // Kiểm tra email đã tồn tại
+        $existingUser = User::where('email', $request->email)->first();
+        if ($existingUser) {
+            return redirect()->back()->with('error_message', 'Email này đã tồn tại và không thể sử dụng lại.');
         }
-        else
-        {
+    
+        $this->validate($request, $rules, $message);
+    
+        $input = $request->all();
+        if (trim($request->password == '')) {
+            $input = $request->except('password');
+        } else {
             $input['password'] = bcrypt($request->password);
         }
-        if($file = $request->file('image_id'))
-        {
-            $name = time().$file->getClientOriginalName();
-
+        if ($file = $request->file('image_id')) {
+            $name = time() . $file->getClientOriginalName();
+    
             $image_resize = Photo::make($file->getRealPath());
-            $image_resize->resize(150,150);
-            $image_resize->save(public_path('assets/img/' .$name));
-
-            $image = Image::create(['file'=>$name]);
+            $image_resize->resize(150, 150);
+            $image_resize->save(public_path('assets/img/' . $name));
+    
+            $image = Image::create(['file' => $name]);
             $input['image_id'] = $image->id;
         }
-
+    
         $create_user = User::create($input);
         return redirect('/admin/users')
             ->with('success_message', 'User created successfully');
-
     }
 
     /**
@@ -115,40 +116,42 @@ class AdminUsersController extends Controller
     {
         $rules = [
             'name'      => 'required',
-            'email'     => 'required|email|unique:users,email,'.$id,
-            'address' => 'required|string|max:255',
+            'email'     => 'required|email|unique:users,email,' . $id,
+            'address'   => 'required|string|max:255',
             'password'  => 'confirmed',
             'role_id'   => 'required',
             'image_id'  => 'image|max:500'
         ];
         $message = [
-            'role_id.required' => "Role can't be empty ",
+            'role_id.required' => "Role can't be empty",
             'image_id.image'   => "Image format should be png, jpg, jpeg type."
         ];
-
-        $this->validate($request, $rules, $message);
-
-        $input = $request->all();
-        if(trim($request->password == ''))
-        {
-            $input = $request->except('password');
+    
+        // Kiểm tra email đã tồn tại
+        $existingUser = User::where('email', $request->email)->where('id', '!=', $id)->first();
+        if ($existingUser) {
+            return redirect()->back()->with('error_message', 'Email này đã tồn tại và không thể sử dụng lại.');
         }
-        else
-        {
+    
+        $this->validate($request, $rules, $message);
+    
+        $input = $request->all();
+        if (trim($request->password == '')) {
+            $input = $request->except('password');
+        } else {
             $input['password'] = bcrypt($request->password);
         }
-        if($file = $request->file('image_id'))
-        {
-            $name = time().$file->getClientOriginalName();
-
+        if ($file = $request->file('image_id')) {
+            $name = time() . $file->getClientOriginalName();
+    
             $image_resize = Photo::make($file->getRealPath());
-            $image_resize->resize(150,150);
-            $image_resize->save(public_path('assets/img/' .$name));
-
-            $image = Image::create(['file'=>$name]);
+            $image_resize->resize(150, 150);
+            $image_resize->save(public_path('assets/img/' . $name));
+    
+            $image = Image::create(['file' => $name]);
             $input['image_id'] = $image->id;
         }
-
+    
         $user = User::findOrFail($id);
         $user->update($input);
         return redirect('/admin/users')
@@ -173,6 +176,15 @@ class AdminUsersController extends Controller
         $user->danhGiaSach()->delete();
         $user->delete();
         return redirect()->back()
-            ->with('alert_message', 'User deleted successfully');
+            ->with('alert_message', 'Xóa khách hàng thành công');
+    }
+    public function lock($id)
+    {
+        $user = User::findOrFail($id);
+        $user->locked = !$user->locked;
+        $user->save();
+    
+        $message = $user->locked ? 'Tài khoản đã bị khóa.' : 'Tài khoản đã được mở khóa.';
+        return redirect()->route('users.index')->with('success', $message);
     }
 }
