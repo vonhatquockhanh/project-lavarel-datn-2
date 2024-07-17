@@ -33,6 +33,7 @@ class DonHangKhachHangController extends UsersBaseController
         // Cập nhật trạng thái của đơn hàng
         $order->update([
             'trang_thai_thanh_toan' => 1,
+            'trang_thai' => 3,
         ]);
 
         // Điều hướng trở lại trang trước đó

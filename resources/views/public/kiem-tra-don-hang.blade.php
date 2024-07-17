@@ -48,6 +48,7 @@
                             @csrf
                             <div id="alert-container"></div>
                             <div class="form-group">
+                                <br>
                                 <label for="khach_hang_ten_dang_nhap">Tên người nhận <span class="text-danger">*</span></label>
                                 <input type="text" name="khach_hang_ten_dang_nhap" class="form-control {{$errors->has('khach_hang_ten_dang_nhap')? 'is-invalid' : ''}}" value="{{Auth::user()? Auth::user()->name : ''}}" >
                                 @if($errors->has('khach_hang_ten_dang_nhap'))

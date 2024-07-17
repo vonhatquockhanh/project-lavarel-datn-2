@@ -62,10 +62,16 @@
                                     @endif
                                 </td>
                                 <td>
+                                    @if($donHang->trang_thai == 3 && $donHang->trang_thai_thanh_toan == 1) 
                                     <!-- Nút "Chỉnh sửa" với lớp Bootstrap và tùy chỉnh CSS -->
+                                    <button type="button" class="btn btn-primary btn-sm custom-edit-button editOrderButton" disabled>
+                                        <i class="fas fa-edit"></i> Chỉnh sửa đơn hàng
+                                    </button>
+                                    @else
                                     <button type="button" class="btn btn-primary btn-sm custom-edit-button editOrderButton" data-id="{{ $donHang->id }}">
                                         <i class="fas fa-edit"></i> Chỉnh sửa đơn hàng
                                     </button>
+                                    @endif
                                 </td>
                             </tr>
                         @empty

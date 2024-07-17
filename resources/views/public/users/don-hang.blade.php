@@ -38,31 +38,22 @@
                            <span class="badge badge-info badge-large">Đang giao hàng</span>
                            @break
                        @case(3)
-                           <span class="badge badge-success badge-large">Đã nhận hàng</span>
-                           @break
-                       @case(4)
                            <span class="badge badge-success badge-large">Hoàn thành</span>
                            @break
-                       @case(5)
+                       @case(4)
                            <span class="badge badge-danger badge-large">Đã hủy</span>
                            @break
-                       @default
-                           <span class="badge badge-secondary badge-large">Không xác định</span>
                    @endswitch
                </td>
                <td>
                @if($donHang->trang_thai == 2)
-                    <input type="checkbox" class="large-checkbox da-nhan-hang-checkbox" data-id="{{ $donHang->id }}" 
+                    <button class="btn btn-success da-nhan-hang-button" data-id="{{ $donHang->id }}" 
                         @if($donHang->trang_thai_thanh_toan == 1) 
-                            checked 
+                            disabled 
                         @endif
-                    />
+                    >Đã nhận hàng</button>
                 @else
-                    <input type="checkbox" class="large-checkbox da-nhan-hang-checkbox" disabled
-                        @if($donHang->trang_thai_thanh_toan == 1) 
-                            checked 
-                        @endif
-                        />
+                    <button class="btn btn-success da-nhan-hang-button" disabled>Đã nhận hàng</button>
                 @endif
                </td>
                <td><a href="{{route('user.chi-tiet-don-hang', $donHang->id)}}" class="btn btn-primary btn-sm">Xem Chi tiết</a></td>
@@ -80,9 +71,9 @@
            font-size: 1.2em;
            padding: 0.5em 1em;
        }
-       .large-checkbox {
-           width: 20px;
-           height: 20px;
+       .da-nhan-hang-button {
+           font-size: 1em;
+           padding: 0.5em 1em;
        }
        .text-center {
            text-align: center;
@@ -91,13 +82,11 @@
 
    <script>
        document.addEventListener('DOMContentLoaded', function () {
-           var checkboxes = document.querySelectorAll('.da-nhan-hang-checkbox');
-           checkboxes.forEach(function (checkbox) {
-               checkbox.addEventListener('change', function () {
-                   if (this.checked) {
-                       var orderId = this.getAttribute('data-id');
-                       window.location.href = `don-hang/cap-nhat-trang-thai-don-hang/${orderId}`; // Chuyển trạng thái thành 3 (Đã nhận hàng)
-                   }
+           var buttons = document.querySelectorAll('.da-nhan-hang-button');
+           buttons.forEach(function (button) {
+               button.addEventListener('click', function () {
+                   var orderId = this.getAttribute('data-id');
+                   window.location.href = `don-hang/cap-nhat-trang-thai-don-hang/${orderId}`; // Chuyển trạng thái thành 3 (Đã nhận hàng)
                });
            });
        });

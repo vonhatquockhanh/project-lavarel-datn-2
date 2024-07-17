@@ -11,7 +11,7 @@ Chi tiết sách
     <section class="main-content">
         <div class="container-fluid d-flex justify-content-center">
             <div class="row flex-grow-1 d-flex justify-content-center">
-                <div class="col-md-8 content-area">
+                <div class="col-md-6 content-area">
                     <div class="card my-4">
                         <div class="card-header bg-dark">
                             <h4 class="text-white">Chi tiết</h4>
@@ -130,7 +130,7 @@ Chi tiết sách
         .book-img-details img {
             width: 100%;
             height: auto;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         .content-area {

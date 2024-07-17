@@ -45,7 +45,7 @@
                 <!-- <div class="col-md-3 sidebar"> -->
                     @include('layouts.includes.side-bar')
                 <!-- </div> -->
-                <div class="col-md-8 content-area">
+                <div class="col-md-6 content-area">
                     @foreach ($sach_theo_loai as $slug => $sach)
                         <div class="card my-4">
                             <div class="card-header bg-dark">

@@ -80,7 +80,7 @@
 .container-fluid {
     display: flex;
     justify-content: center;
-    width: 85%;
+    width: 70%;
 }
 
 .quantity-input {

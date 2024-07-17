@@ -10,7 +10,7 @@
     <section class="main-content">
         <div class="container-fluid d-flex justify-content-center">
             <div class="row flex-grow-1 d-flex justify-content-center">
-                <div class="col-md-8 content-area">
+                <div class="col-md-6 content-area">
                     <div class="content-area">
                         @if($term = request('term'))
                             <div class="alert alert-info my-3">

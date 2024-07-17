@@ -68,7 +68,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="headings">
-                    <h3><a href="{{route('trang-chu-sach')}}" class="text-secondary"><b class="text-danger">Book</b> Shop</a></h3>
+                    <h3><a href="{{route('trang-chu-sach')}}" class="text-secondary">Sách <b class="text-danger">Mới</b> </a></h3>
                 </div>
             </div>
             <div class="col-md-4">
