@@ -77,8 +77,8 @@ class GioHangController extends Controller
                 }
 
                 // Cập nhật lại số lượng tồn kho của sản phẩm
-                $sach->so_luong = $tongSoLuongBanDau - $tongSoLuongYeuCau;
-                $sach->save();
+                // $sach->so_luong = $tongSoLuongBanDau - $tongSoLuongYeuCau;
+                // $sach->save();
 
                 return redirect()->back();
             } else {
@@ -140,7 +140,7 @@ class GioHangController extends Controller
                 'weight' => $sach->can_nang,
                 'options' => [
                     'image' => $sach->hinhAnh->url,
-                    'so_luong_ton' => $sach->so_luong
+                    'so_luong_ton' => $sach->so_luong - $item->so_luong
                 ]
             ]);
         }
@@ -156,9 +156,9 @@ class GioHangController extends Controller
 
             if ($item) {
                 // Tăng số lượng tồn kho của sản phẩm tương ứng
-                $sach = Sach::findOrFail($item->id);
-                $sach->so_luong += $item->qty;
-                $sach->save();
+                // $sach = Sach::findOrFail($item->id);
+                // $sach->so_luong += $item->qty;
+                // $sach->save();
                 
                 // Xóa sản phẩm khỏi giỏ hàng trong database
                 $gioHang = GioHang::where('user_id', Auth::user()->id)
@@ -178,9 +178,9 @@ class GioHangController extends Controller
             $item = Cart::get($rowId);
             if ($item) {
                 // Tăng số lượng tồn kho của sản phẩm tương ứng
-                $sach = Sach::findOrFail($item->id);
-                $sach->so_luong += $item->qty;
-                $sach->save();
+                // $sach = Sach::findOrFail($item->id);
+                // $sach->so_luong += $item->qty;
+                // $sach->save();
 
                 Cart::remove($rowId);
             }
@@ -196,7 +196,7 @@ class GioHangController extends Controller
         // Lấy tổng số lượng ban đầu của sản phẩm
         $item = Cart::get($rowId);
         $sach = Sach::findOrFail($item->id);
-        $tongSoLuongBanDau = $sach->so_luong + $item->qty;
+        $tongSoLuongBanDau = $sach->so_luong;
 
         if (Auth::check()) {
             $item = Cart::get($rowId);
@@ -213,8 +213,8 @@ class GioHangController extends Controller
                         $gioHang->so_luong += 1;
                         $gioHang->save();
 
-                        $sach->so_luong -= 1;
-                        $sach->save();
+                        // $sach->so_luong -= 1;
+                        // $sach->save();
 
                         Cart::update($rowId, $item->qty + 1);
 
@@ -235,8 +235,8 @@ class GioHangController extends Controller
                     Cart::update($rowId, $item->qty + 1);
                     
                     // Cập nhật số lượng tồn kho của sản phẩm
-                    $sach->so_luong -= 1;
-                    $sach->save();
+                    // $sach->so_luong -= 1;
+                    // $sach->save();
 
                     return response()->json(['success' => true, 'current_qty' => $item->qty, 'attempted_qty' => $tongSoLuongYeuCau, 'stock' => $sach->so_luong]);
                 } else {
@@ -271,8 +271,8 @@ class GioHangController extends Controller
                         Cart::update($rowId, $item->qty - 1);
     
                         // Tăng số lượng tồn kho của sản phẩm
-                        $sach->so_luong += 1;
-                        $sach->save();
+                        // $sach->so_luong += 1;
+                        // $sach->save();
     
                         return response()->json(['success' => true, 'current_qty' => $item->qty - 1, 'stock' => $sach->so_luong]);
                     } else if ($gioHang->so_luong == 1) {
@@ -280,8 +280,8 @@ class GioHangController extends Controller
                         Cart::remove($rowId);
     
                         // Tăng số lượng tồn kho của sản phẩm
-                        $sach->so_luong += 1;
-                        $sach->save();
+                        // $sach->so_luong += 1;
+                        // $sach->save();
     
                         return response()->json(['success' => true, 'current_qty' => 0, 'stock' => $sach->so_luong]);
                     }

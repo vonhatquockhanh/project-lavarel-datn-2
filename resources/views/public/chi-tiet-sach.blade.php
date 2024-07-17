@@ -194,7 +194,7 @@ Chi tiết sách
             let soLuongTon = soLuongTonGoc;
 
             if (soLuongTonGoc != 0) {
-                soLuongTon -= 1;
+                // soLuongTon -= 1;
                 soLuongTonElement.innerText = soLuongTon;
 
                 cartPlus.addEventListener('click', (e) => {
