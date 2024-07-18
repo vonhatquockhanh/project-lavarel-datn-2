@@ -38,7 +38,7 @@
                                         </span>
                                     @endif
 
-                                    <div><small><a href="#" class="text-muted">Quên Mật Khẩu?</a></small></div>
+                                    <div><small><a href="{{route('auth.forgot-password')}}">Quên Mật Khẩu?</a></small></div>
 
                                 </div>
                                 <div class="checkbox icheck">
@@ -50,7 +50,7 @@
                                     <button type="submit" class="btn btn-success btn-block btn-md">Đăng Nhập</button>
                                 </div>
                             </form>
-                            <small>Bạn đã có tài khoản đăng ký chưa?-> <a href="{{route('register')}}">Đăng ký ở đây</a></small>
+                            <small>Bạn đã có tài khoản đăng ký chưa? <a href="{{route('register')}}">Đăng ký ở đây</a></small>
                         </div>
                     </div>
                 </div>

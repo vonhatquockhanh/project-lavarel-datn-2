@@ -164,5 +164,8 @@ Route::group(['middleware' => 'user'], function (){
 
 Route::get('/don-hang/cap-nhat-trang-thai-don-hang/{id}', 'Users\DonHangKhachHangController@daNhanHang')->name('user.cap-nhat-trang-thai-don-hang');
 
+
 Route::get('/logout', 'CustomLogoutController@logout')->name('custom.logout');
+Route::get('/forgotPassword', 'Auth\ForgotPasswordController@forgotPassword')->name('auth.forgot-password');
+Route::post('/sendPasswordEmail', 'Auth\ForgotPasswordController@sendPasswordEmail')->name('password.email');
 //Tác giả
